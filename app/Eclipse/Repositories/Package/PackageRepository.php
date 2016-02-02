@@ -10,7 +10,7 @@ class PackageRepository implements PackageRepositoryInterface {
 	
 	public function all()
 	{
-		return Package::with('photos', 'category')->latest()->get();
+		return Package::with('photos', 'category')->latest()->orderBy('name', 'ASC')->get();
 	}
 
 	public function take($number)
