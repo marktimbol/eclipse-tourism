@@ -1,0 +1,62 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+import OverlayMenu from './OverlayMenu';
+import FloatingButton from './FloatingButton';
+
+var AppFooter = React.createClass({
+	render() {
+		return (
+			<div>
+				<FloatingButton />
+				<footer>
+					<div className="container">
+						<div className="row">
+							<div className="col m12">
+								<div className="row">
+									<div className="col m2 s6">
+										<h5 className="footer__title">Useful Links</h5>
+										<ul className="footer__links">
+											<li><a href="#">FAQs</a></li>
+											<li><a href="#">Terms &amp; Conditions</a></li>										
+										</ul>
+									</div>
+
+									<div className="col m2 s6">
+										<h5 className="footer__title">Follow Us</h5>
+										<ul className="footer__links">
+											<li><a href="#">Twitter</a></li>
+											<li><a href="#">Facebook</a></li>									
+										</ul>
+									</div>	
+
+									<div className="col m3 s6">
+										<h5 className="footer__title">Download our App</h5>
+										<ul className="footer__links">
+											<li><a href="#">iOS</a></li>
+											<li><a href="#">Android</a></li>															
+										</ul>
+									</div>	
+
+									<div className="col m2 offset-m3">
+										<a href="http://expo2020dubai.ae/en/" target="_blank">
+											<img src="/images/dubai-expo-2020.png" alt="Dubai Expo 2020" className="right" />
+										</a>
+									</div>																							
+								</div>
+							</div>		
+						</div>
+					</div>
+				</footer>
+
+				<OverlayMenu />
+
+			</div>
+		);
+	}
+});
+
+ReactDOM.render(
+	<AppFooter />,
+	document.getElementById('Footer')
+	);

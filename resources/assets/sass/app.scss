@@ -1,0 +1,96 @@
+@import 'components/variables';
+@import 'components/helpers';
+
+$themeFont: 'Lato', sans-serif;
+
+body {
+	background-color: #f5f5f5;
+	color: #333;
+	font-family: $themeFont;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $themeFont;
+}
+
+a {
+	&.btn {
+		&:hover, &:focus {
+			color: white;
+			text-decoration: none;
+		}
+	}
+	&.modal-trigger {
+		cursor: pointer;
+	}
+}
+
+.btn {
+	&.btn-block {
+		width: 100%;
+	}
+
+	.fa-spinner {
+		margin-left: 10px;
+	}
+}
+
+@import 'components/header';
+@import 'components/package';
+@import 'components/share-package';
+@import 'components/filter-package';
+@import 'components/book-a-package';
+@import 'components/card';
+@import 'components/cart';
+@import 'components/orders';
+@import 'components/parallax';
+@import 'components/input-with-price';
+@import 'components/slideshow';
+@import 'components/menu';
+@import 'components/mobile-menu';
+@import 'components/footer';
+@import 'components/page';
+@import 'components/overwrite';
+@import 'components/media-queries';
+
+.place-order-button {
+	margin-top: 30px;
+}
+
+.input-container {
+	position: relative;
+	i {
+		color: #d3d3d3;
+		width: 25px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		cursor: pointer;
+		text-align: center;		
+	}
+}
+
+.current-currency {
+	font-size: 10px;
+}	
+
+.address {
+	&.has-icon {
+		li {
+			i {
+				padding-right: 15px;
+			}
+		}
+	}
+}
+
+[class^="icon-"], [class*="icon-"] {
+  display: inline-block;
+  margin-top: 1px;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-repeat: no-repeat;
+}
