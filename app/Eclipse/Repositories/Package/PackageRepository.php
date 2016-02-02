@@ -15,7 +15,7 @@ class PackageRepository implements PackageRepositoryInterface {
 
 	public function take($number)
 	{
-		return Package::with('photos', 'category', 'information')->latest()->take($number)->get();
+		return Package::with('photos', 'category', 'information')->latest()->take($number)->orderBy('name', 'ASC')->get();
 	}
 
 	public function related($packageId)
