@@ -18,10 +18,16 @@ var PackagePrice = React.createClass({
 		return (
 			<div>
 				<h3 className="package__price">
-					{ currentCurrency +  price } 
+					{ this.props.currentPackage.adult_price !== '0' ?
+						<div>
+							<span>{ currentCurrency +  price }</span>
+							<p className="package__price__notice"><em>Prices are subject to change without prior notice</em></p>
+						</div> :
+						<span>Upon request</span>
+					}
 				</h3>
 
-				<p className="package__price__notice"><em>Prices are subject to change without prior notice</em></p>
+				
 
 				<ul className="collection">
 				

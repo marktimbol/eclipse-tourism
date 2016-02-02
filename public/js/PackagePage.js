@@ -19556,15 +19556,27 @@ var PackagePrice = React.createClass({
 			React.createElement(
 				'h3',
 				{ className: 'package__price' },
-				currentCurrency + price
-			),
-			React.createElement(
-				'p',
-				{ className: 'package__price__notice' },
-				React.createElement(
-					'em',
+				this.props.currentPackage.adult_price !== '0' ? React.createElement(
+					'div',
 					null,
-					'Prices are subject to change without prior notice'
+					React.createElement(
+						'span',
+						null,
+						currentCurrency + price
+					),
+					React.createElement(
+						'p',
+						{ className: 'package__price__notice' },
+						React.createElement(
+							'em',
+							null,
+							'Prices are subject to change without prior notice'
+						)
+					)
+				) : React.createElement(
+					'span',
+					null,
+					'Upon request'
 				)
 			),
 			React.createElement(
