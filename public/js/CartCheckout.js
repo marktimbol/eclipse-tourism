@@ -19481,10 +19481,14 @@ var CheckoutItem = React.createClass({
 					{ className: 'order__title' },
 					this.props.item.name
 				),
-				React.createElement(
+				this.props.item.options.selectedPackage.adult_price !== '0' ? React.createElement(
 					'h6',
 					{ className: 'order__price' },
 					currentCurrency + parseFloat(this.props.item.options.selectedPackage.adult_price).toFixed(2)
+				) : React.createElement(
+					'h6',
+					{ className: 'order__price' },
+					'upon request'
 				),
 				React.createElement(
 					'p',

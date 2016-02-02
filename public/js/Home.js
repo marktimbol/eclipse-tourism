@@ -19288,13 +19288,26 @@ var PackagePrice = React.createClass({
 				React.createElement(
 					'li',
 					{ className: 'collection-item' },
-					React.createElement(
-						'strong',
+					this.props.currentPackage.adult_price !== '0' ? React.createElement(
+						'p',
 						null,
-						'Adult:'
-					),
-					' AED ',
-					this.props.currentPackage.adult_price
+						React.createElement(
+							'strong',
+							null,
+							'Adult: '
+						),
+						'AED ',
+						this.props.currentPackage.adult_price
+					) : React.createElement(
+						'p',
+						null,
+						React.createElement(
+							'strong',
+							null,
+							'Adult: '
+						),
+						' Upon Request'
+					)
 				),
 				React.createElement(
 					'li',
@@ -19302,9 +19315,9 @@ var PackagePrice = React.createClass({
 					React.createElement(
 						'strong',
 						null,
-						'Child:'
+						'Child: '
 					),
-					' AED ',
+					'AED ',
 					this.props.currentPackage.child_price
 				),
 				this.props.currentPackage.minimum_quantity > 1 ? React.createElement(

@@ -182,8 +182,8 @@ class PackageTableSeeder extends Seeder
                                     </ul>
 
                                     <p>*Pick up from other emirates is available at extra charge</p>',
-                'adult_price'   =>  '375',
-                'child_price'   =>  '275',
+                'adult_price'   =>  '400',
+                'child_price'   =>  '250',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -217,8 +217,8 @@ class PackageTableSeeder extends Seeder
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'110',
-    			'child_price'	=>	'90',
+    			'adult_price'	=>	'150',
+    			'child_price'	=>	'100',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1
@@ -240,7 +240,7 @@ class PackageTableSeeder extends Seeder
 
                                     <p>* Pick up for other emirates is available at extra charge</p>',
     			'adult_price'	=>	'550',
-    			'child_price'	=>	'390',
+    			'child_price'	=>	'0',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1
@@ -260,7 +260,7 @@ class PackageTableSeeder extends Seeder
                                     </ul>
 
                                     <p>* Pick up for other emirates is available at extra charge</p>',
-    			'adult_price'	=>	'350',
+    			'adult_price'	=>	'380',
     			'child_price'	=>	'0',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
@@ -283,11 +283,11 @@ class PackageTableSeeder extends Seeder
 
                                     <p>* Pick up for other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'380',
-    			'child_price'	=>	'0',
+    			'adult_price'	=>	'250',
+    			'child_price'	=>	'120',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 2
     		], 
 
     		[
@@ -308,7 +308,7 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'100',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 2
+                'minimum_quantity'  => 3
     		],     		         		 		 	
 
     		[
@@ -327,10 +327,10 @@ class PackageTableSeeder extends Seeder
 
                                     <p>* Pick up for other emirates is available at extra charge</p>',
     			'adult_price'	=>	'370',
-    			'child_price'	=>	'300',
+    			'child_price'	=>	'370',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 3
+                'minimum_quantity'  => 2
     		],  
 
     		[
@@ -354,11 +354,11 @@ class PackageTableSeeder extends Seeder
 
                                     <p>* Transfers are available upon request and at additional charge</p>
                                     ',
-    			'adult_price'	=>	'160',
-    			'child_price'	=>	'120',
+    			'adult_price'	=>	'200',
+    			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 3
+                'minimum_quantity'  => 1
     		],    
 
     		[
@@ -384,7 +384,7 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'175',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 4
+                'minimum_quantity'  => 1
     		],       
 
     		[
@@ -412,8 +412,8 @@ class PackageTableSeeder extends Seeder
 
                                     <p>* Transfers are available upon request and at additional charge</p>
                                     ',
-    			'adult_price'	=>	'150',
-    			'child_price'	=>	'125',
+    			'adult_price'	=>	'200',
+    			'child_price'	=>	'180',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1
@@ -447,7 +447,7 @@ class PackageTableSeeder extends Seeder
 
                                     <p>* Pick up for other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'300',
+    			'adult_price'	=>	'250',
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
@@ -530,8 +530,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>* Pick up for other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'150',
-    			'child_price'	=>	'100',
+    			'adult_price'	=>	'300',
+    			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1
@@ -565,7 +565,7 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                     </ul>
                                     <p>* Pick up for other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'200',
+    			'adult_price'	=>	'300',
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
@@ -602,8 +602,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>* Pick up for other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'150',
-    			'child_price'	=>	'125',
+    			'adult_price'	=>	'200',
+    			'child_price'	=>	'100',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1
@@ -638,7 +638,7 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'200',
+    			'adult_price'	=>	'300',
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
@@ -696,7 +696,7 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-    			'adult_price'	=>	'300',
+    			'adult_price'	=>	'350',
     			'child_price'	=>	'250',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
@@ -796,10 +796,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Take-off & landing from Cruise Terminal is available upon request</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '950',
-                'child_price'   =>  '820',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],    
 
@@ -844,10 +844,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Take-off &amp; landing from Cruise Terminal is available upon request</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '1199',
-                'child_price'   =>  '999',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ], 
 
@@ -895,10 +895,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Take-off &amp; landing from Cruise Terminal is available upon request</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '1225',
-                'child_price'   =>  '1115',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ], 
 
@@ -937,10 +937,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>* Transfers is not included – Transfers are available on request</p>
                                     ',
-                'adult_price'   =>  '700',
-                'child_price'   =>  '700',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],  
 
@@ -983,10 +983,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>* Transfers is not included – Transfers are available on request</p>
                                     ',
-                'adult_price'   =>  '1150',
-                'child_price'   =>  '1150',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],  
 
@@ -1032,10 +1032,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>* Transfers is not included – Transfers are available on request</p>
                                     ',
-                'adult_price'   =>  '1560',
-                'child_price'   =>  '1360',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],  
 
@@ -1083,10 +1083,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>* Transfers is not included – Transfers are available on request</p>
                                     ',
-                'adult_price'   =>  '2250',
-                'child_price'   =>  '2000',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],  
 
@@ -1108,8 +1108,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-                'adult_price'   =>  '950',
-                'child_price'   =>  '800',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
@@ -1130,7 +1130,7 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Amazing view from a height up to 13,000 feet</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '1750',
+                'adult_price'   =>  '0',
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
@@ -1157,10 +1157,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-                'adult_price'   =>  '350',
-                'child_price'   =>  0,
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],   
 
@@ -1183,10 +1183,10 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Unlimited soft drinks</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '200',
-                'child_price'   =>  '125',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ], 
 
@@ -1212,8 +1212,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Rides &amp; Attractions</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '150',
-                'child_price'   =>  '125',
+                'adult_price'   =>  '275',
+                'child_price'   =>  '215',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -1233,8 +1233,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Private Beach</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '200',
-                'child_price'   =>  '165',
+                'adult_price'   =>  '250',
+                'child_price'   =>  '205',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -1265,8 +1265,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                         <li>Bringing your own food or drinks is not allowed.</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '199',
-                'child_price'   =>  '160',
+                'adult_price'   =>  '160',
+                'child_price'   =>  '100',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -1290,8 +1290,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                                         <li>Water Park Access</li>
                                     </ul>
                                     ',
-                'adult_price'   =>  '110',
-                'child_price'   =>  '165',
+                'adult_price'   =>  '150',
+                'child_price'   =>  '75',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -1314,7 +1314,7 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
                 'adult_price'   =>  '120',
-                'child_price'   =>  '120',
+                'child_price'   =>  '100',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -1336,8 +1336,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-                'adult_price'   =>  '120',
-                'child_price'   =>  '120',
+                'adult_price'   =>  '200',
+                'child_price'   =>  '200',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -1367,8 +1367,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
 
                                     <p>*Pick up from other emirates is available at extra charge. Drop off available upon request at additional charge.</p>
                                     ',
-                'adult_price'   =>  '400',
-                'child_price'   =>  '400',
+                'adult_price'   =>  '150',
+                'child_price'   =>  '125',
                 'has_time_options'  => 1,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
@@ -1399,10 +1399,10 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-                'adult_price'   =>  '475',
-                'child_price'   =>  '270',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],  
 
@@ -1428,10 +1428,10 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-                'adult_price'   =>  '500',
-                'child_price'   =>  '275',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],  
 
@@ -1470,10 +1470,10 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-                'adult_price'   =>  '475',
-                'child_price'   =>  '280',
+                'adult_price'   =>  '0',
+                'child_price'   =>  '0',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 0,
+                'confirm_availability'  => 1,
                 'minimum_quantity'  => 1
             ],  
 
@@ -1497,8 +1497,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
 
                                     <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
-                'adult_price'   =>  '593',
-                'child_price'   =>  '468',
+                'adult_price'   =>  '250',
+                'child_price'   =>  '205',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1

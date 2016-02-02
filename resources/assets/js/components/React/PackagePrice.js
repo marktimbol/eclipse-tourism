@@ -26,11 +26,14 @@ var PackagePrice = React.createClass({
 				<ul className="collection">
 				
 					<li className="collection-item">
-						<strong>Adult:</strong> AED { this.props.currentPackage.adult_price }
+						{ this.props.currentPackage.adult_price !== '0' ?
+							<p><strong>Adult: </strong>AED { this.props.currentPackage.adult_price }</p> :
+							<p><strong>Adult: </strong> Upon Request</p>
+						}
 					</li>
 
 					<li className="collection-item">
-						<strong>Child:</strong> AED { this.props.currentPackage.child_price }
+						<strong>Child: </strong>AED { this.props.currentPackage.child_price }
 					</li>
 
 					{ this.props.currentPackage.minimum_quantity > 1 ? 

@@ -16,7 +16,10 @@ var CheckoutItem = React.createClass({
 
 				<div className="order__body">
 					<h5 className="order__title">{ this.props.item.name }</h5>
-					<h6 className="order__price">{ currentCurrency + parseFloat(this.props.item.options.selectedPackage.adult_price).toFixed(2) }</h6>
+					{ this.props.item.options.selectedPackage.adult_price !== '0' ? 
+						<h6 className="order__price">{ currentCurrency + parseFloat(this.props.item.options.selectedPackage.adult_price).toFixed(2) }</h6> :
+						<h6 className="order__price">upon request</h6>
+					}
 					<p>
 						<strong>Adult: </strong>{ this.props.item.qty }<br />
 						<strong>Child: </strong>  
