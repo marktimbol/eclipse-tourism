@@ -9,10 +9,16 @@
 	<meta name="site_url" content="{{ env('SITE_URL') }}" />
 	<meta name="current_currency" content="{{ currentCurrency() }}" />
 	@if( isset($package) )
-	<meta name="package_id" content="{{ $package->id }}" />
-	<meta name="package_slug" content="{{ $package->slug }}" />
+	<!-- for Facebook -->          
+	<meta property="og:title" content="{{ $package->name }}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content="/images/uploads/{{ $package->photos->first()->path }}" />
+	<meta property="og:url" content="/package/{{$package->slug}}" />
+	<meta property="og:description" content="{{ str_limit($package->description, 150) }}" />
+	<meta name="description" content="{{ str_limit($package->description, 150) }}" />
+	@else
+	<meta name="description" content="A Memorable Experience" />	
 	@endif
-	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
 	<!--Import Google Icon Font-->
@@ -24,6 +30,8 @@
 </head>
 
 	<body class="@yield('body_class')" id="eclipseApp">
+
+		@yield('after_body')
 
 		<div class="fixed-action-btn mobile-menu">
 			<button id="trigger-overlay" type="button" class="btn-floating btn-medium transparent">

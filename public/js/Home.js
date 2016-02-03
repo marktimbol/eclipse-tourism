@@ -19356,7 +19356,7 @@ var PackagePrice = React.createClass({
 exports.default = PackagePrice;
 
 },{"react":158}],163:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -19364,30 +19364,44 @@ Object.defineProperty(exports, "__esModule", {
 var React = require('react');
 
 var SharePackage = React.createClass({
-	displayName: "SharePackage",
+	displayName: 'SharePackage',
 	render: function render() {
+		var url = '/package/' + this.props.currentPackage.slug;
+
 		return React.createElement(
-			"div",
-			{ className: "share-package" },
+			'div',
+			{ className: 'share-package' },
 			React.createElement(
-				"h6",
+				'h6',
 				null,
-				"Share this package"
+				'Share this package'
 			),
 			React.createElement(
-				"a",
-				{ href: "#", className: "share-package__facebook" },
-				React.createElement("i", { className: "fa fa-facebook-official fa-3x" })
-			),
-			React.createElement(
-				"a",
-				{ href: "#", className: "share-package__twitter" },
-				React.createElement("i", { className: "fa fa-twitter fa-3x" })
-			),
-			React.createElement(
-				"a",
-				{ href: "#", className: "share-package__google" },
-				React.createElement("i", { className: "fa fa-google-plus fa-3x" })
+				'ul',
+				null,
+				React.createElement(
+					'li',
+					null,
+					React.createElement('div', { className: 'fb-share-button', 'data-href': url, 'data-layout': 'icon' })
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement(
+						'a',
+						{ href: '#', className: 'share-package__twitter' },
+						React.createElement('i', { className: 'fa fa-twitter fa-3x' })
+					)
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement(
+						'a',
+						{ href: '#', className: 'share-package__google' },
+						React.createElement('i', { className: 'fa fa-google-plus fa-3x' })
+					)
+				)
 			)
 		);
 	}

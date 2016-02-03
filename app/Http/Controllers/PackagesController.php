@@ -39,7 +39,7 @@ class PackagesController extends Controller
             'relatedPackages' => $this->package->related($package->id)
             ]);
 
-    	return view('public.packages.package', compact('pageTitle'));
+    	return view('public.packages.package', compact('pageTitle', 'package'));
     }
 
 }
