@@ -19249,7 +19249,7 @@ var currentCurrency = $('meta[name="current_currency"]').attr('content');
 var PackagePrice = React.createClass({
 	displayName: 'PackagePrice',
 	render: function render() {
-		var price = parseFloat(this.props.currentPackage.adult_price).toFixed(2);
+		var price = parseFloat(this.props.adultPrice).toFixed(2);
 
 		var additionalInformation = this.props.currentPackage.information.map(function (info) {
 			return React.createElement(
@@ -19271,27 +19271,15 @@ var PackagePrice = React.createClass({
 			React.createElement(
 				'h3',
 				{ className: 'package__price' },
-				this.props.currentPackage.adult_price !== '0' ? React.createElement(
-					'div',
-					null,
+				currentCurrency + price,
+				React.createElement(
+					'p',
+					{ className: 'package__price__notice' },
 					React.createElement(
-						'span',
+						'em',
 						null,
-						currentCurrency + price
-					),
-					React.createElement(
-						'p',
-						{ className: 'package__price__notice' },
-						React.createElement(
-							'em',
-							null,
-							'Prices are subject to change without prior notice'
-						)
+						'Prices are subject to change without prior notice'
 					)
-				) : React.createElement(
-					'span',
-					null,
-					'Upon request'
 				)
 			),
 			React.createElement(
@@ -19300,26 +19288,13 @@ var PackagePrice = React.createClass({
 				React.createElement(
 					'li',
 					{ className: 'collection-item' },
-					this.props.currentPackage.adult_price !== '0' ? React.createElement(
-						'p',
+					React.createElement(
+						'strong',
 						null,
-						React.createElement(
-							'strong',
-							null,
-							'Adult: '
-						),
-						'AED ',
-						this.props.currentPackage.adult_price
-					) : React.createElement(
-						'p',
-						null,
-						React.createElement(
-							'strong',
-							null,
-							'Adult: '
-						),
-						' Upon Request'
-					)
+						'Adult: '
+					),
+					'AED ',
+					this.props.adultPrice
 				),
 				React.createElement(
 					'li',
@@ -19330,7 +19305,7 @@ var PackagePrice = React.createClass({
 						'Child: '
 					),
 					'AED ',
-					this.props.currentPackage.child_price
+					this.props.childPrice
 				),
 				this.props.currentPackage.minimum_quantity > 1 ? React.createElement(
 					'li',

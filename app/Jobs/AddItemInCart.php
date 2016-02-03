@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Events\ItemWasAddedOnTheCart;
 use App\Jobs\Job;
+use App\Ticket;
 use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Eclipse\Shop\ShoppingCart;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -16,8 +17,9 @@ class AddItemInCart extends Job implements SelfHandling
     public $date;
     public $date_submit;
     public $time;
+    public $ticket;
 
-    public function __construct($package_id, $quantity, $child_quantity, $date, $date_submit = '', $time = '')
+    public function __construct($package_id, $quantity, $child_quantity, $date, $date_submit = '', $time = '', $ticket='')
     {
         $this->package_id = $package_id;
         $this->quantity = $quantity;
@@ -25,6 +27,7 @@ class AddItemInCart extends Job implements SelfHandling
         $this->date = $date;
         $this->date_submit = $date_submit;
         $this->time = $time;
+        $this->ticket = $ticket;
     }
 
     /**
@@ -35,17 +38,25 @@ class AddItemInCart extends Job implements SelfHandling
     public function handle(PackageRepositoryInterface $package, ShoppingCart $cart)
     {
         $selectedPackage = $package->find($this->package_id);
-        
+        $adultPrice = $selectedPackage->adult_price;
+
+        if( $this->ticket !== '' )
+        {
+            $ticket = Ticket::findOrFail($this->ticket);
+            $adultPrice = $ticket->adultPrice;
+        }
+
         $data = [
             'id'            => $selectedPackage->id,
             'name'          => $selectedPackage->name,
             'qty'           => (int) $this->quantity,               //adult_quantity
-            'price'         => $selectedPackage->adult_price,       //adult_price
+            'price'         => $adultPrice,       //adult_price
             'options'       => [
                 'child_quantity'        => $this->child_quantity,
                 'date'                  => $this->date,
                 'date_submit'           => $this->date_submit,
                 'time'                  => $this->time ?: '',
+                'ticket'                => $this->ticket ?: '',
                 'selectedPackage'       => $selectedPackage 
             ]
         ];

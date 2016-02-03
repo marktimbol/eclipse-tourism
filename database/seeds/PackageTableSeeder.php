@@ -1709,7 +1709,25 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1
-            ]
+            ],
+
+            [
+                'category_id'   => 3,
+                'name'          => 'Xclusive Marina Cruise',
+                'subtitle'      => '',
+                'description'   =>  '
+                                    <h3>Our Xclusive Marina Cruise Includes</h3>
+                                    <ul>
+                                        <li>International Buffet</li>
+                                        <li>Unlimited Juices, Tea & Coffee
+                                    </ul>
+                                    ',
+                'adult_price'   =>  '250',
+                'child_price'   =>  '250',
+                'has_time_options'  => 0,
+                'confirm_availability'  => 0,
+                'minimum_quantity'  => 1
+            ], 
     	];
 
          foreach( $packages as $package )

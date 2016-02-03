@@ -8,10 +8,24 @@ import SharePackage from './SharePackage';
 
 var PackageInformation = React.createClass({
 
+	getInitialState() {
+		return {
+			adultPrice: window.package.adult_price,
+			childPrice: window.package.child_price
+		}
+	},
+
 	showDescription() {
 		return {
 			__html: window.package.description
 		}
+	},
+
+	setPrices(adultPrice, childPrice) {
+		this.setState({
+			adultPrice: adultPrice,
+			childPrice: childPrice
+		});
 	},
 
 	render() {
@@ -29,8 +43,8 @@ var PackageInformation = React.createClass({
 				</div>
 
 				<div className="col m3 s12">
-					<PackagePrice currentPackage={window.package} />
-					<BookPackageForm currentPackage={window.package} />
+					<PackagePrice currentPackage={window.package} adultPrice={this.state.adultPrice} childPrice={this.state.childPrice} />
+					<BookPackageForm currentPackage={window.package} setPrices={this.setPrices} />
 					<SharePackage currentPackage={window.package} />
 				</div>
 			</div>

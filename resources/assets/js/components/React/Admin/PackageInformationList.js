@@ -33,6 +33,7 @@ var PackageInformationList = React.createClass({
 				<ul className="list-group">
 					{ packageInformation }
 				</ul>
+				<button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#newPackageInformation">Add New Information</button>
 			</div>
 		);
 	}

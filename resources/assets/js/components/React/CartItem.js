@@ -24,6 +24,22 @@ var CartItem = React.createClass({
 		var imagePath = '/images/uploads/' + this.props.item.options.selectedPackage.photos[0].path;
 		var packageUrl = '/package/' + this.props.item.options.selectedPackage.slug;
 
+		var adultPrice = this.props.item.options.selectedPackage.adult_price;
+		var childPrice = this.props.item.options.selectedPackage.child_price;
+
+		if( this.props.item.options.selectedPackage.has_ticket_option == 1)
+		{
+			var ticketId = this.props.item.options.ticket;
+			var tickets = this.props.item.options.selectedPackage.tickets;
+
+			tickets.map(function(ticket) {
+				if( ticketId == ticket.id ) {
+					adultPrice = ticket.adultPrice;
+					childPrice = ticket.childPrice;
+				}
+			});
+		}
+
 		return (
 			<tr>
 				<td width="550">
@@ -57,7 +73,7 @@ var CartItem = React.createClass({
 		 									<strong>Child: </strong>
 		 									{ this.props.item.options.child_quantity }
 			 									&nbsp; &times; &nbsp;
-		 									{ currentCurrency + parseFloat(this.props.item.options.selectedPackage.child_price).toFixed(2) }
+		 									{ currentCurrency + parseFloat(childPrice).toFixed(2) }
 		 								</li>
 		 							</ul> : ''
 		 						}
@@ -67,7 +83,9 @@ var CartItem = React.createClass({
 				</td>
 
 				<td className="nowrap">
-					{ currentCurrency + parseFloat(this.props.item.options.selectedPackage.adult_price).toFixed(2) }
+
+					{ currentCurrency + parseFloat(adultPrice).toFixed(2) }
+					
 				</td>
 
 				<td className="nowrap">{ this.props.item.qty }</td>

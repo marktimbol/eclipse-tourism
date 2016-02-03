@@ -5780,7 +5780,7 @@ body {
     #wrapper .package-photos .package-photo:hover form {
       display: block; }
 
-#NewPackageInformation .list-group .list-group-item .actionButtons {
+.actionButtons {
   float: right; }
 
 .dropzone {

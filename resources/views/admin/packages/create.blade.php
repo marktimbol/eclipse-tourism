@@ -50,8 +50,7 @@
 						            	<div class="form-group">
 						            		<label for="adult_price">Adult Price</label>
 						            		<div class="input-group">
-						            			
-						            			<input type="text" name="adult_price" id="adult_price" class="form-control" value="{{ old('adult_price') }}" placeholder="Adult Price" />
+						    					<input type="text" name="adult_price" id="adult_price" class="form-control" value="{{ old('adult_price') }}" placeholder="Adult Price" />
 						            			<div class="input-group-addon">AED</div>
 						            		</div>
 						            	</div>

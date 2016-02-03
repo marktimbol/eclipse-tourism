@@ -1080,7 +1080,19 @@ class PackageInformationTableSeeder extends Seeder
         		'package_id'	=> 53,
         		'title'			=> 'Opening Hours',
         		'description'	=> 'Thurs – Sun: 10:00 am – 24:00 pm'
-        	]
+        	],
+
+            [
+                'package_id'    => 59,
+                'title'         => 'Boarding Time',
+                'description'   => '8pm'
+            ],
+
+            [
+                'package_id'    => 59,
+                'title'         => 'Cruise Time',
+                'description'   => '8:30pm to 10:30pm'
+            ]
         ];
 
 

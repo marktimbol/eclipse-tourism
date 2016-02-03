@@ -27,6 +27,7 @@ class CreatePackagesTable extends Migration
             $table->boolean('confirm_availability');
 
             $table->integer('minimum_quantity')->default(1);
+            $table->boolean('has_ticket_option')->default(0);
 
             $table->foreign('category_id')->references('id')->on('categories');
 

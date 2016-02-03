@@ -1,12 +1,13 @@
 var React = require('react');
 
-var AdditionalPackageInformation = React.createClass({
+var TicketInformation = React.createClass({
 
 	getInitialState() {
 		return {
 			editing: false,
-			title: this.props.title,
-			description: this.props.description
+			name: this.props.name,
+			adultPrice: this.props.adultPrice,
+			childPrice: this.props.childPrice
 		}
 	},
 
@@ -25,35 +26,43 @@ var AdditionalPackageInformation = React.createClass({
 	},
 
 	onUpdate() {
-		this.props.onUpdate(this.props.id, this.state.title, this.state.description);
+		this.props.onUpdate(this.props.id, this.state.name, this.state.adultPrice, this.state.childPrice);
 
 		this.setState({
 			editing: false
 		});
 	},
 
-	handleTitleChange(e) {
-		this.setState({ title: e.target.value });
+	handleNameChange(e) {
+		this.setState({ name: e.target.value });
 	},
 
-	handleDescriptionChange(e) {
-		this.setState({ description: e.target.value });
+	handleAdultPriceChange(e) {
+		this.setState({ adultPrice: e.target.value });
 	},
+
+	handleChildPriceChange(e) {
+		this.setState({ childPrice: e.target.value });
+	},
+
 
 	render() {
-
 		return (
 			<li className="list-group-item">
 				<div className="row">
 					{ this.state.editing === true ?
 						<div className="col-md-9">
 							<div className="row">
-								<div className="col-md-5">
-									<input className="form-control" value={this.state.title} onChange={this.handleTitleChange} />
+								<div className="col-md-4">
+									<input className="form-control" value={this.state.name} onChange={this.handleNameChange} />
 								</div>
 
-								<div className="col-md-5">
-									<input className="form-control" value={this.state.description} onChange={this.handleDescriptionChange} />
+								<div className="col-md-3">
+									<input className="form-control" value={this.state.adultPrice} onChange={this.handleAdultPriceChange} />
+								</div>	
+
+								<div className="col-md-3">
+									<input className="form-control" value={this.state.childPrice} onChange={this.handleChildPriceChange} />
 								</div>	
 
 								<div className="col-md-1">
@@ -63,7 +72,9 @@ var AdditionalPackageInformation = React.createClass({
 							</div>
 						</div> :
 						<div className="col-md-9">
-							<strong>{this.props.title}:</strong> {this.props.description}
+							<strong>{ this.state.name }</strong><br />
+							Adult Price: { this.state.adultPrice} AED<br />
+							Child Price: { this.state.childPrice } AED
 						</div>
 					}
 
@@ -84,4 +95,4 @@ var AdditionalPackageInformation = React.createClass({
 	}
 });
 
-export default AdditionalPackageInformation;
+export default TicketInformation;

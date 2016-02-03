@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $this->bind('package', function($slug) {
-            return Package::with('information', 'photos')->whereSlug($slug)->firstOrFail();
+            return Package::with('information', 'tickets', 'photos')->whereSlug($slug)->firstOrFail();
         });
 
         $this->bind('category', function($slug) {

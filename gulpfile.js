@@ -98,8 +98,9 @@ elixir(function(mix) {
   mix.browserify('components/React/BookingPaymentCheckout.js')
 
   mix.browserify([
-    'components/React/Admin/NewPackageInformation.js'
-  ], 'public/js/NewPackageInformation.js')
+    'components/React/Admin/PackageInformation.js',
+    'components/React/Admin/TicketOptions.js'
+  ], 'public/js/admin/PackageInformation.js')
 
 /*
  |--------------------------------------------------------------------------

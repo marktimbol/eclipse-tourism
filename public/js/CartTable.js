@@ -19087,6 +19087,21 @@ var CartItem = React.createClass({
 		var imagePath = '/images/uploads/' + this.props.item.options.selectedPackage.photos[0].path;
 		var packageUrl = '/package/' + this.props.item.options.selectedPackage.slug;
 
+		var adultPrice = this.props.item.options.selectedPackage.adult_price;
+		var childPrice = this.props.item.options.selectedPackage.child_price;
+
+		if (this.props.item.options.selectedPackage.has_ticket_option == 1) {
+			var ticketId = this.props.item.options.ticket;
+			var tickets = this.props.item.options.selectedPackage.tickets;
+
+			tickets.map(function (ticket) {
+				if (ticketId == ticket.id) {
+					adultPrice = ticket.adultPrice;
+					childPrice = ticket.childPrice;
+				}
+			});
+		}
+
 		return React.createElement(
 			'tr',
 			null,
@@ -19142,7 +19157,7 @@ var CartItem = React.createClass({
 									),
 									this.props.item.options.child_quantity,
 									'  ×  ',
-									currentCurrency + parseFloat(this.props.item.options.selectedPackage.child_price).toFixed(2)
+									currentCurrency + parseFloat(childPrice).toFixed(2)
 								)
 							) : ''
 						)
@@ -19152,7 +19167,7 @@ var CartItem = React.createClass({
 			React.createElement(
 				'td',
 				{ className: 'nowrap' },
-				currentCurrency + parseFloat(this.props.item.options.selectedPackage.adult_price).toFixed(2)
+				currentCurrency + parseFloat(adultPrice).toFixed(2)
 			),
 			React.createElement(
 				'td',

@@ -16,7 +16,8 @@ class Package extends Model
         'child_price',
         'has_time_options',
         'confirm_availability',
-        'minimum_quantity'
+        'minimum_quantity',
+        'has_ticket_option'
     ];
 
     public function photos()
@@ -65,5 +66,10 @@ class Package extends Model
     public function information()
     {
         return $this->hasMany(PackageInformation::class);
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

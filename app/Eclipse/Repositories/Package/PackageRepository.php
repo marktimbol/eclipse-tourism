@@ -10,12 +10,12 @@ class PackageRepository implements PackageRepositoryInterface {
 	
 	public function all()
 	{
-		return Package::with('photos', 'category')->latest()->orderBy('name', 'ASC')->get();
+		return Package::with('photos', 'category', 'tickets', 'information')->latest()->orderBy('name', 'ASC')->get();
 	}
 
 	public function take($number)
 	{
-		return Package::with('photos', 'category', 'information')->latest()->take($number)->orderBy('name', 'ASC')->get();
+		return Package::with('photos', 'category', 'information', 'tickets')->latest()->take($number)->orderBy('name', 'ASC')->get();
 	}
 
 	public function related($packageId)
@@ -33,7 +33,7 @@ class PackageRepository implements PackageRepositoryInterface {
 
 	public function find($id)
 	{
-		return Package::with('photos')->findOrFail($id);
+		return Package::with('photos', 'information', 'tickets')->findOrFail($id);
 	}
 
 	public function store($data)
@@ -43,11 +43,11 @@ class PackageRepository implements PackageRepositoryInterface {
 
 	public function update($id, $data)
 	{	
-		$category = $this->find($id);
+		$package = $this->find($id);
 		
-		$category->fill($data);
+		$package->fill($data);
 		
-		$category->save();
+		$package->save();
 	}
 
 	public function delete($id)

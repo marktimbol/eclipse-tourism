@@ -64,15 +64,10 @@ body {
 	}
 }
 
-#NewPackageInformation {
-	.list-group {
-		.list-group-item {
-			.actionButtons {
-				float: right;
-			}
-		}
-	}
+.actionButtons {
+	float: right;
 }
+
 
 .dropzone {
 	border-style: dashed !important;

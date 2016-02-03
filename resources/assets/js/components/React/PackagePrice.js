@@ -5,7 +5,7 @@ var currentCurrency = $('meta[name="current_currency"]').attr('content');
 var PackagePrice = React.createClass({
 
 	render() {
-		var price = parseFloat(this.props.currentPackage.adult_price).toFixed(2);
+		var price = parseFloat(this.props.adultPrice).toFixed(2);
 
 		var additionalInformation = this.props.currentPackage.information.map(function(info) {
 			return (
@@ -18,28 +18,18 @@ var PackagePrice = React.createClass({
 		return (
 			<div>
 				<h3 className="package__price">
-					{ this.props.currentPackage.adult_price !== '0' ?
-						<div>
-							<span>{ currentCurrency +  price }</span>
-							<p className="package__price__notice"><em>Prices are subject to change without prior notice</em></p>
-						</div> :
-						<span>Upon request</span>
-					}
+					{ currentCurrency +  price }
+					<p className="package__price__notice"><em>Prices are subject to change without prior notice</em></p>	
 				</h3>
-
-				
 
 				<ul className="collection">
 				
 					<li className="collection-item">
-						{ this.props.currentPackage.adult_price !== '0' ?
-							<p><strong>Adult: </strong>AED { this.props.currentPackage.adult_price }</p> :
-							<p><strong>Adult: </strong> Upon Request</p>
-						}
+						<strong>Adult: </strong>AED { this.props.adultPrice }
 					</li>
 
 					<li className="collection-item">
-						<strong>Child: </strong>AED { this.props.currentPackage.child_price }
+						<strong>Child: </strong>AED { this.props.childPrice }
 					</li>
 
 					{ this.props.currentPackage.minimum_quantity > 1 ? 

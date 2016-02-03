@@ -19049,6 +19049,9 @@ var AdditionalPackageInformation = React.createClass({
 		e.preventDefault();
 		this.setState({ editing: true });
 	},
+	onCancelEdit: function onCancelEdit() {
+		this.setState({ editing: false });
+	},
 	onUpdate: function onUpdate() {
 		this.props.onUpdate(this.props.id, this.state.title, this.state.description);
 
@@ -19078,13 +19081,22 @@ var AdditionalPackageInformation = React.createClass({
 						{ className: "row" },
 						React.createElement(
 							"div",
-							{ className: "col-md-6" },
+							{ className: "col-md-5" },
 							React.createElement("input", { className: "form-control", value: this.state.title, onChange: this.handleTitleChange })
 						),
 						React.createElement(
 							"div",
-							{ className: "col-md-6" },
+							{ className: "col-md-5" },
 							React.createElement("input", { className: "form-control", value: this.state.description, onChange: this.handleDescriptionChange })
+						),
+						React.createElement(
+							"div",
+							{ className: "col-md-1" },
+							React.createElement(
+								"button",
+								{ className: "btn btn-default btn-sm", onClick: this.onCancelEdit },
+								"Cancel"
+							)
 						)
 					)
 				) : React.createElement(
@@ -19135,9 +19147,295 @@ exports.default = AdditionalPackageInformation;
 },{"react":158}],160:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var React = require('react');
+var csrfToken = $('meta[name="token"]').attr('content');
+
+var NewPackageInformation = React.createClass({
+	displayName: 'NewPackageInformation',
+	getInitialState: function getInitialState() {
+		return {
+			title: '',
+			description: ''
+		};
+	},
+	onSubmit: function onSubmit(e) {
+		e.preventDefault();
+
+		this.props.onSubmit(this.state.title, this.state.description);
+
+		this.resetText();
+
+		$('#newPackageInformation').modal('hide');
+	},
+	handleTitleChange: function handleTitleChange(e) {
+		this.setState({ title: e.target.value });
+	},
+	handleDescriptionChange: function handleDescriptionChange(e) {
+		this.setState({ description: e.target.value });
+	},
+	resetText: function resetText() {
+		this.setState({
+			title: '',
+			description: ''
+		});
+	},
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'modal fade', id: 'newPackageInformation', role: 'dialog' },
+			React.createElement(
+				'div',
+				{ className: 'modal-dialog', role: 'document' },
+				React.createElement(
+					'div',
+					{ className: 'modal-content' },
+					React.createElement(
+						'div',
+						{ className: 'modal-header' },
+						React.createElement(
+							'button',
+							{ type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
+							React.createElement(
+								'span',
+								{ 'aria-hidden': 'true' },
+								'×'
+							)
+						),
+						React.createElement(
+							'h4',
+							{ className: 'modal-title' },
+							'New Package Information'
+						)
+					),
+					React.createElement(
+						'form',
+						{ method: 'POST', onSubmit: this.onSubmit },
+						React.createElement(
+							'div',
+							{ className: 'modal-body' },
+							React.createElement('input', { type: 'hidden', name: '_token', value: csrfToken }),
+							React.createElement(
+								'div',
+								{ className: 'form-group' },
+								React.createElement(
+									'label',
+									{ htmlFor: 'title' },
+									'Title'
+								),
+								React.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Departs daily at',
+									value: this.state.title, onChange: this.handleTitleChange })
+							),
+							React.createElement(
+								'div',
+								{ className: 'form-group' },
+								React.createElement(
+									'label',
+									{ htmlFor: 'title' },
+									'Description'
+								),
+								React.createElement('input', { type: 'text', className: 'form-control', placeholder: '08:30 - 10:00am',
+									value: this.state.description, onChange: this.handleDescriptionChange })
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'modal-footer' },
+							React.createElement(
+								'button',
+								{ type: 'button', className: 'btn btn-default', 'data-dismiss': 'modal' },
+								'Close'
+							),
+							React.createElement(
+								'button',
+								{ type: 'button', className: 'btn btn-primary', onClick: this.onSubmit },
+								'Save Record'
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+exports.default = NewPackageInformation;
+
+},{"react":158}],161:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var React = require('react');
+var csrfToken = $('meta[name="token"]').attr('content');
+
+var NewTicketOption = React.createClass({
+	displayName: 'NewTicketOption',
+	getInitialState: function getInitialState() {
+		return {
+			name: '',
+			adultPrice: '',
+			childPrice: ''
+		};
+	},
+	onSubmit: function onSubmit(e) {
+		e.preventDefault();
+
+		this.props.onSubmit(this.state.name, this.state.adultPrice, this.state.childPrice);
+
+		this.resetText();
+
+		$('#newTicketOption').modal('hide');
+	},
+	handleNameChange: function handleNameChange(e) {
+		this.setState({ name: e.target.value });
+	},
+	handleAdultPriceChange: function handleAdultPriceChange(e) {
+		this.setState({ adultPrice: e.target.value });
+	},
+	handleChildPriceChange: function handleChildPriceChange(e) {
+		this.setState({ childPrice: e.target.value });
+	},
+	resetText: function resetText() {
+		this.setState({
+			name: '',
+			adultPrice: '',
+			childPrice: ''
+		});
+	},
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'modal fade', id: 'newTicketOption', role: 'dialog' },
+			React.createElement(
+				'div',
+				{ className: 'modal-dialog', role: 'document' },
+				React.createElement(
+					'div',
+					{ className: 'modal-content' },
+					React.createElement(
+						'div',
+						{ className: 'modal-header' },
+						React.createElement(
+							'button',
+							{ type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
+							React.createElement(
+								'span',
+								{ 'aria-hidden': 'true' },
+								'×'
+							)
+						),
+						React.createElement(
+							'h4',
+							{ className: 'modal-title' },
+							'New Ticket Option'
+						)
+					),
+					React.createElement(
+						'form',
+						{ method: 'POST', onSubmit: this.onSubmit },
+						React.createElement(
+							'div',
+							{ className: 'modal-body' },
+							React.createElement('input', { type: 'hidden', name: '_token', value: csrfToken }),
+							React.createElement(
+								'div',
+								{ className: 'form-group' },
+								React.createElement(
+									'label',
+									{ htmlFor: 'title' },
+									'Name'
+								),
+								React.createElement('input', { id: 'title', className: 'form-control', placeholder: 'Bronze, Silver or Gold',
+									value: this.state.name, onChange: this.handleNameChange })
+							),
+							React.createElement(
+								'div',
+								{ className: 'row' },
+								React.createElement(
+									'div',
+									{ className: 'col-md-6' },
+									React.createElement(
+										'div',
+										{ className: 'form-group' },
+										React.createElement(
+											'label',
+											{ htmlFor: 'adultPrice' },
+											'Adult Price'
+										),
+										React.createElement(
+											'div',
+											{ className: 'input-group' },
+											React.createElement('input', { id: 'adultPrice', className: 'form-control', value: this.state.adultPrice, onChange: this.handleAdultPriceChange }),
+											React.createElement(
+												'div',
+												{ className: 'input-group-addon' },
+												'AED'
+											)
+										)
+									)
+								),
+								React.createElement(
+									'div',
+									{ className: 'col-md-6' },
+									React.createElement(
+										'div',
+										{ className: 'form-group' },
+										React.createElement(
+											'label',
+											{ htmlFor: 'childPrice' },
+											'Child Price'
+										),
+										React.createElement(
+											'div',
+											{ className: 'input-group' },
+											React.createElement('input', { id: 'childPrice', className: 'form-control', value: this.state.childPrice, onChange: this.handleChildPriceChange }),
+											React.createElement(
+												'div',
+												{ className: 'input-group-addon' },
+												'AED'
+											)
+										)
+									)
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'modal-footer' },
+							React.createElement(
+								'button',
+								{ type: 'button', className: 'btn btn-default', 'data-dismiss': 'modal' },
+								'Close'
+							),
+							React.createElement(
+								'button',
+								{ type: 'button', className: 'btn btn-primary', onClick: this.onSubmit },
+								'Save Record'
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+exports.default = NewTicketOption;
+
+},{"react":158}],162:[function(require,module,exports){
+'use strict';
+
 var _PackageInformationList = require('./PackageInformationList');
 
 var _PackageInformationList2 = _interopRequireDefault(_PackageInformationList);
+
+var _NewPackageInformation = require('./NewPackageInformation');
+
+var _NewPackageInformation2 = _interopRequireDefault(_NewPackageInformation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19146,29 +19444,24 @@ var ReactDOM = require('react-dom');
 
 var csrfToken = $('meta[name="token"]').attr('content');
 
-var NewPackageInformation = React.createClass({
-	displayName: 'NewPackageInformation',
+var PackageInformation = React.createClass({
+	displayName: 'PackageInformation',
 	getInitialState: function getInitialState() {
 		return {
-			packageInformation: [],
-			title: '',
-			description: ''
+			packageInformation: []
 		};
 	},
 	componentDidMount: function componentDidMount() {
 		this.fetchPackageInformation();
 	},
 	fetchPackageInformation: function fetchPackageInformation() {
-		var url = '/admin/packages/' + window.package_id + '/information';
+		var url = '/api/v1/packages/' + window.package_id + '/information';
 
 		$.get(url, (function (data) {
 			this.setState({ packageInformation: data });
 		}).bind(this));
 	},
-	onSubmit: function onSubmit(e) {
-		e.preventDefault();
-
-		this.resetText();
+	onSubmit: function onSubmit(title, description) {
 
 		var url = '/admin/packages/' + window.package_id + '/information';
 
@@ -19177,8 +19470,8 @@ var NewPackageInformation = React.createClass({
 			type: 'POST',
 			data: {
 				package_id: window.package_id,
-				title: this.state.title,
-				description: this.state.description
+				title: title,
+				description: description
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: (function (response) {
@@ -19187,7 +19480,6 @@ var NewPackageInformation = React.createClass({
 			error: (function (xhr, status, err) {}).bind(this)
 		});
 	},
-	onEdit: function onEdit(id) {},
 	onUpdate: function onUpdate(id, title, description) {
 		var url = '/admin/packages/' + window.package_id + '/information/' + id;
 
@@ -19224,71 +19516,19 @@ var NewPackageInformation = React.createClass({
 			error: (function (xhr, status, err) {}).bind(this)
 		});
 	},
-	handleTitleChange: function handleTitleChange(e) {
-		this.setState({ title: e.target.value });
-	},
-	handleDescriptionChange: function handleDescriptionChange(e) {
-		this.setState({ description: e.target.value });
-	},
-	resetText: function resetText() {
-		this.setState({
-			title: '',
-			description: ''
-		});
-	},
 	render: function render() {
 		return React.createElement(
 			'div',
 			{ className: 'row' },
 			React.createElement(_PackageInformationList2.default, { items: this.state.packageInformation, onDelete: this.onDelete, onUpdate: this.onUpdate }),
-			React.createElement(
-				'div',
-				{ className: 'col-md-6' },
-				React.createElement(
-					'h3',
-					null,
-					'Add New Information'
-				),
-				React.createElement(
-					'form',
-					{ method: 'POST', onSubmit: this.onSubmit },
-					React.createElement('input', { type: 'hidden', name: '_token', value: csrfToken }),
-					React.createElement(
-						'div',
-						{ className: 'form-group' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'title' },
-							'Title'
-						),
-						React.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Departs daily at',
-							value: this.state.title, onChange: this.handleTitleChange })
-					),
-					React.createElement(
-						'div',
-						{ className: 'form-group' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'title' },
-							'Description'
-						),
-						React.createElement('input', { type: 'text', className: 'form-control', placeholder: '08:30 - 10:00am',
-							value: this.state.description, onChange: this.handleDescriptionChange })
-					),
-					React.createElement(
-						'button',
-						{ type: 'submit', className: 'btn btn-primary' },
-						'Save Record'
-					)
-				)
-			)
+			React.createElement(_NewPackageInformation2.default, { onSubmit: this.onSubmit })
 		);
 	}
 });
 
-ReactDOM.render(React.createElement(NewPackageInformation, null), document.getElementById('NewPackageInformation'));
+ReactDOM.render(React.createElement(PackageInformation, null), document.getElementById('PackageInformation'));
 
-},{"./PackageInformationList":161,"react":158,"react-dom":29}],161:[function(require,module,exports){
+},{"./NewPackageInformation":160,"./PackageInformationList":163,"react":158,"react-dom":29}],163:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19331,6 +19571,11 @@ var PackageInformationList = React.createClass({
 				'ul',
 				{ className: 'list-group' },
 				packageInformation
+			),
+			React.createElement(
+				'button',
+				{ type: 'button', className: 'btn btn-primary btn-sm', 'data-toggle': 'modal', 'data-target': '#newPackageInformation' },
+				'Add New Information'
 			)
 		);
 	}
@@ -19338,6 +19583,304 @@ var PackageInformationList = React.createClass({
 
 exports.default = PackageInformationList;
 
-},{"./AdditionalPackageInformation":159,"react":158}]},{},[160]);
+},{"./AdditionalPackageInformation":159,"react":158}],164:[function(require,module,exports){
+"use strict";
 
-//# sourceMappingURL=NewPackageInformation.js.map
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var React = require('react');
+
+var TicketInformation = React.createClass({
+	displayName: "TicketInformation",
+	getInitialState: function getInitialState() {
+		return {
+			editing: false,
+			name: this.props.name,
+			adultPrice: this.props.adultPrice,
+			childPrice: this.props.childPrice
+		};
+	},
+	onDelete: function onDelete(e) {
+		e.preventDefault();
+		this.props.onDelete(this.props.id);
+	},
+	onEdit: function onEdit(e) {
+		e.preventDefault();
+		this.setState({ editing: true });
+	},
+	onCancelEdit: function onCancelEdit() {
+		this.setState({ editing: false });
+	},
+	onUpdate: function onUpdate() {
+		this.props.onUpdate(this.props.id, this.state.name, this.state.adultPrice, this.state.childPrice);
+
+		this.setState({
+			editing: false
+		});
+	},
+	handleNameChange: function handleNameChange(e) {
+		this.setState({ name: e.target.value });
+	},
+	handleAdultPriceChange: function handleAdultPriceChange(e) {
+		this.setState({ adultPrice: e.target.value });
+	},
+	handleChildPriceChange: function handleChildPriceChange(e) {
+		this.setState({ childPrice: e.target.value });
+	},
+	render: function render() {
+		return React.createElement(
+			"li",
+			{ className: "list-group-item" },
+			React.createElement(
+				"div",
+				{ className: "row" },
+				this.state.editing === true ? React.createElement(
+					"div",
+					{ className: "col-md-9" },
+					React.createElement(
+						"div",
+						{ className: "row" },
+						React.createElement(
+							"div",
+							{ className: "col-md-4" },
+							React.createElement("input", { className: "form-control", value: this.state.name, onChange: this.handleNameChange })
+						),
+						React.createElement(
+							"div",
+							{ className: "col-md-3" },
+							React.createElement("input", { className: "form-control", value: this.state.adultPrice, onChange: this.handleAdultPriceChange })
+						),
+						React.createElement(
+							"div",
+							{ className: "col-md-3" },
+							React.createElement("input", { className: "form-control", value: this.state.childPrice, onChange: this.handleChildPriceChange })
+						),
+						React.createElement(
+							"div",
+							{ className: "col-md-1" },
+							React.createElement(
+								"button",
+								{ className: "btn btn-default btn-sm", onClick: this.onCancelEdit },
+								"Cancel"
+							)
+						)
+					)
+				) : React.createElement(
+					"div",
+					{ className: "col-md-9" },
+					React.createElement(
+						"strong",
+						null,
+						this.state.name
+					),
+					React.createElement("br", null),
+					"Adult Price: ",
+					this.state.adultPrice,
+					" AED",
+					React.createElement("br", null),
+					"Child Price: ",
+					this.state.childPrice,
+					" AED"
+				),
+				React.createElement(
+					"div",
+					{ className: "col-md-3" },
+					React.createElement(
+						"div",
+						{ className: "actionButtons" },
+						React.createElement(
+							"div",
+							{ className: "btn-group" },
+							this.state.editing === true ? React.createElement(
+								"button",
+								{ type: "submit", onClick: this.onUpdate, className: "btn btn-sm btn-primary" },
+								"Update"
+							) : React.createElement(
+								"a",
+								{ onClick: this.onEdit, className: "btn btn-sm btn-primary" },
+								"Edit"
+							),
+							React.createElement(
+								"button",
+								{ type: "submit", className: "delete btn btn-sm btn-danger", onClick: this.onDelete },
+								"×"
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+exports.default = TicketInformation;
+
+},{"react":158}],165:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _TicketInformation = require('./TicketInformation');
+
+var _TicketInformation2 = _interopRequireDefault(_TicketInformation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var React = require('react');
+
+var TicketOptionList = React.createClass({
+	displayName: 'TicketOptionList',
+	onDelete: function onDelete(id) {
+		this.props.onDelete(id);
+	},
+	onEdit: function onEdit(id) {
+		this.props.onEdit(id);
+	},
+	onUpdate: function onUpdate(id, name, adultPrice, childPrice) {
+		this.props.onUpdate(id, name, adultPrice, childPrice);
+	},
+	render: function render() {
+		var ticketOptions = this.props.tickets.map((function (item) {
+			return React.createElement(_TicketInformation2.default, { key: item.id,
+				id: item.id,
+				name: item.name,
+				adultPrice: item.adultPrice,
+				childPrice: item.childPrice,
+				onDelete: this.onDelete,
+				onUpdate: this.onUpdate });
+		}).bind(this));
+
+		return React.createElement(
+			'div',
+			{ className: 'col-md-12' },
+			React.createElement(
+				'h3',
+				null,
+				'Ticket Options'
+			),
+			React.createElement(
+				'ul',
+				{ className: 'list-group' },
+				ticketOptions
+			),
+			React.createElement(
+				'button',
+				{ type: 'button', className: 'btn btn-primary btn-sm', 'data-toggle': 'modal', 'data-target': '#newTicketOption' },
+				'Add New Ticket Option'
+			)
+		);
+	}
+});
+
+exports.default = TicketOptionList;
+
+},{"./TicketInformation":164,"react":158}],166:[function(require,module,exports){
+'use strict';
+
+var _TicketOptionList = require('./TicketOptionList');
+
+var _TicketOptionList2 = _interopRequireDefault(_TicketOptionList);
+
+var _NewTicketOption = require('./NewTicketOption');
+
+var _NewTicketOption2 = _interopRequireDefault(_NewTicketOption);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var csrfToken = $('meta[name="token"]').attr('content');
+
+var TicketOptions = React.createClass({
+	displayName: 'TicketOptions',
+	getInitialState: function getInitialState() {
+		return {
+			ticketOptions: []
+		};
+	},
+	componentDidMount: function componentDidMount() {
+		this.fetchTicketOptions();
+	},
+	fetchTicketOptions: function fetchTicketOptions() {
+		var url = '/api/v1/packages/' + window.package_id + '/tickets';
+
+		$.get(url, (function (data) {
+			this.setState({ ticketOptions: data });
+		}).bind(this));
+	},
+	onSubmit: function onSubmit(name, adultPrice, childPrice) {
+
+		var url = '/admin/packages/' + window.package_id + '/tickets';
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: {
+				package_id: window.package_id,
+				name: name,
+				adultPrice: adultPrice,
+				childPrice: childPrice
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: (function (response) {
+				this.fetchTicketOptions();
+			}).bind(this),
+			error: (function (xhr, status, err) {}).bind(this)
+		});
+	},
+	onUpdate: function onUpdate(id, name, adultPrice, childPrice) {
+		var url = '/admin/packages/' + window.package_id + '/tickets/' + id;
+
+		$.ajax({
+			url: url,
+			type: 'PUT',
+			data: {
+				id: id,
+				package_id: window.package_id,
+				name: name,
+				adultPrice: adultPrice,
+				childPrice: childPrice
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: (function (response) {
+				this.fetchTicketOptions();
+			}).bind(this),
+			error: (function (xhr, status, err) {}).bind(this)
+		});
+	},
+	onDelete: function onDelete(id) {
+		var url = '/admin/packages/' + window.package_id + '/tickets/' + id;
+
+		$.ajax({
+			url: url,
+			type: 'DELETE',
+			data: {
+				id: id,
+				package_id: window.package_id
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: (function (response) {
+				this.fetchTicketOptions();
+			}).bind(this),
+			error: (function (xhr, status, err) {}).bind(this)
+		});
+	},
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'row' },
+			React.createElement(_TicketOptionList2.default, { tickets: this.state.ticketOptions, onDelete: this.onDelete, onUpdate: this.onUpdate }),
+			React.createElement(_NewTicketOption2.default, { onSubmit: this.onSubmit })
+		);
+	}
+});
+
+ReactDOM.render(React.createElement(TicketOptions, null), document.getElementById('TicketOptions'));
+
+},{"./NewTicketOption":161,"./TicketOptionList":165,"react":158,"react-dom":29}]},{},[162,166]);
+
+//# sourceMappingURL=PackageInformation.js.map

@@ -23,9 +23,21 @@ var BookPackageForm = React.createClass({
 			date: '',
 			date_submit: '',
 			time: '',
+			ticket: '',
 			quantity: 1,
 			child_quantity: 0
 		}
+	},
+
+	fetchTicketPrice(e) {
+		var ticketId = e.target.value;
+		this.setState({ ticket: ticketId });
+
+		var url = '/api/v1/packages/' + this.props.currentPackage.id + '/tickets/' + ticketId;
+
+		$.get(url, function(response) {
+			this.props.setPrices(response.adultPrice, response.childPrice);
+		}.bind(this));
 	},
 
 	handleDateChange(e) {
@@ -56,7 +68,8 @@ var BookPackageForm = React.createClass({
 				child_quantity: this.state.child_quantity,
 				date: this.state.date,
 				date_submit: this.state.date_submit,
-				time: this.state.time
+				time: this.state.time,
+				ticket: this.state.ticket
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response) {
@@ -175,8 +188,20 @@ var BookPackageForm = React.createClass({
 				);
 		});
 
+		var ticketOptions = this.props.currentPackage.tickets.map(function(ticket) {
+			return (
+				<option key={ticket.id} value={ticket.id}>
+					{ ticket.name }
+				</option>
+			);
+		});
+
 		var preferredTimingsStyle = {
 			display: this.props.currentPackage.has_time_options ? 'block' : 'none'
+		};
+
+		var ticketOptionsStyle = {
+			display: this.props.currentPackage.has_ticket_option ? 'block' : 'none'
 		};
 
 		var maximumAdultsQuantity = [];
@@ -230,6 +255,16 @@ var BookPackageForm = React.createClass({
 								<select defaultValue={this.state.time} className="form-control" onChange={this.handleTimeChange}>
 									<option value="" disabled>Choose your option</option>
 									{timings}
+								</select>
+							</div>
+						</div>	
+
+						<div className="col m12 mb-0" style={ticketOptionsStyle}>
+							<div className="form-group">
+								<label htmlFor="time">Ticket:</label>
+								<select className="form-control" onChange={this.fetchTicketPrice}>
+									<option value="1">Choose your ticket</option>
+									{ ticketOptions }
 								</select>
 							</div>
 						</div>	

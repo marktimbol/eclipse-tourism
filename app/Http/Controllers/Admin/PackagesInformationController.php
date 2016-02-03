@@ -10,10 +10,6 @@ use Illuminate\Http\Request;
 
 class PackagesInformationController extends Controller
 {
-	public function all($packageId) {	
-		return Package::findOrFail($packageId)->information;
-	}
-
     public function store(Request $request)
     {
     	$newInfo = new PackageInformation([

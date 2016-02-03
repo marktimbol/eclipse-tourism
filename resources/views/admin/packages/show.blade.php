@@ -20,6 +20,36 @@
 
 						<p>&nbsp;</p>
 						<p>&nbsp;</p>
+
+	            		<h3>Upload Photos</h3>
+	            		<p>&nbsp;</p>
+	            		<div class="package-photos">
+	            			<div class="row">
+	            				@forelse( $package->photos as $photo )
+		            				<div class="col-md-2">
+		            					<div class="package-photo">
+		            						{!! getUploadedPhoto($photo->path, 'thumbnail img-responsive') !!}
+		            						<form method="POST" action="{{ route('admin.packages.photos.delete', $photo->path) }}">
+		            							{!! csrf_field() !!}
+		            							{!! method_field('DELETE') !!}
+		            							
+		            							<button type="submit" name="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+		            							
+		            						</form>
+		            					</div>
+		            				</div>
+	            				@empty
+
+	            				@endforelse
+	            			</div>
+	            		</div>
+
+			            <form class="dropzone" id="UploadPhotosForm" action="{{ route('admin.packages.photos.upload') }}">
+			            	{!! csrf_field() !!}
+			            	{!! method_field('PUT') !!}
+			            	<input type="hidden" name="package_id" value="{{ $package->id }}" />
+			            </form>
+		            	
 					</div>
 				</div>
 
@@ -40,55 +70,18 @@
 						</li>						
 					</ul>
 
-					<div id="NewPackageInformation"></div>
+					<div id="PackageInformation"></div>
+					
+					<hr />
 
+					<div id="TicketOptions"></div>
 				</div>
 			</div>
-
-
-            <div class="row">
-            	<div class="col-md-12">
-            		<h3>Upload Photos</h3>
-            		<p>&nbsp;</p>
-            		<div class="package-photos">
-            			<div class="row">
-            				@forelse( $package->photos as $photo )
-	            				<div class="col-md-2">
-	            					<div class="package-photo">
-	            						{!! getUploadedPhoto($photo->path, 'thumbnail img-responsive') !!}
-	            						<form method="POST" action="{{ route('admin.packages.photos.delete', $photo->path) }}">
-	            							{!! csrf_field() !!}
-	            							{!! method_field('DELETE') !!}
-	            							
-	            							<button type="submit" name="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-	            							
-	            						</form>
-	            					</div>
-	            				</div>
-            				@empty
-
-            				@endforelse
-            			</div>
-            		</div>
-
-		            <form class="dropzone" id="UploadPhotosForm" action="{{ route('admin.packages.photos.upload') }}">
-		            	{!! csrf_field() !!}
-		            	{!! method_field('PUT') !!}
-		            	<input type="hidden" name="package_id" value="{{ $package->id }}" />
-		            </form>
-            	</div>
-
-            	<p>&nbsp;</p>
-            	<p>&nbsp;</p>
-            	<p>&nbsp;</p>
-            	<p>&nbsp;</p>
-            </div>
-
         </div>
     </div>
 @endsection
 
 @section('footer_scripts')
 	<script src="{{ elixir('js/dropzone.js') }}"></script>
-	<script src="/js/NewPackageInformation.js"></script>
+	<script src="/js/admin/PackageInformation.js"></script>
 @endsection

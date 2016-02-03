@@ -148,10 +148,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
 	
 	Route::resource('categories', 'Admin\CategoriesController');
 
-	Route::get('packages/{packageId}/information', 'Admin\PackagesInformationController@all');
 	Route::post('packages/{packageId}/information/', 'Admin\PackagesInformationController@store');
 	Route::put('packages/{packageId}/information/{id}', 'Admin\PackagesInformationController@update');
 	Route::delete('packages/{packageId}/information/{id}', 'Admin\PackagesInformationController@destroy');
+
+	Route::post('packages/{packageId}/tickets/', 'Admin\TicketsController@store');
+	Route::put('packages/{packageId}/tickets/{id}', 'Admin\TicketsController@update');
+	Route::delete('packages/{packageId}/tickets/{id}', 'Admin\TicketsController@destroy');
+
 	Route::resource('packages', 'Admin\PackagesController');
 
 	Route::post('bookings/{bookingReference}/user/{user_id}/confirm', ['as' => 'bookings.confirm', 'uses' => 'Admin\BookingsController@confirm']);
@@ -176,5 +180,10 @@ Route::group(['prefix' => 'api/v1'], function()
 	Route::get('booking/{bookingReference}', 'Api\Shop\BookingsController@getBooking');
 	Route::get('booking', 'Api\Shop\BookingsController@content');
 
+	Route::get('packages/{packageId}/information', 'Api\PackagesInformationController@all');
+
+	Route::get('packages/{packageId}/tickets', 'Api\TicketsController@all');
+	Route::get('packages/{packageId}/tickets/{id}', 'Api\TicketsController@get');
+	
 	Route::get('/convert-amount/{amount}/{currency}', 'PagesController@convertAmount');
 });
