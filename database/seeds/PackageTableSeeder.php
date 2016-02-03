@@ -548,7 +548,7 @@ On this tour you will learn everything about the oil- the so called "black gold"
                                     <h3>Our Al Ain City Tour Price Includes</h3>
                                     <ul>
                                         <li>Pickup from your hotel or residence in Dubai or Sharjah*</li>
-                                        <li>Lunch and soft drinks</li>
+                                        <li>Refreshments</li>
                                         <li>Visiting/ drive past - through the following:
                                             <ul>
                                                 <li>Driving through Deserts</li>
