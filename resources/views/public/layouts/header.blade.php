@@ -14,8 +14,8 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:image" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}" />
 	<meta property="og:url" content="{{ env('SITE_URL') }}package/{{$package->slug}}" />
-	<meta property="og:description" content="{{ str_limit(strip_tags($package->description), 150) }}" />
-	<meta name="description" content="{{ str_limit(strip_tags($package->description), 150) }}" />
+	<meta property="og:description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
+	<meta name="description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
 	@else
 	<meta name="description" content="A Memorable Experience" />	
 	@endif
