@@ -46,7 +46,7 @@ class PhotosController extends Controller
 
         $image = Image::make($photo->getRealPath());
 
-        $image->resize(800, null, function($constraint) {
+        $image->resize(1000, null, function($constraint) {
             $constraint->aspectRatio();
         })
         ->save( $this->fullPath($filename) )
