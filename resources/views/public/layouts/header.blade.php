@@ -12,8 +12,8 @@
 	<!-- for Facebook -->          
 	<meta property="og:title" content="{{ $package->name }}" />
 	<meta property="og:type" content="article" />
-	<meta property="og:image" content="/images/uploads/{{ $package->photos->first()->path }}" />
-	<meta property="og:url" content="/package/{{$package->slug}}" />
+	<meta property="og:image" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}" />
+	<meta property="og:url" content="{{ env('SITE_URL') }}package/{{$package->slug}}" />
 	<meta property="og:description" content="{{ str_limit($package->description, 150) }}" />
 	<meta name="description" content="{{ str_limit($package->description, 150) }}" />
 	@else
