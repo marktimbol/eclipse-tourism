@@ -5,16 +5,23 @@
 	    margin: 20px 20px 0px 0px;
 	    display: inline-block;
 	}
+
+	ul {
+		li {
+			width: 35%;
+			float: left;
+		}
+	}
 }
 
-.share-package__facebook {
-	color: #3b5998;
-}
+// .share-package__facebook {
+// 	color: #3b5998;
+// }
 
-.share-package__twitter {
-	color: #00aced;
-}
+// .share-package__twitter {
+// 	color: #00aced;
+// }
 
-.share-package__google {
-	color: #dd4b39;
-}
+// .share-package__google {
+// 	color: #dd4b39;
+// }

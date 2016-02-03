@@ -19700,30 +19700,22 @@ var SharePackage = React.createClass({
 				null,
 				'Share this package'
 			),
+			React.createElement('hr', null),
 			React.createElement(
 				'ul',
 				null,
 				React.createElement(
 					'li',
 					null,
-					React.createElement('div', { className: 'fb-share-button', 'data-href': url, 'data-layout': 'icon' })
+					React.createElement('div', { className: 'fb-share-button', 'data-href': url, 'data-layout': 'button_count' })
 				),
 				React.createElement(
 					'li',
 					null,
 					React.createElement(
 						'a',
-						{ href: '#', className: 'share-package__twitter' },
-						React.createElement('i', { className: 'fa fa-twitter fa-3x' })
-					)
-				),
-				React.createElement(
-					'li',
-					null,
-					React.createElement(
-						'a',
-						{ href: '#', className: 'share-package__google' },
-						React.createElement('i', { className: 'fa fa-google-plus fa-3x' })
+						{ href: 'https://twitter.com/share', className: 'twitter-share-button', 'data-via': '' },
+						'Tweet'
 					)
 				)
 			)

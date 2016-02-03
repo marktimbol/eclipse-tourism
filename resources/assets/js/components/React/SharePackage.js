@@ -7,16 +7,13 @@ var SharePackage = React.createClass({
 		return (
 			<div className="share-package">
 				<h6>Share this package</h6>
+				<hr />
 				<ul>
 					<li>
-						<div className="fb-share-button" data-href={url} data-layout="icon"></div>
+						<div className="fb-share-button" data-href={url} data-layout="button_count"></div>
 					</li>
 					<li>
-						<a href="#" className="share-package__twitter"><i className="fa fa-twitter fa-3x"></i></a>
-					</li>
-
-					<li>
-						<a href="#" className="share-package__google"><i className="fa fa-google-plus fa-3x"></i></a>
+						<a href="https://twitter.com/share" className="twitter-share-button" data-via="">Tweet</a>
 					</li>
 				</ul>	
 			</div>
