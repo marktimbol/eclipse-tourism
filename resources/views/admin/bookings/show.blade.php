@@ -20,9 +20,6 @@
                                 <li class="list-group-item"><strong>Email:</strong> {{ $user->email }}</li>
                                 <li class="list-group-item"><strong>Phone:</strong> {{ $user->phone }}</li>
                                 <li class="list-group-item"><strong>Address 1:</strong> {{ $user->address1 . ', ' . $user->address2 }}</li>
-{{--                                 <li class="list-group-item"><strong>City:</strong> {{ $user->city }}</li>
-                                <li class="list-group-item"><strong>State:</strong> {{ $user->state }}</li>
-                                <li class="list-group-item"><strong>Country:</strong> {{ $user->country }}</li> --}}
                             </ul>
                         </div>
 
@@ -58,15 +55,35 @@
                                 @foreach($user->bookings as $booking)
                                     
                                     <?php 
-                                        $status = $booking->status; 
+                                        $paid = $booking->paid; 
                                         $booking_reference = $booking->booking_reference;
                                     ?>
 
                                     @foreach($booking->packages as $package)
+                                    <?php
+                                        $adultPrice = $package->adult_price;
+                                        $childPrice = $package->child_price;
+                                        $ticketName = '';
+
+                                        if( $package->has_ticket_option )
+                                        {
+                                            $ticketId = $package->pivot->ticket;
+
+                                            foreach( $package->tickets as $ticket )
+                                            {
+                                                if( $ticketId == $ticket->id )
+                                                {
+                                                    $adultPrice = $ticket->adultPrice;
+                                                    $childPrice = $ticket->childPrice;
+                                                    $ticketName = ' - ' . $ticket->name . ' Ticket';
+                                                }
+                                            }
+                                        }
+                                    ?>
                                         <tr>
                                             <td width="500">
                                                 <p>
-                                                    {{ $package->name }}
+                                                    {{ $package->name . $ticketName }} 
                                                 </p>
                                                 <p class="text-muted">
                                                     <i class="fa fa-calendar"></i> 
@@ -78,13 +95,13 @@
                                                     <li class="collection-item">
                                                         Child:
                                                         {{ $package->pivot->child_quantity }} &times; 
-                                                        {{ number_format($package->child_price) }} <span class="current-currency">AED</span>
+                                                        {{ number_format($childPrice) }} <span class="current-currency">AED</span>
                                                     </li>
                                                 </ul>
                                                 
                                             </td>
 
-                                            <td class="nowrap">{{ number_format($package->adult_price) }}  <span class="current-currency">AED</span></td>
+                                            <td class="nowrap">{{ number_format($adultPrice) }}  <span class="current-currency">AED</span></td>
                                             
                                             <td>
                                                 {{ $package->pivot->adult_quantity }}
@@ -92,7 +109,7 @@
 
                                             <td class="text-right nowrap">
                                                 <?php
-                                                $subtotal =  ($package->adult_price * $package->pivot->adult_quantity) + ($package->child_price * $package->pivot->child_quantity);
+                                                $subtotal =  ($adultPrice * $package->pivot->adult_quantity) + ($childPrice * $package->pivot->child_quantity);
                                                 ?>
                                                 {{ number_format($subtotal) }} <span class="current-currency">AED</span>
                                             </td>
@@ -114,7 +131,7 @@
                             </tbody>   
                         </table>
 
-                        @if( $status == 0 )
+                        @if( $paid == 0 )
 
                             <div class="alert alert-danger">
                                 <p class="text-center">NOT YET PAID</p>
@@ -128,10 +145,13 @@
                                 </button>
 
                             </form>
-                        @elseif( $status == 1)
+
+                        @elseif( $paid == 1)
+                        
                             <div class="alert alert-success">
                                 <p class="text-center">PAID</p>
                             </div>  
+                        
                         @endif                        
                     </div>                            
 

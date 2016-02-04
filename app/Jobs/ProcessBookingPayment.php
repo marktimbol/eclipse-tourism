@@ -72,11 +72,16 @@ class ProcessBookingPayment extends Job implements SelfHandling
 
         $total = calculateTotalAmount($bookedPackages);
 
-        $chargeWasSuccessful = $gateway->charge($user, $total, $this->token);
+        $transaction = $gateway->charge($user, $total, $this->token);
 
-        if( $chargeWasSuccessful )
+        if( $transaction )
         {
-            $bookingRepo->update($booking->id, ['status' => 1]);
+            $bookingRepo->update($booking->id, [
+                'booking_reference' => bookingReference($transaction),
+                'paid'              => $transaction->paid,
+                'status'            => $transaction->status,
+                'comments'          => ''
+            ]);
 
             event( new UserPaidTheBooking($user, $this->booking_reference) );
         } 

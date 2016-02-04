@@ -99,7 +99,7 @@ var BookingCheckout = React.createClass({
 						this.state.cartCount !== 0 ?
 							<form method="POST" id="booking-form" onSubmit={this.onSubmit}>
 								<input type="hidden" name="_token" value={csrfToken} />
-								<ContactInformation />
+								<ContactInformation hasUserValue={false} />
 								{ this.state.showErrorMessage ? <PaymentErrors message={this.state.message }/> : '' }
 								<CheckoutButton buttonText={this.state.buttonText} isFormSubmitted={ this.state.isFormSubmitted }/>
 							</form>

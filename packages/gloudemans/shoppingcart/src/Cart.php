@@ -1,5 +1,6 @@
 <?php namespace Gloudemans\Shoppingcart;
 
+use App\Ticket;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Collection;
 
@@ -445,8 +446,24 @@ class Cart {
 		}
 
 		if( ! is_null(array_keys($attributes, ['qty', 'price'])))
-		{
-			$row->put('subtotal', ($row->qty * $row->price) + ($row->options->child_quantity * $row->options->selectedPackage->child_price));
+		{ 
+			$adultPrice = $row->price;
+			$childPrice = $row->options->selectedPackage->child_price;
+
+			if( $row->options->selectedPackage->has_ticket_option ) 
+			{
+				$selectedTicket = Ticket::findOrFail($row->options->ticket);
+				$childPrice = $selectedTicket->childPrice;
+				$adultPrice = $selectedTicket->adultPrice;
+			}
+
+			// $row->put('subtotal', ($row->qty * $row->price) + ($row->options->child_quantity * $row->options->selectedPackage->child_price));
+			$adultTotal = $row->qty * $adultPrice;
+			$childTotal = $row->options->child_quantity * $childPrice;
+
+			$subtotal = $adultTotal + $childTotal;
+
+			$row->put('subtotal', $subtotal);
 		}
 
 		$cart->put($rowId, $row);
@@ -469,14 +486,31 @@ class Cart {
 	{
 		$cart = $this->getContent();
 
+		$adultPrice = $price;
+		$childPrice = $options['selectedPackage']['child_price'];
+
+		if( $options['selectedPackage']['has_ticket_option'] ) 
+		{
+			$selectedTicket = Ticket::findOrFail($options['ticket']);
+			$adultPrice = $selectedTicket->adultPrice;
+			$childPrice = $selectedTicket->childPrice;
+		}
+
+		$adultTotal = $qty * $adultPrice;
+		$childTotal = $options['child_quantity'] * $childPrice;
+
+		$subtotal = $adultTotal + $childTotal;
+
 		$newRow = new CartRowCollection([
 			'rowid' => $rowId,
 			'id' => $id,
 			'name' => $name,
 			'qty' => $qty,
-			'price' => $price,
+			// 'price' => $price,
+			'price'	=> $adultPrice,
 			'options' => new CartRowOptionsCollection($options),
-			'subtotal' => $qty * $price + $options['child_quantity'] * $options['selectedPackage']['child_price']
+			'subtotal' => $subtotal
+			// 'subtotal' => $qty * $price + $options['child_quantity'] * $options['selectedPackage']['child_price']
 		], $this->associatedModel, $this->associatedModelNamespace);
 
 		$cart->put($rowId, $newRow);

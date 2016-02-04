@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var numeral = require('numeral');
 
 import CartItem from './CartItem';
 import CheckoutLink from './CheckoutLink';
@@ -181,7 +182,7 @@ var CartTable = React.createClass({
 								
 				<h5 className="right">
 					Total: &nbsp;&nbsp;
-					{ currentCurrency + this.state.total }			
+					{ currentCurrency + ' ' + numeral(this.state.total).format('0,0') }			
 				</h5>
 				
 				<p>&nbsp;</p>

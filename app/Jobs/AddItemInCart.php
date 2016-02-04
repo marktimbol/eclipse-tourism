@@ -39,24 +39,26 @@ class AddItemInCart extends Job implements SelfHandling
     {
         $selectedPackage = $package->find($this->package_id);
         $adultPrice = $selectedPackage->adult_price;
+        $ticketId = $this->ticket;
 
-        if( $this->ticket !== '' )
+        if( $selectedPackage->has_ticket_option )
         {
             $ticket = Ticket::findOrFail($this->ticket);
             $adultPrice = $ticket->adultPrice;
+            $ticketId = $ticket->id;
         }
 
         $data = [
             'id'            => $selectedPackage->id,
             'name'          => $selectedPackage->name,
             'qty'           => (int) $this->quantity,               //adult_quantity
-            'price'         => $adultPrice,       //adult_price
+            'price'         => $adultPrice,                         //adult_price
             'options'       => [
                 'child_quantity'        => $this->child_quantity,
                 'date'                  => $this->date,
                 'date_submit'           => $this->date_submit,
-                'time'                  => $this->time ?: '',
-                'ticket'                => $this->ticket ?: '',
+                'time'                  => $this->time,
+                'ticket'                => $ticketId,
                 'selectedPackage'       => $selectedPackage 
             ]
         ];

@@ -46,17 +46,17 @@ function subjectForAvailability($package)
 	return $package->options->package->confirm_availability;
 }
 
-function bookingReference($data)
+function bookingReference($transaction)
 {
     $paymentGateway = env('PAYMENT_GATEWAY');
 
     if ( $paymentGateway == 'stripe' )
     {    
-        return time();
+        return $transaction->id;
     }
     elseif ( $paymentGateway == 'twocheckout' )
     {
-        return $data['response']['orderNumber'];
+        return $transaction['response']['orderNumber'];
     }
 
 }

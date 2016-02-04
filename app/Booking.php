@@ -8,6 +8,7 @@ class Booking extends Model
 {
     protected $fillable = [
         'booking_reference',
+        'paid',
         'status',
         'comments'
     ];  
@@ -25,7 +26,8 @@ class Booking extends Model
                         'child_quantity', 
                         'date', 
                         'date_submit', 
-                        'time'
+                        'time',
+                        'ticket'
                     );
     }
 }

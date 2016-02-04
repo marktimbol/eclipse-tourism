@@ -1,17 +1,46 @@
 <?php
 
+use App\Booking;
 use App\Events\BookingWasConfirmed;
 use App\Events\UserBookedAPackage;
 use App\Events\UserPurchasedAPackage;
 use App\Package;
+use Eclipse\Repositories\Booking\BookingRepositoryInterface;
 use Eclipse\Repositories\User\UserRepositoryInterface;
-use Eclipse\ShoppingCart\ShoppingCart;
+use Eclipse\Shop\ShoppingCart;
 
 /*
 |--------------------------------------------------------------------------
 | Public Routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('get-booking/{reference}', function($reference, BookingRepositoryInterface $booking) {
+	$booking =  $booking->findByReference($reference);
+
+	foreach( $booking->packages as $package )
+	{
+		$adultPrice = $package->adult_price;
+		$childPrice = $package->child_price;
+
+		if( $package->has_ticket_option )
+		{
+			$ticketId = $package->pivot->ticket;
+
+			foreach( $package->tickets as $ticket )
+			{
+				if( $ticketId == $ticket->id )
+				{
+					$adultPrice = $ticket->adultPrice;
+					$childPrice = $ticket->childPrice;
+					$ticketName = $ticket->name;
+				}
+			}
+		}
+	}
+
+	dd( $adultPrice, $childPrice );
+});
 
 Route::get('related', function()
 {		
@@ -80,6 +109,11 @@ Event::listen('illuminate.query', function($query)
 	// var_dump($query);
 });
 
+Route::post(
+	'stripe/webhook',
+	'\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
+);
+
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 Route::post('change-currency', ['as' => 'change-currency', 'uses' => 'PagesController@changeCurrency']);
 
@@ -99,7 +133,6 @@ Route::get('package/{package}', ['as' => 'package', 'uses' => 'PackagesControlle
 Route::get('cart/checkout', ['as' => 'cart.checkout', 'uses' => 'CartController@checkout']);
 Route::post('cart/checkout', ['as' => 'cart.checkout', 'uses' => 'CartController@onCheckout']);
 Route::get('cart/checkout/success', ['as' => 'cart.checkout.success', 'uses' => 'CartController@checkoutSuccess']);
-
 Route::resource('cart', 'CartController');
 
 /*========= BOOKING =========*/

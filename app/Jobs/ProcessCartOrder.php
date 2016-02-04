@@ -9,6 +9,7 @@ use Eclipse\Billings\BillingGateway;
 use Eclipse\Repositories\User\UserRepositoryInterface;
 use Eclipse\Shop\ShoppingCart;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Stripe\Error\Card;
 
 class ProcessCartOrder extends Job implements SelfHandling
 {
@@ -68,11 +69,7 @@ class ProcessCartOrder extends Job implements SelfHandling
      *
      * @return void
      */
-    public function handle(
-        UserRepositoryInterface $userRepo, 
-        BillingGateway $gateway,
-        ShoppingCart $cart
-    ) 
+    public function handle( UserRepositoryInterface $userRepo, BillingGateway $gateway, ShoppingCart $cart ) 
     {
         $data = [
             'name'      => $this->name,
@@ -90,58 +87,56 @@ class ProcessCartOrder extends Job implements SelfHandling
             'cardExpiryYear'    => $this->cardExpiryYear    
         ]; 
         
-        $user = $userRepo->store($data);
-        
-        // var_dump($user);
+        $user = $userRepo->store($data);        
 
-        $chargeWasSuccessful = $gateway->charge($user, $cart->total(), $this->token);
+        $transaction = $gateway->charge($user, $cart->total(), $this->token);
 
-        if( $chargeWasSuccessful )
+        if( ! $transaction )
         {
-            /**
-             * Save the data to "bookings" table
-             */
-            $booking = $user->bookings()->create([
-                'booking_reference' => bookingReference($chargeWasSuccessful),
-                'status'            => 1,
-                'comments'          => ''
-            ]); 
-
-            foreach( $cart->content() as $item )
-            {
-                $packageId = $item->options->selectedPackage->id;
-                $adult_quantity = $item->qty;
-                $child_quantity = $item->options->child_quantity;
-
-                /**
-                 * Save the data to "booking_details" table
-                 */
-                $booking->packages()->attach($packageId, [
-                    'adult_quantity'    => $adult_quantity,
-                    'child_quantity'    => $child_quantity,
-                    'date'              => $item->options->date,   //Day, Month Year
-                    'date_submit'       => $item->options->date_submit, //YYYY-MM-DD
-                    'time'              => $item->options->time                    
-                    ]);       
-            }
-
-            $cart->destroy();
-
-            event( new UserPurchasedAPackage($user, $booking->booking_reference) );
-
-        } 
-        else 
-        {
-
             event( new UserPurchaseWasNotSuccessful($user) );
-
             /**
              * If payment is not successful, delete the user to avoid duplicating his/her
              * record on the "users" table
              */
             $userRepo->delete($user->id);
 
+            flash()->error( companyName(), 'Your card was declined.');
+
+            return redirect()->back();
         }
+
+        /**
+         * Save the data to "bookings" table
+         */
+        $booking = $user->bookings()->create([
+            'booking_reference' => bookingReference($transaction),
+            'paid'              => $transaction->paid,
+            'status'            => $transaction->status,
+            'comments'          => ''
+        ]); 
+
+        foreach( $cart->content() as $item )
+        {
+            $packageId = $item->options->selectedPackage->id;
+            $adult_quantity = $item->qty;
+            $child_quantity = $item->options->child_quantity;
+
+            /**
+             * Save the data to "booking_details" table
+             */
+            $booking->packages()->attach($packageId, [
+                'adult_quantity'    => $adult_quantity,
+                'child_quantity'    => $child_quantity,
+                'date'              => $item->options->date,   //Day, Month Year
+                'date_submit'       => $item->options->date_submit, //YYYY-MM-DD
+                'time'              => $item->options->time,
+                'ticket'            => $item->options->ticket             
+                ]);       
+        }
+
+        $cart->destroy();
+
+        event( new UserPurchasedAPackage($user, $booking->booking_reference) );
 
     }
 }

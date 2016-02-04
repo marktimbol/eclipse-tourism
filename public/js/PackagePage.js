@@ -19204,7 +19204,7 @@ var BookPackageForm = React.createClass({
 			return React.createElement(
 				'option',
 				{ key: ticket.id, value: ticket.id },
-				ticket.name
+				ticket.name + ' - AED ' + ticket.adultPrice
 			);
 		});
 

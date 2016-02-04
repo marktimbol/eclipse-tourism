@@ -4,8 +4,9 @@
 			title: "{{ session('flash_message.title') }}",  
 			text: "{{ session('flash_message.message') }}",  
 			 type: "{{ session('flash_message.level') }}", 
-			 timer: 2000,
-			 showConfirmButton: false
+			 // timer: 2000,
+			 showConfirmButton: true,
+			 confirmButtonText: 'Okay'
 		});
 	</script>
 @endif
@@ -15,8 +16,8 @@
 		swal({
 			title: "{{ session('flash_message_overlay.title') }}",  
 			text: "{{ session('flash_message_overlay.message') }}",  
-			 type: "{{ session('flash_message_overlay.level') }}", 
-			 confirmButtonText: 'Okay'
+			type: "{{ session('flash_message_overlay.level') }}", 
+			confirmButtonText: 'Okay'
 		});
 	</script>
 @endif

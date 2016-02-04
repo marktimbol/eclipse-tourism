@@ -16,7 +16,8 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
             $table->string('booking_reference');
             $table->integer('user_id')->unsigned();
-            $table->integer('status')->default(0);
+            $table->boolean('paid');
+            $table->string('status');
             $table->text('comments');
             $table->timestamps();
         });          

@@ -18,7 +18,7 @@ class BookingRepository implements BookingRepositoryInterface {
 
 	public function findByReference($reference)
 	{
-		return Booking::with('user', 'packages.photos')->where('booking_reference', $reference)->first();
+		return Booking::with('user', 'packages.photos', 'packages.tickets')->where('booking_reference', $reference)->first();
 	}
 
 	public function store($data)

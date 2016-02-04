@@ -26,6 +26,11 @@ class ShoppingCart {
 		return Cart::instance('cart')->count(false);
 	}
 
+	public function get($rowId)
+	{
+		return Cart::instance('cart')->get($rowId);
+	}
+
 	public function update($rowId, $quantity)
 	{
 		return Cart::instance('cart')->update($rowId, $quantity);

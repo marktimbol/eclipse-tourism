@@ -41,7 +41,8 @@ class PackageTableSeeder extends Seeder
                 'child_price'   =>  '125',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -77,7 +78,8 @@ class PackageTableSeeder extends Seeder
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -112,7 +114,8 @@ class PackageTableSeeder extends Seeder
                 'child_price'   =>  '275',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -149,7 +152,8 @@ class PackageTableSeeder extends Seeder
                 'child_price'   =>  '550',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -186,7 +190,8 @@ class PackageTableSeeder extends Seeder
                 'child_price'   =>  '250',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
     		[
@@ -221,7 +226,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'100',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],    		
 
     		[
@@ -243,7 +249,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'0',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],   
 
     		[
@@ -264,7 +271,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'0',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],      
 
     		[
@@ -287,7 +295,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'120',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 2
+                'minimum_quantity'  => 2,
+                'has_ticket_option' => 0
     		], 
 
     		[
@@ -308,7 +317,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'100',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 3
+                'minimum_quantity'  => 3,
+                'has_ticket_option' => 0
     		],     		         		 		 	
 
     		[
@@ -330,7 +340,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'370',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 2
+                'minimum_quantity'  => 2,
+                'has_ticket_option' => 0
     		],  
 
     		[
@@ -358,7 +369,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],    
 
     		[
@@ -384,7 +396,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'175',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],       
 
     		[
@@ -416,7 +429,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'180',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		], 
 
     		[
@@ -451,7 +465,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		], 
 
     		[
@@ -493,7 +508,8 @@ class PackageTableSeeder extends Seeder
     			'child_price'	=>	'100',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],  
 
     		[
@@ -534,7 +550,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		], 
 
     		[
@@ -569,7 +586,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],    
 
     		[
@@ -606,7 +624,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'child_price'	=>	'100',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],        		 		     		   		    		          		 		  		   		         		 		 	
 
     		[
@@ -642,7 +661,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'child_price'	=>	'150',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],
 
     		[
@@ -671,7 +691,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'child_price'	=>	'350',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],    
 
     		[
@@ -700,7 +721,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'child_price'	=>	'250',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],        				        		 		     		   		    		          		 		  		   		         		 		 	
 
     		[
@@ -727,7 +749,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'child_price'	=>	'95',
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
     		],     
 
             [
@@ -760,7 +783,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '100',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -800,7 +824,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],    
 
             [
@@ -848,7 +873,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ], 
 
             [
@@ -899,7 +925,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ], 
 
             [
@@ -941,7 +968,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -987,7 +1015,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1036,7 +1065,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1087,7 +1117,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1112,7 +1143,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],     
 
             [
@@ -1134,7 +1166,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1161,7 +1194,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],   
 
             [
@@ -1187,7 +1221,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ], 
 
             [
@@ -1216,7 +1251,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '215',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1237,7 +1273,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '205',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1269,7 +1306,8 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'child_price'   =>  '100',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1294,7 +1332,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '75',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ], 
 
             [
@@ -1317,7 +1356,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '100',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1340,7 +1380,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '200',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ], 
 
             [
@@ -1371,7 +1412,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '125',
                 'has_time_options'  => 1,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],   
 
             [
@@ -1403,7 +1445,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1432,7 +1475,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1474,7 +1518,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '0',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1501,7 +1546,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '205',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 1
             ],
 
             [
@@ -1516,7 +1562,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],  
 
             [
@@ -1530,7 +1577,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],       
 
             [
@@ -1542,7 +1590,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1554,7 +1603,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1566,7 +1616,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1583,7 +1634,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1600,7 +1652,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1636,7 +1689,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1654,7 +1708,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1673,7 +1728,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1691,7 +1747,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1708,7 +1765,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  0,
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ],
 
             [
@@ -1726,7 +1784,8 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'child_price'   =>  '250',
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
-                'minimum_quantity'  => 1
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0
             ], 
     	];
 
@@ -1743,6 +1802,7 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
             $newPackage->has_time_options = $package['has_time_options'];
             $newPackage->confirm_availability = $package['confirm_availability'];
             $newPackage->minimum_quantity = $package['minimum_quantity'];
+            $newPackage->has_ticket_option = $package['has_ticket_option'];
 
             $newPackage->save();
          }

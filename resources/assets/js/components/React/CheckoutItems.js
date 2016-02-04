@@ -1,4 +1,5 @@
 var React = require('react');
+var numeral = require('numeral');
 var currentCurrency = $('meta[name="current_currency"]').attr('content');
 
 import CheckoutItem from './CheckoutItem';
@@ -11,7 +12,7 @@ var CheckoutItems = React.createClass({
 
 		var checkoutItems = Object.keys(this.props.cartItems).map(function(item) {
 			total += this.props.cartItems[item].subtotal;
-
+			
 		    return (
 			    <CheckoutItem key={item} item={this.props.cartItems[item]} />
 		    );
@@ -33,7 +34,7 @@ var CheckoutItems = React.createClass({
 
 				<hr />
 
-				<h5 className="orders__total">Total: { currentCurrency + parseFloat(total).toFixed(2) }</h5>
+				<h5 className="orders__total">Total: { currentCurrency + ' ' + numeral(total).format('0,0') }</h5>
 
 			</div>
 		);

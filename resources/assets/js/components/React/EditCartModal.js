@@ -66,7 +66,7 @@ var EditCartModal = React.createClass({
 											onChange={this.handleAdultQuantityChange} />
 										<span>
 											&times;
-											{ currentCurrency + parseFloat(this.props.item.options.selectedPackage.adult_price).toFixed(2) }
+											{ currentCurrency + parseFloat(this.props.adultPrice).toFixed(2) }
 										</span>
 									</div>
 								</div>
@@ -84,7 +84,7 @@ var EditCartModal = React.createClass({
 											onChange={this.handleChildQuantityChange} />
 										<span>
 											&times;
-											{ currentCurrency + parseFloat(this.props.item.options.selectedPackage.child_price).toFixed(2) }
+											{ currentCurrency + parseFloat(this.props.childPrice).toFixed(2) }
 										</span>
 									</div>
 								</div>	

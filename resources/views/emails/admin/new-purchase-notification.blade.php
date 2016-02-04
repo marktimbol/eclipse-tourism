@@ -181,20 +181,41 @@
 		                    			$total = 0;
 		                    		?>
 		                    		@foreach( $data as $package )
+		                    			<?php
+											$adultPrice = $package->adult_price;
+											$childPrice = $package->child_price;
+											$ticketName = '';
+
+											if( $package->has_ticket_option )
+											{
+												$ticketId = $package->pivot->ticket;
+
+												foreach( $package->tickets as $ticket )
+												{
+													if( $ticketId == $ticket->id )
+													{
+														$adultPrice = $ticket->adultPrice;
+														$childPrice = $ticket->childPrice;
+														$ticketName = $ticket->name . ' Ticket';
+													}
+												}
+											}
+		                    			?>
 
 			                    		<tr style="border-top: 1px dashed #aaaaaa;">
 			                        		<td style="font-family: Arial, sans-serif; color: #333333; font-size: 16px; padding-top: 10px;">
+			                        			{{ $ticketName }}<br />
 			                        			{{ $package->name }} 
 			                        				<span style="color: #888; font-size: 14px; !important">
 			                        					( 
 			                        						{{ $package->pivot->adult_quantity }} 
 			                        							&times; 
-			                        						{{ formatNumber( $package->adult_price ) }} 
+			                        						{{ formatNumber( $adultPrice ) }} 
 			                        					AED )
 			                        				</span>
 			                        		</td>
 			                        		<td align="right" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">
-	                    						AED {{ formatNumber( $package->pivot->adult_quantity * $package->adult_price ) }} 
+	                    						AED {{ formatNumber( $package->pivot->adult_quantity * $adultPrice ) }} 
 			                        		</td>
 			                      		</tr>
 										<tr>
@@ -204,12 +225,12 @@
 		                        					( 
 		                        						{{ $package->pivot->child_quantity }} 
 		                        							&times; 
-		                        						{{ formatNumber( $package->child_price ) }} 
+		                        						{{ formatNumber( $childPrice ) }} 
 		                        					AED )
 		                        				</span>											
 											</td>
 											<td align="right" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">
-												AED {{ formatNumber( $package->pivot->child_quantity * $package->child_price ) }} 
+												AED {{ formatNumber( $package->pivot->child_quantity * $childPrice ) }} 
 											</td>
 										</tr>
 					                    <tr>
@@ -218,8 +239,8 @@
 					                    </tr>
 
 					                    <?php 
-					                    	$subtotal = ( $package->pivot->adult_quantity * $package->adult_price ) +
-					                    				( $package->pivot->child_quantity * $package->child_price );
+					                    	$subtotal = ( $package->pivot->adult_quantity * $adultPrice ) +
+					                    				( $package->pivot->child_quantity * $childPrice );
 
 					                    	$total += $subtotal;
 					                    ?>
@@ -309,7 +330,7 @@
 		                        <table width="500" border="0" cellspacing="0" cellpadding="0" align="center" class="responsive-table">
 		                            <tr>
 		                                <td align="center" style="font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;">
-		                                    <span class="appleFooter" style="color:#666666;">P.O. Box 125582, S-8 Building, C-8 China Cluster, International City, Dubai, U.A.E.</span><br>                                    <a style="color: #666666; text-decoration: none;">View this email in your browser</a>
+		                                    <span class="appleFooter" style="color:#666666;">P.O. Box 125582, S-8 Building, C-8 China Cluster, International City, Dubai, U.A.E.</span><br><a style="color: #666666; text-decoration: none;">View this email in your browser</a>
 		                                </td>
 		                            </tr>
 		                        </table>

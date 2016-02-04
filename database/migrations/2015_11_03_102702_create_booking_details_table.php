@@ -21,6 +21,7 @@ class CreateBookingDetailsTable extends Migration
             $table->string('date');
             $table->datetime('date_submit');
             $table->string('time');
+            $table->string('ticket');
         });    
     }
 

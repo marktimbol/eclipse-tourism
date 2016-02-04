@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(PackageTableSeeder::class);
         $this->call(PackageInformationTableSeeder::class);
+        $this->call(PackageTicketOptionsTableSeeder::class);
         $this->call(PackagePhotoTableSeeder::class);
 
         Model::reguard();

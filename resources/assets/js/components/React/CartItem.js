@@ -1,4 +1,6 @@
 var React = require('react');
+var numeral = require('numeral');
+
 var currentCurrency = $('meta[name="current_currency"]').attr('content');
 
 import EditCartModal from './EditCartModal';
@@ -17,9 +19,11 @@ var CartItem = React.createClass({
 		$('#item'+this.props.item.rowid).openModal();
 	},
 
-	render() {
-
+	componentDidMount() {
 		$('.materialboxed').materialbox();
+	},
+
+	render() {
 		
 		var imagePath = '/images/uploads/' + this.props.item.options.selectedPackage.photos[0].path;
 		var packageUrl = '/package/' + this.props.item.options.selectedPackage.slug;
@@ -32,10 +36,14 @@ var CartItem = React.createClass({
 			var ticketId = this.props.item.options.ticket;
 			var tickets = this.props.item.options.selectedPackage.tickets;
 
+			var selectedTicket = '';
+
 			tickets.map(function(ticket) {
 				if( ticketId == ticket.id ) {
 					adultPrice = ticket.adultPrice;
 					childPrice = ticket.childPrice;
+
+					selectedTicket = ticket.name;
 				}
 			});
 		}
@@ -62,6 +70,8 @@ var CartItem = React.createClass({
 									{ this.props.item.options.time ? this.props.item.options.time : '' }
 								</p>
 
+								{ selectedTicket ? <p className="text-muted">{ selectedTicket + ' Ticket'}</p> : '' }
+
 								{ this.props.item.options.selectedPackage.confirm_availability ? 
 									<p className="text-muted">* Subject for Availability</p> : 
 									'' 
@@ -73,7 +83,9 @@ var CartItem = React.createClass({
 		 									<strong>Child: </strong>
 		 									{ this.props.item.options.child_quantity }
 			 									&nbsp; &times; &nbsp;
-		 									{ currentCurrency + parseFloat(childPrice).toFixed(2) }
+		 									{ currentCurrency + ' ' + numeral(childPrice).format('0,0') }
+		 										&nbsp; = &nbsp;
+		 									{ currentCurrency + ' ' + numeral(this.props.item.options.child_quantity * childPrice).format('0,0') }
 		 								</li>
 		 							</ul> : ''
 		 						}
@@ -84,20 +96,24 @@ var CartItem = React.createClass({
 
 				<td className="nowrap">
 
-					{ currentCurrency + parseFloat(adultPrice).toFixed(2) }
+					{ currentCurrency + ' ' + numeral(adultPrice).format('0,0') }
 					
 				</td>
 
 				<td className="nowrap">{ this.props.item.qty }</td>
 				
-				<td className="nowrap">{ currentCurrency + parseFloat(this.props.item.subtotal).toFixed(2) }</td>
+				<td className="nowrap">{ currentCurrency + ' ' + numeral(this.props.item.subtotal).format('0,0') }</td>
 
 				<td>
 					<a className="modal-trigger" onClick={this.openModal}>
 						<i className="fa fa-pencil"></i> Edit
 					</a>
 
-					<EditCartModal key={this.props.item.rowid} item={this.props.item} updateCartItem={this.updateCartItem} deleteCartItem={this.deleteCartItem} />
+					<EditCartModal key={this.props.item.rowid} item={this.props.item} 
+						updateCartItem={this.updateCartItem} 
+						deleteCartItem={this.deleteCartItem} 
+						adultPrice={adultPrice} 
+						childPrice={childPrice} />
 				</td>
 			</tr>
 		);

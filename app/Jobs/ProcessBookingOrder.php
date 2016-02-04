@@ -70,7 +70,8 @@ class ProcessBookingOrder extends Job implements SelfHandling
              */
             $booking = $user->bookings()->create([
                 'booking_reference' => time(),
-                'status'            => 0,
+                'paid'              => false,
+                'status'            => 'Not yet paid',
                 'comments'          => ''
             ]); 
 

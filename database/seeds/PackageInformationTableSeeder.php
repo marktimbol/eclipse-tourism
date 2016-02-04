@@ -319,12 +319,6 @@ class PackageInformationTableSeeder extends Seeder
         	],
 
         	[
-        		'package_id'	=> 9,
-        		'title'			=> 'This price includes for up to 6 people',
-        		'description'	=> ''
-        	],
-
-        	[
         		'package_id'	=> 10,
         		'title'			=> 'Departs daily at',
         		'description'	=> '08:30 – 09:00 am'
