@@ -17,7 +17,8 @@ use Eclipse\Shop\ShoppingCart;
 
 Route::get('get-booking/{reference}', function($reference, BookingRepositoryInterface $booking) {
 	$booking =  $booking->findByReference($reference);
-
+	return $booking;
+	
 	foreach( $booking->packages as $package )
 	{
 		$adultPrice = $package->adult_price;

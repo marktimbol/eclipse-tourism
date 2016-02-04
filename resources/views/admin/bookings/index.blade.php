@@ -26,7 +26,7 @@
                         @foreach($user->bookings as $booking) 
                             <?php 
                                 $booking_reference = $booking->booking_reference;
-                                $status = $booking->status;
+                                $status = $booking->paid;
                             ?>
                         @endforeach                    
                         <tr class="{{ $status ? '' : 'danger' }}">

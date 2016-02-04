@@ -44,10 +44,8 @@ class UserMailer extends Mailer {
 
 		$user = $this->user->find($user_id);
 
-		$result = $this->booking->findByReference($bookingReference);
+		$bookedPackages = $this->booking->findByReference($bookingReference);
 
-		$bookedPackages = $result->packages;
-		
 		$this->sendTo($user->email, $subject, $view, $user, $bookedPackages);
 		
 	}

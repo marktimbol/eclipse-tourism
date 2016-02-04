@@ -12,18 +12,18 @@ class BookingWasConfirmed extends Event
 
     public $user_id;
 
-    public $booking_reference;
+    public $bookingReference;
     
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user_id, $booking_reference)
+    public function __construct($user_id, $bookingReference)
     {
         $this->user_id = $user_id;
 
-        $this->booking_reference = $booking_reference;
+        $this->bookingReference = $bookingReference;
     }
 
     /**

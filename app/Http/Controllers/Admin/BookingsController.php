@@ -100,9 +100,9 @@ class BookingsController extends Controller
         //
     }
 
-    public function confirm($booking_reference, $user_id)
+    public function confirm($bookingReference, $user_id)
     {
-        event( new BookingWasConfirmed($user_id, $booking_reference) );
+        event( new BookingWasConfirmed($user_id, $bookingReference) );
 
         flash()->success( companyName(), 'An email was sent to the customer.');
 

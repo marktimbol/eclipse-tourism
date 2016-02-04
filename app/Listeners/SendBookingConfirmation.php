@@ -30,6 +30,6 @@ class SendBookingConfirmation
      */
     public function handle(BookingWasConfirmed $event)
     {
-        $this->mailer->sendBookingConfirmation($event->user_id, $event->booking_reference);
+        $this->mailer->sendBookingConfirmation($event->user_id, $event->bookingReference);
     }
 }

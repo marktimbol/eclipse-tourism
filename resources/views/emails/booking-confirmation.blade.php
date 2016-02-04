@@ -172,7 +172,7 @@
 		                    			$subtotal = 0;
 		                    			$total = 0;
 		                    		?>
-		                    		@foreach( $data as $package )
+		                    		@foreach( $data->packages as $package )
 
 		                    			<?php
 											$adultPrice = $package->adult_price;
