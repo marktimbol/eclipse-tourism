@@ -316,6 +316,8 @@ header #topLeftCorner, header #bottomRightCorner {
     top: 25%; }
     .slideshow #intro-title a {
       margin-top: 20px; }
+    .slideshow #intro-title img {
+      width: 30%; }
 
 .menu {
   display: block;
