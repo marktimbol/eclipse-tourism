@@ -8,7 +8,7 @@ use Eclipse\Shop\Booking;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Eclipse\Repositories\User\UserRepositoryInterface;
 
-class ProcessBookingOrder extends Job implements SelfHandling
+class ProcessBookingOrder extends Job
 {
     protected $name;
 

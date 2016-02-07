@@ -9,7 +9,7 @@ use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Eclipse\Shop\ShoppingCart;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class AddItemInCart extends Job implements SelfHandling
+class AddItemInCart extends Job
 {
     public $package_id;
     public $quantity;

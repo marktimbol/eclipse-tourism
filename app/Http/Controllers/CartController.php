@@ -41,7 +41,11 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        return $this->dispatchFrom(AddItemInCart::class, $request);
+        $this->dispatch(
+            new AddItemInCart(
+                $request->package_id, $request->quantity, $request->child_quantity, $request->date, $request->date_submit, $request->time, $request->ticket
+            )
+        );
     }
 
     public function update(Request $request)

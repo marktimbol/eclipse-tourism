@@ -7,7 +7,7 @@ use App\Jobs\Job;
 use Eclipse\Repositories\Messages\MessageRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class SendMessage extends Job implements SelfHandling
+class SendMessage extends Job
 {
     public $name;
 

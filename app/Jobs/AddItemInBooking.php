@@ -7,7 +7,7 @@ use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Eclipse\Shop\Booking;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class AddItemInBooking extends Job implements SelfHandling
+class AddItemInBooking extends Job
 {
     public $package_id;
 

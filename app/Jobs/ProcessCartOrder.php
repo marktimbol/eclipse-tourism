@@ -11,7 +11,7 @@ use Eclipse\Shop\ShoppingCart;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Stripe\Error\Card;
 
-class ProcessCartOrder extends Job implements SelfHandling
+class ProcessCartOrder extends Job
 {
     protected $name;
 

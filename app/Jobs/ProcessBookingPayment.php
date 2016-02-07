@@ -10,7 +10,7 @@ use Eclipse\Repositories\Booking\BookingRepositoryInterface;
 use Eclipse\Repositories\User\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class ProcessBookingPayment extends Job implements SelfHandling
+class ProcessBookingPayment extends Job
 {
     protected $user_id;
 

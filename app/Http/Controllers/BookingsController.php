@@ -33,7 +33,11 @@ class BookingsController extends Controller
 
     public function store(Request $request)
     {	
-        return $this->dispatchFrom(AddItemInBooking::class, $request);
+        $this->dispatch(
+            new AddItemInBooking(
+                $request->package_id, $request->quantity, $request->child_quantity, $request->date, $request->date_submit
+            )
+        );
     }	
 
     public function update(Request $request)
@@ -70,7 +74,12 @@ class BookingsController extends Controller
 
     public function onCheckout(BookingCheckoutRequest $request)
     {
-        $this->dispatchFrom(ProcessBookingOrder::class, $request);
+        $this->dispatch(
+            new ProcessBookingOrder(
+                $request->name, $request->email, $request->phone, $request->address1, $request->address2,
+                $request->city, $request->state, $request->country
+            )
+        );
     }
 
     public function bookingSuccess()
@@ -92,7 +101,12 @@ class BookingsController extends Controller
 
     public function onBookingPayment(BookingPaymentCheckoutRequest $request)
     {
-        $this->dispatchFrom( ProcessBookingPayment::class, $request);
+        $this->dispatch(
+            new ProcessBookingOrder(
+                $request->user_id, $request->booking_reference, $request->token, $request->cardName, $request->cardBrand,
+                $request->cardLastFour, $request->cardExpiryMonth, $request->cardExpiryYear
+            )
+        );
 
         flash()->overlay('You have successfully paid your booking. Please check your email.'); 
 
