@@ -12,7 +12,26 @@
                 <div class="row">
                     <div class="col s12 m12">
                         <div class="white-transparent">
-                            <h3 class="parallax__title">Dubai</h3>
+                            <h3 class="parallax__title">Tourist Information</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {!! getParallaxPhoto('dubai.jpg', 'Dubai') !!}
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row container center-content">
+            <div class="col s12 m12">
+                <h1 class="page__title">Tourist Information</h1>
+
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header">
+                            Dubai
+                        </div>
+                        <div class="collapsible-body">
                             <p>
                                 Dubai’s location at the cross-roads of Europe, Asia and Africa makes for easy accessibility.
                                 London is seven hours away, Frankfurt six, Hong Kong eight and Nairobi four. Most
@@ -33,18 +52,7 @@
                                 disabilities.
                             </p>
                         </div>
-                    </div>
-                </div>
-            </div>
-            {!! getParallaxPhoto('dubai.jpg', 'Dubai') !!}
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="row container center-content">
-            <div class="col s12 m12">
-                <h1 class="page__title">Tourist Information</h1>
-                <ul class="collapsible" data-collapsible="expandable">
+                    </li>
                     <li>
                         <div class="collapsible-header">
                             Visas Requirements

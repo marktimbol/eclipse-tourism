@@ -13,7 +13,6 @@
                     <div class="col s12 m12">
                         <div class="white-transparent">
                             <h1 class="parallax__title">About Us</h1>
-                            <p>Eclipse Tourism LLC started as a travel management company based in Dubai and UK in 2011. In short span of time, Eclipse Tourism LLC has made its presence felt in the Industry and today we are known as one of the leading inbound tour operators.</p>
                         </div>
                     </div>
                 </div>

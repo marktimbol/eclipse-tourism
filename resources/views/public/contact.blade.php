@@ -13,9 +13,6 @@
                     <div class="col s12 m12">
                         <div class="white-transparent">
                             <h1 class="parallax__title">Contact Us</h1>
-						    <p>
-						        Please put a description of this page here. We will change also the picture.
-						    </p>
                         </div>
                     </div>
                 </div>

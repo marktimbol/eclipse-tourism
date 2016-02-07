@@ -13,7 +13,6 @@
                     <div class="col s12 m12">
                         <div class="white-transparent">
                             <h1 class="parallax__title">Deals</h1>
-                           	<p>Coming soon.</p>
                         </div>
                     </div>
                 </div>
