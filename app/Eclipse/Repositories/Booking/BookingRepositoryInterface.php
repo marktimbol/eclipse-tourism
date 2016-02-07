@@ -8,6 +8,10 @@ interface BookingRepositoryInterface {
 
 	public function find($id);
 
+	public function paid();
+
+	public function notPaid();
+
 	public function findByReference($reference);
 
 	public function store($data);

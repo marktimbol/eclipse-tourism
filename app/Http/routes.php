@@ -43,12 +43,14 @@ Route::get('get-booking/{reference}', function($reference, BookingRepositoryInte
 	dd( $adultPrice, $childPrice );
 });
 
-Route::get('related', function()
+Route::get('paid', function()
 {		
-	$package = Package::findOrFail(35);
-	$category = $package->category->id;
+	return Booking::with('user', 'packages.tickets')->wherePaid(true)->get();
+});
 
-	return Package::with('photos')->where('category_id', $category)->orderByRaw('RAND()')->take(4)->get();	
+Route::get('not-paid', function()
+{		
+	return Booking::with('user', 'packages.tickets')->wherePaid(false)->get();
 });
 
 Route::get('purchase-check', function(UserRepositoryInterface $userRepo)
@@ -109,11 +111,6 @@ Event::listen('illuminate.query', function($query)
 {
 	// var_dump($query);
 });
-
-Route::post(
-	'stripe/webhook',
-	'\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
-);
 
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 Route::post('change-currency', ['as' => 'change-currency', 'uses' => 'PagesController@changeCurrency']);
@@ -193,6 +190,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
 	Route::resource('packages', 'Admin\PackagesController');
 
 	Route::post('bookings/{bookingReference}/user/{user_id}/confirm', ['as' => 'bookings.confirm', 'uses' => 'Admin\BookingsController@confirm']);
+
+	Route::get('bookings/upon-requests', ['as' => 'admin.bookings.upon-requests', 'uses' => 'Admin\BookingsController@uponRequests']);
 	Route::resource('bookings', 'Admin\BookingsController');
 	
 });

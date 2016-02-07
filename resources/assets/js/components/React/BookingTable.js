@@ -124,6 +124,16 @@ var BookingTable = React.createClass({
 
 					<tbody>
 						{ cartItems }
+
+						<tr>
+							<td colSpan='5'>
+								<p>
+									<a href="/packages" className="btn waves-effect waves-light">
+										<i className="fa fa-plus left"></i> Add Package
+									</a>
+								</p>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 
@@ -133,20 +143,11 @@ var BookingTable = React.createClass({
 
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
-
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>	
 
 				<div className="row">
-					<div className="col s6 m3">
-						<p className="center-content">
-							<a href="/packages" className="btn-flat center-content">
-								<i className="fa fa-plus"></i> Add Package
-							</a>
-						</p>
-					</div>
-
-					<div className="col s6 m3 offset-m6">
+					<div className="col s12 m12">
 						{ this.state.cartCount !== 0 ? <CheckoutLink link="/booking/checkout" /> : <EmptyShoppingCart /> }
 					</div>
 				</div>	

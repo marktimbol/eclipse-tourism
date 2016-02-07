@@ -44,9 +44,9 @@
 		            	</div>
 
 		            	<div class="row">
-            				<div class="col-md-6">
+            				<div class="col-md-8">
             					<div class="row">
-            						<div class="col-md-4">
+            						<div class="col-md-3">
 						            	<div class="form-group">
 						            		<label for="adult_price">Adult Price</label>
 						            		<div class="input-group">
@@ -56,7 +56,7 @@
 						            	</div>
             						</div>
 
-            						<div class="col-md-4">
+            						<div class="col-md-3">
 						            	<div class="form-group">
 						            		<label for="child_price">Child Price</label>
 						            		<div class="input-group">
@@ -66,12 +66,22 @@
 						            	</div>
             						</div>
 
-            						<div class="col-md-4">
+            						<div class="col-md-3">
 						            	<div class="form-group">
 						            		<label for="minimum_quantity">Minimum Qty.</label>
 						            		<input type="text" name="minimum_quantity" id="minimum_quantity" class="form-control" value="{{ old('minimum_quantity') }}" placeholder="Minimum Adult Qty." />
 						            	</div>
             						</div>
+
+            						<div class="col-md-3">
+            							<br />
+            							<div class="checkbox">
+						            		<label>
+						            			<input type="checkbox" value="1" name="has_ticket_option" />
+						            			Has Ticket Options?
+						            		</label>
+            							</div>
+									</div>
             					</div>
             				</div>
             			</div>
@@ -89,7 +99,7 @@
 
 		            	<div class="checkbox">
 		            		<label>
-		            			<input type="checkbox" name="confirm_availability" value="1"> This package is subject for availability. Once the availability is confirmed, we will send the customer an email with a link to enter their Debit / Credit Card information to charge them.
+		            			<input type="checkbox" name="confirm_availability" value="1"> This package is subject for availability.
 		            		</label>
 		            	</div>	
 

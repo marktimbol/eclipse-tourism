@@ -107,7 +107,7 @@ class CartController extends Controller
              */
             $this->user->delete($user->id);
 
-            flash()->error( companyName(), 'Your card was declined. Please try again.');
+            flash()->error('Your card was declined. Please try again.');
 
             return redirect()->back()->withInput();
         }
@@ -145,7 +145,7 @@ class CartController extends Controller
 
         event( new UserPurchasedAPackage($user, $booking->booking_reference) );
 
-        flash()->overlay( companyName(), 'You have successfully booked the Package(s).');
+        flash()->overlay('You have successfully booked the Package(s).');
 
         return redirect()->route('cart.checkout.success');
     }

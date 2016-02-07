@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <h1 class="page-header">Paid Bookings</h1>
+            <h1 class="page-header">Upon Requests</h1>
 
             <table class="table table-hover">
                 <thead>
@@ -44,7 +44,7 @@
                 </tbody>
             </table>
 
-            @include('admin.bookings.show') <!-- modal view -->
+            @include('admin.bookings.requests.show') <!-- modal view -->
 
         </div>
     </div>

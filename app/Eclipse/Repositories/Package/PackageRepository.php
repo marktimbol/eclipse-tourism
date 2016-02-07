@@ -90,13 +90,13 @@ class PackageRepository implements PackageRepositoryInterface {
 		/**
 		 * Delete the photo from the directory
 		 */
-		$photoPath = public_path('images/uploads/'.$path);
+		// $photoPath = public_path('images/uploads/'.$path);
 
-        if( File::isFile($photoPath) ) {
+  //       if( File::isFile($photoPath) ) {
 
-            File::delete( $photoPath );
+  //           File::delete( $photoPath );
 
-        }	
+  //       }	
 
         /**
          * Delete the photo from the "photos" table
@@ -130,17 +130,17 @@ class PackageRepository implements PackageRepositoryInterface {
 
 		if( count($oldPhoto) > 0 ) {
 
-			foreach( $oldPhoto->get() as $photo ) {
+			// foreach( $oldPhoto->get() as $photo ) {
 
-				$oldPhotoPath = public_path('images/uploads/'.$photo->path);
+			// 	$oldPhotoPath = public_path('images/uploads/'.$photo->path);
 
-		        if( File::isFile($oldPhotoPath) ) {
+		 //        if( File::isFile($oldPhotoPath) ) {
 
-		            File::delete( $oldPhotoPath );
+		 //            File::delete( $oldPhotoPath );
 
-		        }
+		 //        }
 		        
-		    }
+		 //    }
 
 	        $oldPhoto->delete();
 

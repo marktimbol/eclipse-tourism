@@ -13,7 +13,17 @@ class BookingRepository implements BookingRepositoryInterface {
 
 	public function find($id)
 	{
-		return Booking::with('user')->findOrFail($id);
+		return Booking::with('user', 'packages.tickets')->findOrFail($id);
+	}
+
+	public function paid()
+	{
+		return Booking::with('user', 'packages.tickets')->latest()->wherePaid(true)->get();
+	}
+
+	public function notPaid()
+	{
+		return Booking::with('user', 'packages.tickets')->latest()->wherePaid(false)->get();
 	}
 
 	public function findByReference($reference)

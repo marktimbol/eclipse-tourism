@@ -4,7 +4,7 @@ namespace App\Http;
 
 class Flash 
 {	
-	public function create($title, $message, $level, $key = 'flash_message')
+	public function create($message, $level, $key = 'flash_message')
 	{
 		session()->flash($key, [
 			'title' => companyName(),
@@ -12,23 +12,23 @@ class Flash
 			'level'	=> $level
 		]);
 	}
-	public function info($title, $message)
+	public function info($message)
 	{
-		return $this->create($title, $message, 'info');
+		return $this->create($message, 'info');
 	}
 
-	public function success($title, $message)
+	public function success($message)
 	{
-		return $this->create($title, $message, 'success');
+		return $this->create($message, 'success');
 	}
 
-	public function error($title, $message)
+	public function error($message)
 	{
-		return $this->create($title, $message, 'error');
+		return $this->create($message, 'error');
 	}
 
-	public function overlay($title, $message, $level = 'success')
+	public function overlay($message, $level = 'success')
 	{
-		return $this->create($title, $message, $level, 'flash_message_overlay');
+		return $this->create($message, $level, 'flash_message_overlay');
 	}
 }

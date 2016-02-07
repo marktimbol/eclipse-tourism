@@ -8,7 +8,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <h4>Personal Information</h4>
                             <ul class="list-group">
                                 <li class="list-group-item"><strong>Name:</strong> {{ $booking->user->name }}</li>
@@ -17,25 +17,11 @@
                                 <li class="list-group-item"><strong>Address 1:</strong> {{ $booking->user->address1 . ', ' . $booking->user->address2 }}</li>
                             </ul>
                         </div>
-
-                        <div class="col-md-6">
-                            <h4>Card Information</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item"><strong>Name:</strong> {{ $booking->user->cardName }}</li>
-                                <li class="list-group-item"><strong>Brand:</strong> {{ $booking->user->cardBrand }}</li>
-                                <li class="list-group-item"><strong>Card Number:</strong> 
-                                    {{ $booking->user->cardLastFour ? '**** **** **** ' . $booking->user->cardLastFour : '' }}
-                                </li>
-                                <li class="list-group-item"><strong>Expiry:</strong> 
-                                    {{ $booking->user->cardExpiryMonth ? $booking->user->cardExpiryMonth . '/' . $booking->user->cardExpiryYear : '' }}
-                                </li>
-                            </ul>  
-                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Booked Packages</h4>
+                            <h4>Request Packages</h4>
                         </div>
                     </div>
 
@@ -44,9 +30,8 @@
                             <thead>
                                 <tr>
                                     <th>Package</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th class="text-right">Subtotal</th>
+                                    <th>Adult Qty.</th>
+                                    <th>Child Qty.</th>
                                 </tr>
                             </thead>
 
@@ -84,74 +69,18 @@
                                                     {{ $package->pivot->date }}
                                                     {{ $package->pivot->time }}
                                                 </p>
-
-                                                <ul class="collection">
-                                                    <li class="collection-item">
-                                                        Child:
-                                                        {{ $package->pivot->child_quantity }} &times; 
-                                                        {{ number_format($childPrice) }} <span class="current-currency">AED</span>
-                                                    </li>
-                                                </ul>
-                                                
                                             </td>
-
-                                            <td class="nowrap">{{ number_format($adultPrice) }}  <span class="current-currency">AED</span></td>
-                                            
                                             <td>
-                                                {{ $package->pivot->adult_quantity }}
+                                                {{ $package->pivot->adult_quantity }} pax
                                             </td>
 
-                                            <td class="text-right nowrap">
-                                                <?php
-                                                $subtotal =  ($adultPrice * $package->pivot->adult_quantity) + ($childPrice * $package->pivot->child_quantity);
-                                                ?>
-                                                {{ number_format($subtotal) }} <span class="current-currency">AED</span>
+                                            <td>
+                                                {{ $package->pivot->child_quantity }} pax
                                             </td>
-
-                                            <?php 
-                                                $total += $subtotal; 
-                                            ?>
                                         </tr>
-                                   
-
                                 @endforeach
-
-                                <tr>
-                                    <td colspan="4">
-                                        <h4 class="text-right">Total: {{ number_format($total) }} <span class="current-currency">AED</span></h4>
-                                    </td>
-                                </tr>
-
                             </tbody>   
                         </table>
-{{--                         @if( $paid == 0 )
-
-                            <div class="alert alert-danger">
-                                <p class="text-center">NOT YET PAID</p>
-                            </div>  
-
-                            <form method="POST" action="{{ route('bookings.confirm', [ $booking_reference, $user->id ]) }}">
-                                {!! csrf_field() !!}
-
-                                <button type="submit" class="btn btn-success">
-                                    Date is confirmed, send the confirmation email to customer
-                                </button>
-
-                            </form>
-
-                        @elseif( $paid == 1)
-                        
-                            <div class="alert alert-success">
-                                <p class="text-center">PAID</p>
-                            </div>  
-                        
-                        @endif     --}}    
-
-                        @if( $booking->paid )
-                            <div class="alert alert-success">
-                                <p class="text-center">PAID</p>
-                            </div>  
-                        @endif
                     </div>                            
 
                 </div>

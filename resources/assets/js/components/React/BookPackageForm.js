@@ -76,6 +76,11 @@ var BookPackageForm = React.createClass({
 				var newBookedPackages = this.state.bookedPackages.concat(response);
 				this.setState({ bookedPackages: newBookedPackages });
 
+				if( this.props.currentPackage.confirm_availability )
+				{
+					return window.location.href = bookingUrl;
+				}
+
 				var message = 'The Package has been successfully added to your cart.';
 
 				swal({

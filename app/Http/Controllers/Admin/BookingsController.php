@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class BookingsController extends Controller
 {
-
     protected $booking;
 
     protected $user;
@@ -29,9 +28,10 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        $userWithBookings = $this->user->all();
+        // $userWithBookings = $this->user->all();
+        $bookings = $this->booking->paid();
 
-        return view('admin.bookings.index', compact('userWithBookings'));
+        return view('admin.bookings.index', compact('bookings'));
     }
 
     /**
@@ -108,4 +108,12 @@ class BookingsController extends Controller
 
         return redirect()->route('admin.bookings.index');
     }   
+
+
+    public function uponRequests()
+    {
+        $bookings = $this->booking->notPaid();
+
+        return view('admin.bookings.requests.index', compact('bookings'));
+    }
 }

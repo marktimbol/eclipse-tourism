@@ -34,11 +34,8 @@
 
 					<div class="divider"></div>
 
-					<div class="row">
-						<div class="col m12 s12">
-							<div class="package__related" id="RelatedPackages"></div>
-						</div>				
-					</div>
+					<div id="RelatedPackages" class="package__related"></div>
+
 				</div>
 			</div>
 		</div>

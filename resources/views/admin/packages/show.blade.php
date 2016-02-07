@@ -25,22 +25,22 @@
 	            		<p>&nbsp;</p>
 	            		<div class="package-photos">
 	            			<div class="row">
-	            				@forelse( $package->photos as $photo )
+	            				@foreach( $package->photos as $photo )
 		            				<div class="col-md-2">
 		            					<div class="package-photo">
 		            						{!! getUploadedPhoto($photo->path, 'thumbnail img-responsive') !!}
-		            						<form method="POST" action="{{ route('admin.packages.photos.delete', $photo->path) }}">
-		            							{!! csrf_field() !!}
-		            							{!! method_field('DELETE') !!}
-		            							
-		            							<button type="submit" name="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-		            							
-		            						</form>
+		            						@if( count($package->photos) > 1)
+			            						<form method="POST" action="{{ route('admin.packages.photos.delete', $photo->path) }}">
+			            							{!! csrf_field() !!}
+			            							{!! method_field('DELETE') !!}
+			            							
+			            							<button type="submit" name="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+			            							
+			            						</form>
+		            						@endif
 		            					</div>
 		            				</div>
-	            				@empty
-
-	            				@endforelse
+	            				@endforeach
 	            			</div>
 	            		</div>
 
@@ -62,19 +62,32 @@
 						<li class="list-group-item">
 							<strong>Child Price:</strong> {{ $package->child_price }} AED
 						</li>
-						<li class="list-group-item">
-							<strong>Customer can select their timings:</strong> {{ $package->has_time_options ? 'Yes' : 'No' }}
-						</li>							
-						<li class="list-group-item">
-							<strong>Subject for Availability:</strong> {{ $package->confirm_availability ? 'Yes' : 'No' }}
-						</li>						
+
+						@if( $package->has_time_options )
+							<li class="list-group-item">
+								<strong>Customer can select their timings</strong>
+							</li>							
+						@endif
+
+						@if( $package->confirm_availability )
+							<li class="list-group-item">
+								<strong>Subject for Availability</strong>
+							</li>						
+						@endif
+
+						@if( $package->has_ticket_option )
+							<li class="list-group-item">
+								<strong>Has Ticket Options</strong>
+							</li>						
+						@endif
 					</ul>
 
 					<div id="PackageInformation"></div>
-					
-					<hr />
-
-					<div id="TicketOptions"></div>
+	
+					@if( $package->has_ticket_option )
+						<hr />
+						<div id="TicketOptions"></div>
+					@endif
 				</div>
 			</div>
         </div>

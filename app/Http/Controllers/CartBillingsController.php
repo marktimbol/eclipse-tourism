@@ -31,7 +31,7 @@ class CartBillingsController extends Controller
     {
         $this->dispatchFrom(ProcessCartOrder::class, $request);        
         
-        flash()->overlay( companyName(), 'You have successfully booked the Package. Please check your email.');
+        flash()->overlay('You have successfully booked the Package. Please check your email.');
 
         return redirect()->route('cart.checkout.success');
     }
@@ -72,7 +72,7 @@ class CartBillingsController extends Controller
     {
         $this->dispatchFrom( ProcessBookingPayment::class, $request);
 
-        flash()->overlay( companyName(), 'You have successfully paid your booking. Please check your email.'); 
+        flash()->overlay('You have successfully paid your booking. Please check your email.'); 
 
         return redirect()->route('booking.payment.success', $request->booking_reference);
     }     

@@ -1,7 +1,7 @@
 var React = require('react');
 
 import PackagePrice from './PackagePrice';
-import SharePackage from './SharePackage';
+import PackageInfo from './PackageInfo';
 
 var FeaturedPackage = React.createClass({
 
@@ -57,9 +57,10 @@ var FeaturedPackage = React.createClass({
 												<p dangerouslySetInnerHTML={this.showDescription()}></p>
 											</div>
 											<div className="col m3 s12">
-												<PackagePrice currentPackage={this.props.currentPackage} />
+												<PackagePrice currentPackage={this.props.currentPackage} adultPrice={this.props.currentPackage.adult_price} />
+												<PackageInfo currentPackage={this.props.currentPackage} adultPrice={this.props.currentPackage.adult_price} childPrice={this.props.currentPackage.child_price} />
+
 												<a href={packageUrl} className="btn btn-large btn-block waves-effect waves-light blue">View Package</a>
-												<SharePackage currentPackage={this.props.currentPackage} />
 											</div>
 										</div>	
 									</div>

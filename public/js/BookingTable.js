@@ -19863,7 +19863,25 @@ var BookingTable = React.createClass({
 				React.createElement(
 					'tbody',
 					null,
-					cartItems
+					cartItems,
+					React.createElement(
+						'tr',
+						null,
+						React.createElement(
+							'td',
+							{ colSpan: '5' },
+							React.createElement(
+								'p',
+								null,
+								React.createElement(
+									'a',
+									{ href: '/packages', className: 'btn waves-effect waves-light' },
+									React.createElement('i', { className: 'fa fa-plus left' }),
+									' Add Package'
+								)
+							)
+						)
+					)
 				)
 			),
 			React.createElement(
@@ -19902,21 +19920,7 @@ var BookingTable = React.createClass({
 				{ className: 'row' },
 				React.createElement(
 					'div',
-					{ className: 'col s6 m3' },
-					React.createElement(
-						'p',
-						{ className: 'center-content' },
-						React.createElement(
-							'a',
-							{ href: '/packages', className: 'btn-flat center-content' },
-							React.createElement('i', { className: 'fa fa-plus' }),
-							' Add Package'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col s6 m3 offset-m6' },
+					{ className: 'col s12 m12' },
 					this.state.cartCount !== 0 ? React.createElement(_CheckoutLink2.default, { link: '/booking/checkout' }) : React.createElement(_EmptyShoppingCart2.default, null)
 				)
 			)
@@ -20099,12 +20103,25 @@ var CheckoutLink = React.createClass({
 	displayName: "CheckoutLink",
 	render: function render() {
 		return React.createElement(
-			"p",
-			{ className: "center-content" },
+			"div",
+			{ className: "row" },
 			React.createElement(
-				"a",
-				{ href: this.props.link, className: "btn btn-large waves-effect waves-light green full-width" },
-				"Checkout"
+				"div",
+				{ className: "col s6 m3 right" },
+				React.createElement(
+					"p",
+					{ className: "" },
+					React.createElement(
+						"a",
+						{ href: this.props.link, className: "btn btn-large waves-effect waves-light green full-width" },
+						React.createElement(
+							"i",
+							{ className: "material-icons left" },
+							"shopping_cart"
+						),
+						" Checkout"
+					)
+				)
 			)
 		);
 	}

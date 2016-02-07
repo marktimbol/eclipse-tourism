@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 
 import PackagePhotos from './PackagePhotos';
 import PackagePrice from './PackagePrice';
+import PackageInfo from './PackageInfo';
 import BookPackageForm from './BookPackageForm';
 import SharePackage from './SharePackage';
 
@@ -43,7 +44,8 @@ var PackageInformation = React.createClass({
 				</div>
 
 				<div className="col m3 s12">
-					<PackagePrice currentPackage={window.package} adultPrice={this.state.adultPrice} childPrice={this.state.childPrice} />
+					<PackagePrice currentPackage={window.package} adultPrice={this.state.adultPrice} />
+					<PackageInfo currentPackage={window.package} adultPrice={this.state.adultPrice} childPrice={this.state.childPrice}/>
 					<BookPackageForm currentPackage={window.package} setPrices={this.setPrices} />
 					<SharePackage currentPackage={window.package} />
 				</div>

@@ -64,7 +64,9 @@ class PackagesController extends Controller
 
         $package = $category->packages()->create($request->all());
         
-        flash()->success('Yay!', 'You have successfully added new Package.');
+        $this->package->addPhoto($package->id, 'default.png');
+
+        flash()->success('You have successfully added new Package.');
 
         return redirect()->route('admin.packages.index');
     }
@@ -108,7 +110,7 @@ class PackagesController extends Controller
     {                
         $this->package->update($package->id, $request->all());
 
-        flash()->success('Eclipse', 'Package has been successfully updated.');
+        flash()->success('Package has been successfully updated.');
 
         return redirect()->route('admin.packages.index'); 
     }
@@ -123,7 +125,7 @@ class PackagesController extends Controller
     {
         $this->package->delete($package->id);
 
-        flash()->success('Yay!', 'Package has been successfully deleted.');
+        flash()->success('Package has been successfully deleted.');
 
         return redirect()->route('admin.packages.index');         
     }

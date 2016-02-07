@@ -150,7 +150,7 @@
 		                            </tr>
 		                            <tr>
 		                                <td align="left" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">
-		                                	Hi {{ $user->name }}, thank you for booking your tours with us. We will check first if your chosen date is available or not. If it is available, we will send you a separate email with a link to enter your credit card details to pay for your booking.
+		                                	Hi {{ $user->name }}, thank you for booking your tours with us. One of our customer representative will contact you shortly.
 		                                </td>
 		                            </tr>
 		                        </table>

@@ -72,7 +72,8 @@ class PagesController extends Controller
     public function submitContact(SendMessageRequest $request)
     {
         $this->dispatchFrom(SendMessage::class, $request);
-        flash()->overlay( companyName(), 'Your inquiry was sent successfully. Our customer representative will get back to you soon.');
+
+        flash()->overlay('Your inquiry was sent successfully. Our customer representative will contact you shortly.');
 
         return redirect()->route('contact');
     }
@@ -80,6 +81,7 @@ class PagesController extends Controller
     public function changeCurrency(Request $request)
     {  
         session(['currency' => $request->currency]);
+
         return session('currency');
     }
 

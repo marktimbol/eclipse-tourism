@@ -19869,7 +19869,11 @@ var CheckoutButton = React.createClass({
 					) : React.createElement(
 						"span",
 						null,
-						React.createElement("i", { className: "fa fa-lock" }),
+						React.createElement(
+							"i",
+							{ className: "material-icons left" },
+							"shopping_cart"
+						),
 						" ",
 						this.props.buttonText
 					)
