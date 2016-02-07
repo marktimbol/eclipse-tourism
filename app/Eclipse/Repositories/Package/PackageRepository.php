@@ -10,12 +10,12 @@ class PackageRepository implements PackageRepositoryInterface {
 	
 	public function all()
 	{
-		return Package::with('photos', 'category', 'tickets', 'information')->latest()->orderBy('name', 'ASC')->get();
+		return Package::with('photos', 'category', 'tickets', 'information')->get();
 	}
 
 	public function take($number)
 	{
-		return Package::with('photos', 'category', 'information', 'tickets')->latest()->take($number)->orderBy('name', 'ASC')->get();
+		return Package::with('photos', 'category', 'information', 'tickets')->take($number)->get();
 	}
 
 	public function related($packageId)
