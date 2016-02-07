@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            {!! getPhoto('contact-us.jpg', 'Contact Us') !!}
+            {!! getParallaxPhoto('contact-us.jpg', 'Contact Us') !!}
         </div>
     </div>
 

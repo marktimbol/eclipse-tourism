@@ -214,6 +214,19 @@ function getPhoto($filename, $title = "Eclipse Tourism", $class="img-rounded")
 	
 }
 
+function getParallaxPhoto($filename, $title = "Eclipse Tourism")
+{
+	if( ! empty($filename) )
+	{
+		return '<img src="'.asset('images/'. $filename).'" 
+					alt="'. $title.'" 
+					title="'.$title .'" />';
+	} 
+	
+	return defaultImage($title);
+	
+}
+
 function getEmailAsset($filename, $title = "Eclipse Tourism")
 {
 	if( ! empty($filename) )

@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            {!! getPhoto('dubai.jpg', 'Dubai') !!}
+            {!! getParallaxPhoto('dubai.jpg', 'Dubai') !!}
         </div>
     </div>
 

@@ -1,5 +1,9 @@
 @media screen and (max-width: 700px) {
 
+  .logo {
+    width: 140px !important;
+  }
+
   .slideshow {
       height: 600px;
       background-image: url('../../images/video-cover-for-mobile.jpg');
@@ -9,15 +13,7 @@
 
       #bottomRightCorner, #topLeftCorner {
           width: 70%;
-      }     
-
-      .logo {
-          left: 20px;
-          top: 0;
-          width: 42%;
-          max-width: none;
-          z-index: 9999;
-      }     
+      }       
 
       #top_video {
         display: none;

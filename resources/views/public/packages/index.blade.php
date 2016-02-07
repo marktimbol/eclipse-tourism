@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            {!! getPhoto('packages.jpg', 'Packages') !!}
+            {!! getParallaxPhoto('packages.jpg', 'Packages') !!}
         </div>
     </div>
 
