@@ -17,6 +17,8 @@ var AppFooter = React.createClass({
 									<div className="col m2 s6">
 										<h5 className="footer__title">Useful Links</h5>
 										<ul className="footer__links">
+											<li><a href="/cart">Cart</a></li>
+											<li><a href="/booking">Bookings</a></li>
 											<li><a href="#">FAQs</a></li>
 											<li><a href="#">Terms &amp; Conditions</a></li>										
 										</ul>

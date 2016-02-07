@@ -19078,6 +19078,24 @@ var AppFooter = React.createClass({
 											null,
 											React.createElement(
 												'a',
+												{ href: '/cart' },
+												'Cart'
+											)
+										),
+										React.createElement(
+											'li',
+											null,
+											React.createElement(
+												'a',
+												{ href: '/booking' },
+												'Bookings'
+											)
+										),
+										React.createElement(
+											'li',
+											null,
+											React.createElement(
+												'a',
 												{ href: '#' },
 												'FAQs'
 											)
