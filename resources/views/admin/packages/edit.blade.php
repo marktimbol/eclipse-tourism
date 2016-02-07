@@ -83,7 +83,7 @@
             							<br />
             							<div class="checkbox">
 						            		<label>
-						            			<input type="checkbox" value="1" name="has_ticket_option" {{ $package->has_ticket_option ? 'checked' : ''}} />
+						            			<input type="checkbox" value="1" name="has_ticket_option" {{ $package->has_ticket_option == 1 ? 'checked' : ''}} />
 						            			Has Ticket Options?
 						            		</label>
             							</div>
@@ -101,23 +101,16 @@
 
 		            	<div class="checkbox">
 		            		<label>
-		            			<input type="checkbox" 
-		            				name="has_time_options" 
-		            				value="1"
-		            				{{ $package->has_time_options == 1 ? 'checked' : '' }}
-		            			>
+		            			<input type="checkbox" name="has_time_options" value="1" {{ $package->has_time_options == 1 ? 'checked' : '' }} />
 		            			Allow customer to select their timings during booking.
 		            		</label>
 		            	</div>			            	
 
 		            	<div class="checkbox">
 		            		<label>
-		            			<input type="checkbox"
-		            				name="confirm_availability" 
-		            				value="1"
-		            				{{ $package->confirm_availability == 1 ? 'checked' : '' }}
-		            			>
-		            			This package is subject for availability. Once the availability is confirmed, we will send them an email with a link to enter their Debit / Credit Card information so that we charge them.
+		            			<input type="hidden" name="confirm_availability" value="0" />
+		            			<input type="checkbox" name="confirm_availability" value="1" {{ $package->confirm_availability ? 'checked' : '' }} />
+		            			This package is subject for availability.
 		            		</label>
 		            	</div>			  
 

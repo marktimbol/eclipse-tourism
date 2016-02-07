@@ -13,7 +13,6 @@
             		<tr>
                         <th>Name</th>
                         <th>Category</th>
-            			<th>Duration</th>
             			<th>Adult Price</th>
             			<th>Child Price</th>
             			<th>&nbsp;</th>
@@ -33,7 +32,6 @@
                                 {{ $package->category->name }}
                             </a>
                         </td>
-            			<td>{{ $package->duration }}</td>
             			<td>{{ $package->adult_price }} AED</td>
             			<td>{{ $package->child_price }} AED</td>
             			<td>

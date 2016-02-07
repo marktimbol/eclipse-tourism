@@ -19105,8 +19105,7 @@ var AdditionalPackageInformation = React.createClass({
 					React.createElement(
 						"strong",
 						null,
-						this.props.title,
-						":"
+						this.props.title
 					),
 					" ",
 					this.props.description

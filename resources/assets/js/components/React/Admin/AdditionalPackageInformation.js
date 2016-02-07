@@ -63,7 +63,7 @@ var AdditionalPackageInformation = React.createClass({
 							</div>
 						</div> :
 						<div className="col-md-9">
-							<strong>{this.props.title}:</strong> {this.props.description}
+							<strong>{this.props.title}</strong> {this.props.description}
 						</div>
 					}
 

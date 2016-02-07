@@ -107,7 +107,7 @@ class PackagesController extends Controller
      * @return Response
      */
     public function update(CreatePackageRequest $request, $package)
-    {                
+    {                        
         $this->package->update($package->id, $request->all());
 
         flash()->success('Package has been successfully updated.');
