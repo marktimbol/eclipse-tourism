@@ -78,7 +78,7 @@ var BookPackageForm = React.createClass({
 
 				if( this.props.currentPackage.confirm_availability )
 				{
-					return window.location.href = bookingUrl;
+					window.location.href = bookingUrl;
 				}
 
 				var message = 'The Package has been successfully added to your cart.';

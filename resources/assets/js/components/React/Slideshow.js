@@ -31,8 +31,7 @@ var Slideshow = React.createClass({
 					<div id="intro-title">
 						<div>
 							<img src={memorableExperiencePath}
-								alt="A Memorable Experience" title="A Memorable Experience"
-								className="img-responsive" />
+								alt="A Memorable Experience" title="A Memorable Experience" />
 						</div>
 						<p>
 							<a href="/packages" className="btn waves-effect waves-light">View our Packages</a>

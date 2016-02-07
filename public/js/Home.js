@@ -20072,8 +20072,7 @@ var Slideshow = React.createClass({
 						'div',
 						null,
 						React.createElement('img', { src: memorableExperiencePath,
-							alt: 'A Memorable Experience', title: 'A Memorable Experience',
-							className: 'img-responsive' })
+							alt: 'A Memorable Experience', title: 'A Memorable Experience' })
 					),
 					React.createElement(
 						'p',

@@ -13429,10 +13429,8 @@ header #topLeftCorner, header #bottomRightCorner {
   .slideshow #intro-title {
     text-align: center;
     position: absolute;
-    width: 40%;
-    max-width: 500px;
-    top: 20%;
-    left: 33%; }
+    width: 100%;
+    top: 25%; }
     .slideshow #intro-title a {
       margin-top: 20px; }
 
