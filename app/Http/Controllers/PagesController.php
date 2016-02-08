@@ -71,7 +71,7 @@ class PagesController extends Controller
 
     public function submitContact(SendMessageRequest $request)
     {
-        $this->dispatchFrom(SendMessage::class, $request);
+        $this->dispatch( new SendMessage($request->name, $request->email, $request->phone, $request->message) );
 
         flash()->overlay('Your inquiry was sent successfully. Our customer representative will contact you shortly.');
 

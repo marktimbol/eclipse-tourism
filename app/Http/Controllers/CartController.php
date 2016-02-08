@@ -43,7 +43,8 @@ class CartController extends Controller
     {
         $this->dispatch(
             new AddItemInCart(
-                $request->package_id, $request->quantity, $request->child_quantity, $request->date, $request->date_submit, $request->time, $request->ticket
+                $request->package_id, $request->quantity, $request->child_quantity, 
+                $request->date, $request->date_submit, $request->time, $request->ticket
             )
         );
     }

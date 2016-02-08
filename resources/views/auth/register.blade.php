@@ -7,14 +7,14 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col m6">
+            <div class="col m6 offset-m3">
                 <h1 class="page__title">Register</h1>
 
                 @include('errors.forms')
 
                 <div class="row">
 
-                    <form method="POST" action="/auth/register">
+                    <form method="POST" action="/register">
                         {!! csrf_field() !!}
 
                         <div class="form-group col m12">

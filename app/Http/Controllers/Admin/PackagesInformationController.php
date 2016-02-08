@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class PackagesInformationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
     	$newInfo = new PackageInformation([

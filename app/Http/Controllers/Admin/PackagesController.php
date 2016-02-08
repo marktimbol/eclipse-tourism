@@ -26,6 +26,8 @@ class PackagesController extends Controller
         $this->package = $package;
 
         $this->category = $category;
+
+        $this->middleware('auth');
     }
 
     /**

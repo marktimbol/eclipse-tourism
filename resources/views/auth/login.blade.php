@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col m6">
+            <div class="col m6 offset-m3">
                 
                 <h1 class="page__title">Login</h1>
 
@@ -15,11 +15,11 @@
 
                 <div class="row">
 
-                    <form method="POST" action="/auth/login">
+                    <form method="POST" action="/login">
                         {!! csrf_field() !!}
 
                         <div class="form-group col m12">
-                            <label for="email">Email</label>
+                            <label for="email">E-Mail Address</label>
                             <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" />
                         </div>
 
@@ -37,6 +37,8 @@
 
                         <div class="form-group col m12">
                             <button type="submit" class="btn btn-default"><i class="fa fa-unlock-alt"></i> Login</button>
+                            &nbsp;&nbsp;
+                            <a class="waves-effect waves-teal btn-flat" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                         </div>
                     </form>
                         

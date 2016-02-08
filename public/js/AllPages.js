@@ -19108,6 +19108,15 @@ var AppFooter = React.createClass({
 												{ href: '#' },
 												'Terms & Conditions'
 											)
+										),
+										React.createElement(
+											'li',
+											null,
+											React.createElement(
+												'a',
+												{ href: '/login' },
+												'Employee Login'
+											)
 										)
 									)
 								),

@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+
+		view()->share('currentUser', auth()->user());
+	}
+	
     public function home()
     {
     	return view('admin.home');

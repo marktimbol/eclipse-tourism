@@ -20,7 +20,8 @@ var AppFooter = React.createClass({
 											<li><a href="/cart">Cart</a></li>
 											<li><a href="/booking">Bookings</a></li>
 											<li><a href="#">FAQs</a></li>
-											<li><a href="#">Terms &amp; Conditions</a></li>										
+											<li><a href="#">Terms &amp; Conditions</a></li>		
+											<li><a href="/login">Employee Login</a></li>								
 										</ul>
 									</div>
 

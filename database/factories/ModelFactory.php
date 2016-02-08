@@ -15,7 +15,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
-        'password' => 'marktimbol',
+        'password' => bcrypt('marktimbol'),
         'phone'	=> $faker->phoneNumber,
         'address1' => $faker->streetAddress,
         'address2' => $faker->streetName,
@@ -23,6 +23,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'state'	=> $faker->state,
         'country'	=> $faker->country,
         'type'	=> 'type',
+        'cardName'	=> '',
+        'cardBrand' => '',
+        'cardLastFour' => '',
+        'cardExpiryMonth' => '',
+        'cardExpiryYear' => '',
+
         'remember_token' => str_random(10)
     ];
 });
@@ -34,9 +40,6 @@ $factory->define(App\Package::class, function(Faker\Generator $faker) {
 		'name'	=> $faker->sentence(2),
 		'slug'	=> $faker->slug,
 		'description'	=> $faker->paragraph(5),
-		'departs'	=> '08:00',
-		'returns'	=> '20:00',
-		'duration'	=> '2 hours',
 		'adult_price'	=> $faker->randomNumber(3),
 		'child_price'	=> $faker->randomNumber(2)
 	];

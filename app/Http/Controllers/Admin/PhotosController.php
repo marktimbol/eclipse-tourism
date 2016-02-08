@@ -19,6 +19,8 @@ class PhotosController extends Controller
     public function __construct(PackageRepositoryInterface $package)
     {
         $this->package = $package;
+
+        $this->middleware('auth');
     }
 
     public function uploadPackagePhoto(Request $request)

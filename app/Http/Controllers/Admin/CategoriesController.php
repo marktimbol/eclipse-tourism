@@ -16,6 +16,8 @@ class CategoriesController extends Controller
     public function __construct(CategoryRepositoryInterface $category)
     {
         $this->category = $category;
+
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

@@ -20,6 +20,8 @@ class BookingsController extends Controller
         $this->booking = $booking;
 
         $this->user = $user;
+
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
