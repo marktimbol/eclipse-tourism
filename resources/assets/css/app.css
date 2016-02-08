@@ -105,7 +105,7 @@ header .logo {
   position: absolute;
   left: 10px;
   top: 10px;
-  max-width: 400px; }
+  max-width: 250px; }
 
 header #topLeftCorner {
   top: 0;
@@ -670,12 +670,5 @@ header nav {
 
 .address.has-icon li i {
   padding-right: 15px; }
-
-[class^="icon-"], [class*="icon-"] {
-  display: inline-block;
-  margin-top: 1px;
-  line-height: 14px;
-  vertical-align: text-top;
-  background-repeat: no-repeat; }
 
 /*# sourceMappingURL=app.css.map */
