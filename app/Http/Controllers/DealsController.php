@@ -18,6 +18,13 @@ class DealsController extends Controller
 
     public function show($id, $package)
     {
-    	return $package->name;
+    	$pageTitle = sprintf('%s - %s', $package->name, $package->subtitle);
+
+        \JavaScript::put([
+            'package'   => $package,
+            'relatedPackages' => []
+            ]);
+
+    	return view('public.deals.show', compact('pageTitle'));
     }
 }

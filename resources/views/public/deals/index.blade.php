@@ -21,7 +21,6 @@
         </div>
     </div>
 
-
 	<div class="container">
 		<div class="row">
 			<div class="col m12">
@@ -29,7 +28,7 @@
                     <div class="card-panel">
                         <div class="row">
                             @foreach( $promos as $promo )
-                                <div class="col m3 s12">
+                                <div class="col s12 m4">
                                     <div class="card">
                                         <div class="card-image">
                                             {!! display($promo->package->photos) !!}
@@ -51,7 +50,3 @@
 	</div>  
 
 @endsection
-
-@section('footer_scripts')
-    <script src='/js/Promotions.js'></script>
-@endsection 

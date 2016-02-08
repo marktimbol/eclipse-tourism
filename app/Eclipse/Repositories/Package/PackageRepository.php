@@ -27,7 +27,7 @@ class PackageRepository implements PackageRepositoryInterface {
 			->where('id', '<>', $packageId)
 			->where('category_id', $category)
 			->orderByRaw('RAND()')
-			->take(4)
+			->take(3)
 			->get();	
 	}
 

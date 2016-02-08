@@ -6,7 +6,7 @@ var Package = React.createClass({
 		var imagePath = '/images/uploads/' + this.props.currentPackage.photos[0].path;
 
 		return (
-			<div className="col m3 s12">
+			<div className="col s12 m4 l4">
 				<div className="card">
 					<div className="card-image">
 						<img src={imagePath} alt={this.props.currentPackage.name} title={this.props.currentPackage.name} className="img-responsive" />

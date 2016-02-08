@@ -16,7 +16,7 @@ var PackagesList = React.createClass({
 	},
 
 	componentDidMount() {
-		console.log(window.packages);
+		// console.log(window.packages);
 	},
 
 	render() {
