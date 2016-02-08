@@ -12,7 +12,9 @@ class Category extends Model
     {
         $this->attributes['name'] = $name;
 
-        $this->makeSlug($name);
+        $this->attributes['slug'] = str_slug($name);
+        
+        // $this->makeSlug($name);
     }
 
     public function makeSlug($name)

@@ -61,6 +61,11 @@ function bookingReference($transaction)
 
 }
 
+function setDefaultCurrency()
+{
+	session(['currency' => 'AED']);
+}
+
 function currentCurrency()
 {
     if( empty( session('currency') ) )
@@ -71,11 +76,6 @@ function currentCurrency()
     }
 
     return session('currency');
-}
-
-function setDefaultCurrency()
-{
-	session(['currency' => 'AED']);
 }
 
 function formatNumber($number)

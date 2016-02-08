@@ -28,30 +28,49 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'cardLastFour' => '',
         'cardExpiryMonth' => '',
         'cardExpiryYear' => '',
-
         'remember_token' => str_random(10)
     ];
+});
+
+$factory->define(App\Category::class, function(Faker\Generator $faker) {
+    return [
+        'name'  => $faker->sentence(2),
+        'slug'  => $faker->slug
+    ];
+    
 });
 
 $factory->define(App\Package::class, function(Faker\Generator $faker) {
 
 	return [
-		'user_id'	=> factory(App\User::class)->create()->id,
+		'category_id'	=> factory(App\Category::class)->create()->id,
 		'name'	=> $faker->sentence(2),
 		'slug'	=> $faker->slug,
+        'subtitle' => $faker->sentence(2),
 		'description'	=> $faker->paragraph(5),
 		'adult_price'	=> $faker->randomNumber(3),
-		'child_price'	=> $faker->randomNumber(2)
+		'child_price'	=> $faker->randomNumber(2),
+        'has_time_options' => false,
+        'confirm_availability' => false,
+        'minimum_quantity'  => 1,
+        'has_ticket_option' => false
 	];
 	
 });
 
-$factory->define(App\Photo::class, function(Faker\Generator $faker) {
+$factory->define(App\Deal::class, function(Faker\Generator $faker) {
+    return [
+        'package_id'  => factory(App\Package::class)->create()->id,
+        'adultPrice'  => $faker->randomNumber(3),
+        'childPrice'  => $faker->randomNumber(2),
+        'description' => $faker->paragraph(5)
+    ];
+});
 
+$factory->define(App\Photo::class, function(Faker\Generator $faker) {
 	return [
 		'path'	=> $faker->imageUrl(800,600),
 		'imageable_id'	=> factory(App\Package::class)->make()->id,
 		'imageable_type'	=> 'App\Package'
 	];
-
 });

@@ -74,4 +74,14 @@ class Package extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function promo()
+    {
+        return $this->hasOne(Deal::class);
+    }
+
+    public function savePromo(Deal $deal)
+    {
+        return $this->promo()->save($deal);
+    }
 }

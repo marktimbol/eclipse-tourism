@@ -25,6 +25,7 @@
                     </li>
                 </ul>
             </li>
+
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Packages<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -33,6 +34,18 @@
                     </li>
                     <li>
                         <a href="{{ route('admin.packages.index') }}">View All</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Deals<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ route('admin.deals.create') }}">Add New</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.deals.index') }}">View All</a>
                     </li>
                 </ul>
             </li>

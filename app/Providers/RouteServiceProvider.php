@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use App\Deal;
 use App\Package;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
@@ -40,7 +41,11 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->bind('categories', function($id) {
             return Category::findOrFail($id);
-        });        
+        });   
+
+        $this->bind('deals', function($id) {
+            return Deal::with('package')->findOrFail($id);
+        });   
 
         parent::boot($router);
     }

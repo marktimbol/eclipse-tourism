@@ -51,10 +51,10 @@ class User extends Model implements AuthenticatableContract,
     //     return $this->attributes['password'] = Hash::make($password);
     // }
 
-    public function packages()
-    {
-        return $this->hasMany(Package::class);
-    }
+    // public function packages()
+    // {
+    //     return $this->hasMany(Package::class);
+    // }
 
     public function bookings()
     {

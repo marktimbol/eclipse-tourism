@@ -29,23 +29,6 @@ class PagesController extends Controller
 
         return view('public.home');
     }    
-    
-    public function deals()
-    {
-        // $filename = 'images/uploads/1452846732-Desert-Safari.jpg';
-
-        // $command = Storage::disk('s3')->getDriver()->getAdapter()->getClient()->getCommand('GetObject', [
-        //     'Bucket'                     => env('S3_BUCKET'),
-        //     'Key'                        => $filename,
-        //     'ResponseContentDisposition' => 'attachment;'
-        // ]);
-
-        // $request = Storage::disk('s3')->getDriver()->getAdapter()->getClient()->createPresignedRequest($command, '+5 minutes');
-
-        // $path = $request->getUri();
-
-        return view('public.deals');
-    }
 
     public function touristInformation()
     {

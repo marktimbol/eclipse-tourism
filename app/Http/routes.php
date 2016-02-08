@@ -20,12 +20,19 @@ Route::group(['middleware' => 'web'], function() {
 	Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 	Route::post('change-currency', ['as' => 'change-currency', 'uses' => 'PagesController@changeCurrency']);
 
-	Route::get('deals', ['as' => 'deals', 'uses' => 'PagesController@deals']);
 	Route::get('tourist-information', ['as' => 'tourist-information', 'uses' => 'PagesController@touristInformation']);
 	Route::get('corporate', ['as' => 'corporate', 'uses' => 'PagesController@corporate']);
 	Route::get('about', ['as' => 'about', 'uses' => 'PagesController@about']);
 	Route::get('contact', ['as' => 'contact', 'uses' => 'PagesController@contact']);
 	Route::post('contact', ['as' => 'contact.submit', 'uses' => 'PagesController@submitContact']);
+
+	/*
+	|--------------------------------------------------------------------------
+	| Deals Routes
+	|--------------------------------------------------------------------------
+	*/
+	Route::get('deals/{deals}/package/{package}', ['as' => 'promo.package', 'uses' => 'DealsController@show']);
+	Route::get('deals', ['as' => 'deals', 'uses' => 'DealsController@index']);
 
 	/*
 	|--------------------------------------------------------------------------
@@ -124,6 +131,14 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin'], function() {
 	|--------------------------------------------------------------------------
 	*/
 	Route::resource('packages', 'Admin\PackagesController');
+
+	/*
+	|--------------------------------------------------------------------------
+	| Deals Route
+	|--------------------------------------------------------------------------
+	*/
+	Route::resource('deals', 'Admin\DealsController');
+
 
 	/*
 	|--------------------------------------------------------------------------
