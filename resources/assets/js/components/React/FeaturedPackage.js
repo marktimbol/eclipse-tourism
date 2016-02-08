@@ -52,17 +52,19 @@ var FeaturedPackage = React.createClass({
 							<div className="card__copy">
 								<div className="col m12 s12">
 									<div className="package">
-										<div className="row">
-											<div className="col m9 s12">
-												<p dangerouslySetInnerHTML={this.showDescription()}></p>
-											</div>
-											<div className="col m3 s12">
-												<PackagePrice currentPackage={this.props.currentPackage} adultPrice={this.props.currentPackage.adult_price} />
-												<PackageInfo currentPackage={this.props.currentPackage} adultPrice={this.props.currentPackage.adult_price} childPrice={this.props.currentPackage.child_price} />
+										<div className="container">
+											<div className="row">
+												<div className="col m9 s12">
+													<p dangerouslySetInnerHTML={this.showDescription()}></p>
+												</div>
+												<div className="col m3 s12">
+													<PackagePrice currentPackage={this.props.currentPackage} adultPrice={this.props.currentPackage.adult_price} />
+													<PackageInfo currentPackage={this.props.currentPackage} adultPrice={this.props.currentPackage.adult_price} childPrice={this.props.currentPackage.child_price} />
 
-												<a href={packageUrl} className="btn btn-large btn-block waves-effect waves-light blue">View Package</a>
-											</div>
-										</div>	
+													<a href={packageUrl} className="btn btn-large btn-block waves-effect waves-light blue">View Package</a>
+												</div>
+											</div>	
+										</div>
 									</div>
 								</div>		
 							</div>

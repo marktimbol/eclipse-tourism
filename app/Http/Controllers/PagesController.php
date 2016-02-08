@@ -8,8 +8,6 @@ use App\Http\Requests\SendMessageRequest;
 use App\Jobs\SendMessage;
 use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Image;
 
 class PagesController extends Controller
 {

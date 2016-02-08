@@ -18,13 +18,22 @@ var FeaturedPackages = React.createClass({
 		});
 
 		return (
-			<div>
+			<div className="row featured_package">
 				<div className="col s12 m12">
-					<h3 className="featured__package__title">Featured Packages</h3>
+					<div className="col s12 m12">
+						<h3 className="featured__package__title">Featured Packages</h3>
+					</div>
+					
+					<div className="pattern pattern--hidden"></div>
+					{ featuredPackages }
 				</div>
-				
-				<div className="pattern pattern--hidden"></div>
-				{ featuredPackages }
+
+				<div className="text-center">
+					<p>&nbsp;</p>
+					<p>
+						<a href="/packages" className="btn waves-effect waves-light">View all Packages</a>
+					</p>
+				</div>
 			</div>
 		);
 	}
