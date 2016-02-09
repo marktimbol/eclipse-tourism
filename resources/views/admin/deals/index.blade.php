@@ -11,9 +11,7 @@
             <table class="table table-hover">
             	<thead>
             		<tr>
-            			<th>Package</th>
-            			<th>Adult Price</th>
-            			<th>Child Price</th>
+            			<th>Promo</th>
             			<th>&nbsp;</th>
             		</tr>	
             	</thead>
@@ -21,9 +19,7 @@
             	<tbody>
             		@forelse( $promos as $promo )
             		<tr>
-            			<td>{{ $promo->package->name }}</td>
-            			<td>{{ $promo->adultPrice }}</td>
-            			<td>{{ $promo->childPrice }}</td>
+            			<td>{{ $promo->name }}</td>
             			<td>
             				<a href="{{ route('admin.deals.show', $promo->id) }}"><i class="fa fa-eye"></i> View</a>&nbsp;&nbsp;
                             <a href="{{ route('admin.deals.edit', $promo->id) }}"><i class="fa fa-pencil"></i> Edit</a>

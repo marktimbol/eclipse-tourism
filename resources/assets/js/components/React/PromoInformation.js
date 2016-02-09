@@ -7,43 +7,27 @@ import PackageInfo from './PackageInfo';
 import SharePackage from './SharePackage';
 
 var PromoInformation = React.createClass({
-	getInitialState() {
-		return {
-			adultPrice: window.promo.adultPrice,
-			childPrice: window.promo.childPrice
-		}
-	},
 	showDescription() {
 		return {
-			__html: window.promo.package.description
+			__html: window.promo.description
 		}
 	},
 	render() {
+		var promoUrl = '/deals/' + window.promo.slug; 
 		return (
 			<div>
 				<div className="col m9 s12">
-					<h1 className="package__title">{ window.promo.package.name }</h1>
-					<PackagePhotos photos={window.promo.package.photos} />
+					<h1 className="package__title">{ window.promo.name }</h1>
+					<PackagePhotos photos={window.promo.photos} />
 
 					<div className="package__description">
-						<h3>{ window.promo.package.subtitle }</h3>
+						<h3>Promo Details</h3>
 						<div dangerouslySetInnerHTML={this.showDescription()}></div>
 					</div>
 				</div>
 
 				<div className="col m3 s12">
-					<PackagePrice 
-						currentPackage={window.promo.package} 
-						adultPrice={window.promo.package.adult_price} 
-						isPromo={true} 
-						promoPrice={window.promo.adultPrice} />
-
-					<PackageInfo 
-						currentPackage={window.promo.package} 
-						adultPrice={window.promo.package.adult_price} 
-						childPrice={window.promo.package.child_price}
-						isPromo={true} 
-						promo={window.promo} />
+					<SharePackage url={promoUrl} />
 				</div>
 			</div>
 		);

@@ -31,7 +31,7 @@ Route::group(['middleware' => 'web'], function() {
 	| Deals Routes
 	|--------------------------------------------------------------------------
 	*/
-	Route::get('deals/{deals}/package/{package}', ['as' => 'promo.package', 'uses' => 'DealsController@show']);
+	Route::get('deals/{deal}', ['as' => 'deals.show', 'uses' => 'DealsController@show']);
 	Route::get('deals', ['as' => 'deals', 'uses' => 'DealsController@index']);
 
 	/*
@@ -75,7 +75,7 @@ Route::group(['middleware' => 'web'], function() {
 | Web & Auth Middleware Group
 |--------------------------------------------------------------------------
 */
-Route::group(['middleware' => 'web', 'prefix' => 'admin'], function() {
+Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function() {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -99,7 +99,6 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin'], function() {
 				'as' => 'admin.packages.photos.delete', 
 				'uses' => 'Admin\PhotosController@deletePackagePhoto'
 			]);		
-	
 	/*
 	|--------------------------------------------------------------------------
 	| Categories Route
@@ -134,12 +133,20 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin'], function() {
 
 	/*
 	|--------------------------------------------------------------------------
-	| Deals Route
+	| Promo photos Route
+	|--------------------------------------------------------------------------
+	*/
+	Route::post('deals/{deals}/photos/upload', [
+				'as' => 'admin.deals.photos.upload', 
+				'uses' => 'Admin\PhotosController@uploadPromoPhoto'
+			]);	
+	/*
+	|--------------------------------------------------------------------------
+	| Promo / Deals Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::resource('deals', 'Admin\DealsController');
-
-
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Confirm Booking Route

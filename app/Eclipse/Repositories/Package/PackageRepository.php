@@ -77,11 +77,8 @@ class PackageRepository implements PackageRepositoryInterface {
 	public function addPhoto($id, $filename)
 	{
 		$package = $this->find($id);
-
 		$photo = new Photo;
-
 		$photo->path = $filename;
-
 		return $package->photos()->save($photo);
 	}	
 

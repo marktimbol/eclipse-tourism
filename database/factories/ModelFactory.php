@@ -60,9 +60,7 @@ $factory->define(App\Package::class, function(Faker\Generator $faker) {
 
 $factory->define(App\Deal::class, function(Faker\Generator $faker) {
     return [
-        'package_id'  => factory(App\Package::class)->create()->id,
-        'adultPrice'  => $faker->randomNumber(3),
-        'childPrice'  => $faker->randomNumber(2),
+        'name'  => $faker->sentence(2),
         'description' => $faker->paragraph(5)
     ];
 });

@@ -27,11 +27,11 @@
                                 <div class="col s12 m4">
                                     <div class="card">
                                         <div class="card-image">
-                                            {!! display($promo->package->photos) !!}
+                                            {!! display($promo->photos) !!}
                                         </div>
                                         <div class="card-action">
-                                            <a href="{{ route('promo.package', [$promo->id, $promo->package->slug]) }}">
-                                                {{ $promo->package->name }}
+                                            <a href="{{ route('deals.show', $promo->slug) }}">
+                                                {{ $promo->name }}
                                             </a>
                                         </div>
                                     </div>

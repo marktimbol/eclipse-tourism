@@ -14,11 +14,9 @@ class CreateDealsTable extends Migration
     {
         Schema::create('deals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('package_id')->unsigned();
-            $table->double('adultPrice');
-            $table->double('childPrice');
+            $table->string('name');
+            $table->string('slug');
             $table->text('description');
-            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
             $table->timestamps();
         });
     }

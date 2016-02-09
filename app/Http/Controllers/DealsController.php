@@ -11,16 +11,15 @@ class DealsController extends Controller
 {
     public function index()
     {
-    	$promos = Deal::with('package.photos')->latest()->get();
+    	$promos = Deal::latest()->get();
     	return view('public.deals.index', compact('promos'));
     }
 
-    public function show($deals, $package)
+    public function show($promo)
     {
-    	$pageTitle = sprintf('%s - %s', $package->name, $package->subtitle);
+    	$pageTitle = $promo->name;
         \JavaScript::put([
-            'promo'   => $deals,
-            'relatedPackages' => []
+            'promo'   => $promo
             ]);
     	return view('public.deals.show', compact('pageTitle'));
     }

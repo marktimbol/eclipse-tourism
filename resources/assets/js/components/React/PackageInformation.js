@@ -42,6 +42,7 @@ var PackageInformation = React.createClass({
 	},
 
 	render() {
+		var packageUrl = '/package/' + window.package.slug;
 		return (
 			<div>
 				<div className="col m9 s12">
@@ -70,7 +71,7 @@ var PackageInformation = React.createClass({
 						setPrices={this.setPrices}
 						currentPackage={window.package} />
 
-					<SharePackage currentPackage={window.package} />
+					<SharePackage url={packageUrl} />
 				</div>
 			</div>
 		);

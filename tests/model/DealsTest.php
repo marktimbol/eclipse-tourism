@@ -11,103 +11,99 @@ class DealsTest extends TestCase
 
     public function test_view_all_promos_on_the_public_page()
     {
-        $package = factory(App\Package::class)->create();
         $promo = factory(App\Deal::class)->create();
-
-        $result = Deal::with('package')->whereId($promo->id)->get();
-
         $this->visit('/deals')
-            ->see('Deals')
-            ->see($result[0]->package->name);
+            ->see($promo->name);
     }
 
     public function test_view_a_specific_promo_on_the_public_page()
     {
         $promo = factory(App\Deal::class)->create();
-        $package = factory(App\Package::class)->create();
-
-        $this->visit('/deals/'.$promo->id.'/package/'.$package->slug)
-            ->see($package->name);
-
+        $this->visit('/deals/'.$promo->slug)
+            ->see($promo->name);
     }
 
     public function test_view_all_promos_on_the_admin_page()
     {
     	$promo = factory(App\Deal::class)->create();
-
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
+        
         $this->visit('/admin/deals')
-        	->see('Deals')
-        	->see($promo->package_id)
-        	->see($promo->adultPrice)
-        	->see($promo->childPrice);
+        	->see($promo->name);
     }
 
-    public function test_view_add_new_deals_page()
+    public function test_view_add_new_promo_page()
     {
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
+
     	$this->visit('/admin/deals/create')
     		->see('New Promo');
     }
 
-    public function test_store_promo_to_a_selected_package()
+    public function test_store_a_new_promo()
     {    	
-    	$package = factory(App\Package::class)->create();
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
 
 		$this->visit('/admin/deals/create')
 			->see('New Promo')
-			->select($package->id, 'package_id')
-			->type('295', 'adultPrice')
-			->type('250', 'childPrice')
+            ->type('Promo name', 'name')
 			->type('New promo description', 'description')
 			->press('Save Information')
 			->seeInDatabase('deals', [
-	    		'package_id'	=> $package->id,
-	    		'adultPrice'	=> 295,
-	    		'childPrice'	=> 250,
+	    		'name'	=> 'Promo name',
+                'slug'  => 'promo-name',
 	    		'description'	=> 'New promo description'
 			]);
     }
 
-    public function test_edit_deals_page()
+    public function test_view_edit_promo_page()
     {
-    	$promo = factory(App\Deal::class)->create();
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
 
+    	$promo = factory(App\Deal::class)->create();
     	$this->visit('/admin/deals/'.$promo->id.'/edit')
     		->see('Edit Promo');
     }
 
-    public function test_update_deals_information()
+    public function test_update_promo_information()
     {
-    	$promo = factory(App\Deal::class)->create();
-    	$package = factory(App\Package::class)->create();
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
 
+    	$promo = factory(App\Deal::class)->create();
 		$this->visit('/admin/deals/'.$promo->id.'/edit')
 			->see('Edit Promo')
-			->select($package->id, 'package_id')
-			->type("200", 'adultPrice')
-			->type("100", 'childPrice')
-			->type("Updated promo", 'description')
+			->type("Updated Promo name", 'name')
+            ->type("Updated Promo description", 'description')
 			->press('Update Information')
 			->seeInDatabase('deals', [
-	    		'package_id'	=> $package->id,
-	    		'adultPrice'	=> 200,
-	    		'childPrice'	=> 100,
-	    		'description'	=> "Updated promo"
+                'name'          => 'Updated Promo name',
+                'slug'          => 'updated-promo-name',
+	    		'description'	=> "Updated Promo description"
 			]);
     }	
 
     public function test_view_a_specific_promo()
     {
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
+
     	$promo = factory(App\Deal::class)->create();
-
     	$this->visit('/admin/deals/'.$promo->id)
-    		->See('Promo Details');
+            ->see($promo->name)
+            ->see($promo->description);
     }
-
 
     public function test_delete_a_specific_promo()
     {
-    	$promo = factory(App\Deal::class)->create();
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
 
+    	$promo = factory(App\Deal::class)->create();
     	$this->visit('/admin/deals/'.$promo->id)
     		->See('Promo Details')
     		->press('Delete')

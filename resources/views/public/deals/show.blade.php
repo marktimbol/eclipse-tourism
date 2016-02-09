@@ -24,8 +24,6 @@
 					<div class="row">
 						<div id="PromoInformation"></div>
 					</div>
-					<div class="divider"></div>
-					<div id="RelatedPackages" class="package__related"></div>
 				</div>
 			</div>
 		</div>
