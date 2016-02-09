@@ -18,9 +18,10 @@ class DealsController extends Controller
     public function show($promo)
     {
     	$pageTitle = $promo->name;
+        $package = $promo;
         \JavaScript::put([
             'promo'   => $promo
             ]);
-    	return view('public.deals.show', compact('pageTitle'));
+    	return view('public.deals.show', compact('pageTitle', 'package'));
     }
 }
