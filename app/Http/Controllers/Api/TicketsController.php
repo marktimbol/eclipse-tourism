@@ -16,6 +16,6 @@ class TicketsController extends Controller
 
     public function get($packageId, $ticketId)
     {
-        return Ticket::findOrFail($ticketId);
+        return Ticket::find($ticketId);
     }
 }

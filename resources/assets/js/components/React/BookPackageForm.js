@@ -7,7 +7,6 @@ var cartUrl = siteUrl + 'cart';
 var currentDate = new Date();
 
 var BookPackageForm = React.createClass({
-
 	getInitialState() {
 		return {
 			bookedPackages: [],
@@ -32,11 +31,9 @@ var BookPackageForm = React.createClass({
 	fetchTicketPrice(e) {
 		var ticketId = e.target.value;
 		this.setState({ ticket: ticketId });
-
 		var url = '/api/v1/packages/' + this.props.currentPackage.id + '/tickets/' + ticketId;
-
 		$.get(url, function(response) {
-			this.props.setPrices(response.adultPrice, response.childPrice);
+			this.props.setPrices(ticketId, response.adultPrice, response.childPrice);
 		}.bind(this));
 	},
 
@@ -58,7 +55,6 @@ var BookPackageForm = React.createClass({
 
 	submitForm() {		
 		this.formIsSubmitting();
-
 		$.ajax({
 			url: this.state.submitFormRoute,
 			type: 'POST',
@@ -76,13 +72,10 @@ var BookPackageForm = React.createClass({
 				var newBookedPackages = this.state.bookedPackages.concat(response);
 				this.setState({ bookedPackages: newBookedPackages });
 
-				if( this.props.currentPackage.confirm_availability )
-				{
+				if( this.props.currentPackage.confirm_availability ) {
 					window.location.href = bookingUrl;
 				}
-
 				var message = 'The Package has been successfully added to your cart.';
-
 				swal({
 					title: "Eclipse Tourism",  
 					text: message,  
@@ -90,14 +83,10 @@ var BookPackageForm = React.createClass({
 					timer: 3000,
 					showConfirmButton: false
 				});
-
 				this.resetFormState();
-
 			}.bind(this),
-
 			error: function(xhr, status, err) {
 				var message = "There was an error when booking a package " + err.toString();
-
 				swal({
 					title: "Eclipse Tourism",  
 					text: message,
@@ -105,26 +94,20 @@ var BookPackageForm = React.createClass({
 					timer: 3000,
 					showConfirmButton: false
 				});
-
 				this.resetFormState();
-
 			}.bind(this)
 		});
 	},
 
 	beforeSubmitForm(e) {
-
 		e.preventDefault();
-
 		if( this.state.date == '' ) {
 			swal({
 				title: "Eclipse Tourism",  
 				text: "Please select your preferred date.",  
-				type: "error", 
-				timer: 3000,
-				showConfirmButton: false
+				type: "error",
+				showConfirmButton: true
 			});	
-
 			return this.resetFormState();
 		}
 
@@ -132,11 +115,9 @@ var BookPackageForm = React.createClass({
 			swal({
 				title: "Eclipse Tourism",  
 				text: "Adult quantity must be greater than zero.",  
-				type: "error", 
-				timer: 3000,
-				showConfirmButton: false
+				type: "error",
+				showConfirmButton: true
 			});	
-
 			return this.resetFormState();
 		}	
 
@@ -147,9 +128,21 @@ var BookPackageForm = React.createClass({
 				type: "error",
 				showConfirmButton: true
 			});	
-
 			return this.resetFormState();
-		}				
+		}	
+
+		if( this.props.currentPackage.has_ticket_option )
+		{
+			if( this.state.ticket == 0 ) {
+				swal({
+					title: "Eclipse Tourism",  
+					text: "Please select your ticket option.",  
+					type: "error",
+					showConfirmButton: true
+				});	
+				return this.resetFormState();
+			}		
+		}
 
 		return this.submitForm();
 
@@ -268,7 +261,7 @@ var BookPackageForm = React.createClass({
 							<div className="form-group">
 								<label htmlFor="time">Ticket:</label>
 								<select className="form-control" onChange={this.fetchTicketPrice}>
-									<option value="1">Choose your ticket</option>
+									<option value="0">Choose your ticket</option>
 									{ ticketOptions }
 								</select>
 							</div>

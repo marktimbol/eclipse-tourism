@@ -17,21 +17,33 @@ var PackageInfo = React.createClass({
 				<li className="collection-item">
 					<strong>Adult: </strong>
 					{
-						this.props.isPromo ?
-							<span>{ currentCurrency + ' ' + this.props.promo.adultPrice } &nbsp; &nbsp;
-								<small className="oldPrice">{ currentCurrency + ' ' + this.props.adultPrice}</small>
-							</span> :
-						<span>{ currentCurrency + ' ' + this.props.adultPrice}</span>
-					}
+						! this.props.displayPrice ? 
+							<span>---</span> :
+							<span>
+							{
+								this.props.currentPackage.confirm_availability == 1 ?
+								'Upon Request' :
+								<span>
+									{ currentCurrency +  this.props.adultPrice }
+								</span>
+							}		
+							</span>			
+					}					
 				</li>
 				<li className="collection-item">
 					<strong>Child: </strong>
 					{
-						this.props.isPromo ?
-							<span>{ currentCurrency + ' ' + this.props.promo.childPrice } &nbsp; &nbsp;
-								<small className="oldPrice">{ currentCurrency + ' ' + this.props.childPrice}</small>
-							</span> :
-						<span>{ currentCurrency + ' ' + this.props.childPrice}</span>
+						! this.props.displayPrice ? 
+							<span>---</span> :
+							<span>
+							{
+								this.props.currentPackage.confirm_availability == 1 ?
+								'Upon Request' :
+								<span>
+									{ currentCurrency +  this.props.childPrice }
+								</span>
+							}		
+							</span>			
 					}
 				</li>
 				{ this.props.currentPackage.minimum_quantity > 1 ? 

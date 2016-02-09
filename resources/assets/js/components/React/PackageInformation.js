@@ -12,7 +12,8 @@ var PackageInformation = React.createClass({
 	getInitialState() {
 		return {
 			adultPrice: window.package.adult_price,
-			childPrice: window.package.child_price
+			childPrice: window.package.child_price,
+			displayPrice: true
 		}
 	},
 
@@ -22,15 +23,25 @@ var PackageInformation = React.createClass({
 		}
 	},
 
-	setPrices(adultPrice, childPrice) {
+	setPrices(ticketId, adultPrice, childPrice) {
 		this.setState({
 			adultPrice: adultPrice,
-			childPrice: childPrice
+			childPrice: childPrice,
+			displayPrice: true
 		});
+
+		if( ticketId == 0 ) {
+			this.setState({ displayPrice: false });
+		}
+	},
+
+	componentDidMount() {
+		if( window.package.has_ticket_option ) {
+			this.setState({ displayPrice: false });
+		}
 	},
 
 	render() {
-
 		return (
 			<div>
 				<div className="col m9 s12">
@@ -44,9 +55,21 @@ var PackageInformation = React.createClass({
 				</div>
 
 				<div className="col m3 s12">
-					<PackagePrice currentPackage={window.package} adultPrice={this.state.adultPrice} isPromo={false} />
-					<PackageInfo currentPackage={window.package} adultPrice={this.state.adultPrice} childPrice={this.state.childPrice} isPromo={false}/>
-					<BookPackageForm currentPackage={window.package} setPrices={this.setPrices} />
+					<PackagePrice 
+						displayPrice={this.state.displayPrice} 
+						adultPrice={this.state.adultPrice}
+						currentPackage={window.package} />
+
+					<PackageInfo 
+						displayPrice={this.state.displayPrice}
+						adultPrice={this.state.adultPrice}
+						childPrice={this.state.childPrice}
+						currentPackage={window.package} />
+
+					<BookPackageForm 
+						setPrices={this.setPrices}
+						currentPackage={window.package} />
+
 					<SharePackage currentPackage={window.package} />
 				</div>
 			</div>
