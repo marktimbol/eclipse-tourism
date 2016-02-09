@@ -91,6 +91,10 @@ elixir(function(mix) {
   ], 'public/js/Promotions.js');
 
   mix.browserify([
+    'components/React/PromoInformation.js'
+  ], 'public/js/PromoInformation.js');
+
+  mix.browserify([
     'components/React/PackageInformation.js',
     'components/React/RelatedPackages.js'
   ], 'public/js/PackagePage.js')

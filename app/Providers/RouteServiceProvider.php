@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
         });   
 
         $this->bind('deals', function($id) {
-            return Deal::with('package')->findOrFail($id);
+            return Deal::with('package.photos', 'package.information')->findOrFail($id);
         });   
 
         parent::boot($router);

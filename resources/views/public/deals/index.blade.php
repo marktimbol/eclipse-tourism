@@ -1,11 +1,7 @@
 @extends('public.layouts.public')
-
 @section('pageTitle', 'Deals')
-
 @section('body_class', 'page has-parallax')
-
 @section('content')
-
     <div class="parallax-container">
         <div class="parallax">
             <div class="container">
@@ -33,7 +29,6 @@
                                         <div class="card-image">
                                             {!! display($promo->package->photos) !!}
                                         </div>
-
                                         <div class="card-action">
                                             <a href="{{ route('promo.package', [$promo->id, $promo->package->slug]) }}">
                                                 {{ $promo->package->name }}
@@ -48,5 +43,4 @@
 			</div>
 		</div>
 	</div>  
-
 @endsection
