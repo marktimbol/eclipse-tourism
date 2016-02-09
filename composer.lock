@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4e1c81d827198657b37c3b8b88b06630",
-    "content-hash": "f93f86ab985a36b5cd7cc6ae0767cd64",
+    "hash": "f3371579629d0404b28423807fb594a5",
+    "content-hash": "3985e45b494ba28f24d56357d9b1bb99",
     "packages": [
         {
             "name": "2checkout/2checkout-php",
