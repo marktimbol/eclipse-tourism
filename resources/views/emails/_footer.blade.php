@@ -1,27 +1,3 @@
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-		    <tr>
-		        <td bgcolor="#ffffff" align="center" style="padding: 15px 15px 15px 15px;" class="section-padding">
-		            <table border="0" cellpadding="0" cellspacing="0" width="500" class="responsive-table">
-		                <tr>
-		                    <td>
-		                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-		                            <tr>
-		                                <td>
-		                                    <!-- COPY -->
-		                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-		                                        <tr>
-		                                            <td align="left" style="padding: 0 0 0 0; font-size: 14px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color: #aaaaaa; font-style: italic;" class="padding-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.</td>
-		                                        </tr>
-		                                    </table>
-		                                </td>
-		                            </tr>
-		                        </table>
-		                    </td>
-		                </tr>
-		            </table>
-		        </td>
-		    </tr>
-		</table>
 
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
 		    <tr>
