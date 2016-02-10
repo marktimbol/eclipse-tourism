@@ -4,27 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Package;
 use App\PackageInformation;
+use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PackagesInformationController extends Controller
 {
-    public function __construct()
+    public function __construct(PackageRepositoryInterface $package)
     {
-        $this->middleware('auth');
+        $this->package = $package;
     }
 
     public function store(Request $request)
     {
-    	$newInfo = new PackageInformation([
+    	$data = new PackageInformation([
     		'title' => $request->title,
     		'description'	=> $request->description
     	]);
 
-    	$package = Package::findOrFail($request->package_id);
+        $package = $this->package->find($request->package_id);
 
-    	return $package->information()->save($newInfo);
+    	return $package->information()->save($data);
     }
 
     public function update(Request $request)
@@ -32,15 +32,15 @@ class PackagesInformationController extends Controller
     	$packageInformation = PackageInformation::findOrFail($request->id);
         $packageInformation->title = $request->title;
         $packageInformation->description = $request->description;
+        
         $packageInformation->save();
 
-        return Package::findOrFail($request->package_id)->information;
+        return $this->package->find($request->package_id)->information;
     }
 
     public function destroy(Request $request)
     {
     	PackageInformation::findOrFail($request->id)->delete();
-
-    	return Package::findOrFail($request->package_id)->information;
+        return $this->package->find($request->package_id)->information;
     }
 }

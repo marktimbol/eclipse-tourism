@@ -17,12 +17,12 @@ class AdminMailer extends Mailer {
 	{
 		$this->user = $user;
 		$this->booking = $booking;
-		$this->adminEmail = env('COMPANY_EMAIL');
+		$this->adminEmail = config('eclipse.email');
 	}
 
 	public function sendPurchaseNotification(User $user, $bookingReference)
 	{
-		$subject = sprintf('%s: %s', companyName(), 'New Online Booking Notification');
+		$subject = sprintf('%s: %s', config('eclipse.name'), 'New Online Booking Notification');
 		$view = 'emails.admin.new-purchase-notification';
 		$result = $this->booking->findByReference($bookingReference);
 		$bookedPackages = $result->packages;
@@ -31,7 +31,7 @@ class AdminMailer extends Mailer {
 
 	public function sendBookingNotification(User $user, $bookingReference)
 	{
-		$subject = sprintf('%s: %s', companyName(), 'New Online Booking Notification.');
+		$subject = sprintf('%s: %s', config('eclipse.name'), 'New Online Booking Notification.');
 		$view = 'emails.admin.new-booking-notification';
 		$result = $this->booking->findByReference($bookingReference);
 		$bookedPackages = $result->packages;		
@@ -40,7 +40,7 @@ class AdminMailer extends Mailer {
 
 	public function sendBookingNotificationPayment(User $user, $bookingReference)
 	{
-		$subject = sprintf('%s: %s', companyName(), $user->name . ' paid his/her booking.');
+		$subject = sprintf('%s: %s', config('eclipse.name'), $user->name . ' paid his/her booking.');
 		$view = 'emails.admin.new-paid-booking-notification';
 		$result = $this->booking->findByReference($bookingReference);
 		$bookedPackages = $result->packages;		

@@ -135,4 +135,22 @@ class PackageTest extends TestCase
     			'confirm_availability' => false
     		]);
     }
+
+    public function test_delete_package_on_the_admin_page()
+    {
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user);
+
+        $package = factory(App\Package::class)->create();
+
+        $this->visit('/admin/packages/'.$package->id)
+            ->press('Delete')
+            ->dontSeeInDatabase('packages', [
+                'id' => $package->id
+            ])
+            ->dontSeeInDatabase('photos', [
+                'imageable_id'  => $package->id,
+                'imageable_type' => 'App\Package'
+            ]);
+    }
 }

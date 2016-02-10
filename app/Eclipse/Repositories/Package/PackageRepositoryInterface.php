@@ -8,8 +8,6 @@ interface PackageRepositoryInterface {
 
 	public function take($number);
 
-	public function related($packageId);
-
 	public function find($id);
 
 	public function store($data);
@@ -18,13 +16,13 @@ interface PackageRepositoryInterface {
 
 	public function delete($id);
 
-	public function needsToConfirm($package);
+	public function related($packageId);
 
 	public function addPhoto($id, $filename);
 
 	public function deletePhoto($path);
 
-	public function updatePhoto($id, $filename);
-
-	public function deleteExistingPhotos($id, $model);
+	public function deleteRelatedPhotos($id, $model);
+	
+	public function needsToConfirm($package);
 }

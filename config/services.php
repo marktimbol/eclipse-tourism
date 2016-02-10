@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'twocheckout' => [
+        'key'    => env('TWOCHECKOUT_PUBLIC_KEY'),
+        'secret' => env('TWOCHECKOUT_PRIVATE_KEY'),
+        'accountNumber' => env('TWOCHECKOUT_ACCOUNT_NUMBER'),
+        'sandbox'   => env('TWOCHECKOUT_SANDBOX')
+    ],
 ];

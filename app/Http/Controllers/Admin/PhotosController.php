@@ -18,7 +18,6 @@ class PhotosController extends Controller
     public function __construct(PackageRepositoryInterface $package)
     {
         $this->package = $package;
-        $this->middleware('auth');
     }
 
     public function uploadPackagePhoto(Request $request)
@@ -27,8 +26,26 @@ class PhotosController extends Controller
         {
             $file = $request->file('photo');
             $filename = $this->makeThumbnail($file);
+
             return $this->package->addPhoto($request->package_id, $filename);
         }
+    }
+
+    protected function makeThumbnail(UploadedFile $photo)
+    {   
+        $filename = sprintf('%s-%s', time(), str_replace(' ', '-', $photo->getClientOriginalName()));
+        $image = Image::make($photo->getRealPath());
+        $image->resize(1000, null, function($constraint) {
+            $constraint->aspectRatio();
+        })
+        ->save( $this->fullPath($filename) );
+        // ->stream();  
+        // Storage::disk('s3')->put($this->uploadsDirectory . $filename, $image->__toString());
+        return $filename;
+    }    
+
+    protected function fullPath($filename) {
+        return public_path() . $this->uploadsDirectory . $filename;
     }
 
     public function deletePackagePhoto($path)
@@ -49,23 +66,5 @@ class PhotosController extends Controller
             $photo->path = $filename;
             return $promo->photos()->save($photo);
         }
-    }
-
-    protected function makeThumbnail(UploadedFile $photo)
-    {   
-        $filename = sprintf('%s-%s', time(), str_replace(' ', '-', $photo->getClientOriginalName()));
-        $image = Image::make($photo->getRealPath());
-        $image->resize(1000, null, function($constraint) {
-            $constraint->aspectRatio();
-        })
-        ->save( $this->fullPath($filename) );
-        // ->stream();  
-        // Storage::disk('s3')->put($this->uploadsDirectory . $filename, $image->__toString());
-        return $filename;
-        
-    }    
-
-    protected function fullPath($filename) {
-        return public_path() . $this->uploadsDirectory . $filename;
     }
 }

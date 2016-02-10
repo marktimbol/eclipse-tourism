@@ -55,6 +55,23 @@ $factory->define(App\Package::class, function(Faker\Generator $faker) {
 	];
 });
 
+$factory->define(App\PackageInformation::class, function(Faker\Generator $faker) {
+    return [
+        'package_id'  => factory(App\Package::class)->create()->id,
+        'title'  => $faker->sentence,
+        'description' => $faker->paragraph
+    ];
+});
+
+$factory->define(App\Ticket::class, function(Faker\Generator $faker) {
+    return [
+        'package_id'  => factory(App\Package::class)->create()->id,
+        'name'  => $faker->sentence,
+        'adultPrice' => $faker->randomNumber(3),
+        'childPrice'    => $faker->randomNumber(2)
+    ];
+});
+
 $factory->define(App\Deal::class, function(Faker\Generator $faker) {
     return [
         'name'  => $faker->sentence(2),

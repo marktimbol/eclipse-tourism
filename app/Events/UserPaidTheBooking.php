@@ -11,7 +11,6 @@ class UserPaidTheBooking extends Event
     use SerializesModels;
 
     public $user;
-
     public $bookingReference;
 
     /**

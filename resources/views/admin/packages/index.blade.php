@@ -35,12 +35,8 @@
             			<td>{{ $package->adult_price }} AED</td>
             			<td>{{ $package->child_price }} AED</td>
             			<td>
-                            <form method="POST" action="{{ route('admin.packages.destroy', $package->id) }}">
-                                {!! csrf_field() !!}
-                                {!! method_field('DELETE') !!}
-                                <a href="{{ route('admin.packages.edit', $package->id) }}"><i class="fa fa-pencil"></i> Edit</a>
-                                <button type="submit" name="submit" class="btn btn-sm btn-link"><i class="fa fa-trash"></i> Delete</button>
-                            </form>
+                            <a href="{{ route('admin.packages.show', $package->id) }}"><i class="fa fa-eye"></i> View</a>&nbsp;&nbsp;
+                            <a href="{{ route('admin.packages.edit', $package->id) }}"><i class="fa fa-pencil"></i> Edit</a>
                         </td>
             		</tr>
             		@empty

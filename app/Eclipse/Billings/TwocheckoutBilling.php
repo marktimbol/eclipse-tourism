@@ -3,7 +3,6 @@
 namespace Eclipse\Billings;
 
 use App\User;
-
 use Twocheckout;
 use Twocheckout_Charge;
 
@@ -18,8 +17,7 @@ class TwocheckoutBilling implements BillingGateway {
 
 	public function charge(User $user, $total, $token)
 	{
-		try
-		{
+		try {
 		    $charge = Twocheckout_Charge::auth(array(
 		        "merchantOrderId" => time(),
 		        "token"      => $token,
@@ -37,16 +35,13 @@ class TwocheckoutBilling implements BillingGateway {
 		        )
 		    ));
 
-		    if ($charge['response']['responseCode'] == 'APPROVED')
-		    {    
+		    if ($charge['response']['responseCode'] == 'APPROVED') {    
 		        return $charge;
 		    }
 
 		}
-		catch (Twocheckout_Error $e)
-		{
+		catch (Twocheckout_Error $e) {
 			return $e->getMessage();
 		}	
-
 	}
 }

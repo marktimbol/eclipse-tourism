@@ -1,5 +1,4 @@
 @extends('admin.layouts.admin')
-
 @section('pageTitle', 'All Packages')
 
 @section('header_styles')
@@ -10,10 +9,8 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="page-header">{{ $package->name }}</h1>
-
             <div class="row">
             	<div class="col-md-6">
-
 					<div class="description">
 						<h3>{{ $package->subtitle }}</h3>
 						{!! $package->description !!}
@@ -33,9 +30,7 @@
 			            						<form method="POST" action="{{ route('admin.packages.photos.delete', $photo->path) }}">
 			            							{!! csrf_field() !!}
 			            							{!! method_field('DELETE') !!}
-			            							
 			            							<button type="submit" name="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-			            							
 			            						</form>
 		            						@endif
 		            					</div>
@@ -46,9 +41,16 @@
 
 			            <form class="dropzone" id="UploadPhotosForm" action="{{ route('admin.packages.photos.upload') }}">
 			            	{!! csrf_field() !!}
-			            	{!! method_field('PUT') !!}
 			            	<input type="hidden" name="package_id" value="{{ $package->id }}" />
 			            </form>
+
+			            <hr />
+
+                        <form method="POST" action="{{ route('admin.packages.destroy', $package->id) }}">
+                            {!! csrf_field() !!}
+                            {!! method_field('DELETE') !!}
+                            <button type="submit" name="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete Package</button>
+                        </form>
 		            	
 					</div>
 				</div>

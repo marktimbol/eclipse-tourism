@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,13 +12,11 @@ class Booking extends Model
         'comments'
     ];  
 
-    public function user()
-    {
+    public function user() {
     	return $this->belongsTo(User::class);
     }
 
-    public function packages()
-    {
+    public function packages() {
         return $this->belongsToMany(Package::class, 'booking_details')
                     ->withPivot(
                         'adult_quantity', 

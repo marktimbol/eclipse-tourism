@@ -11,7 +11,6 @@ class BookingWasConfirmed extends Event
     use SerializesModels;
 
     public $user_id;
-
     public $bookingReference;
     
     /**
@@ -22,7 +21,6 @@ class BookingWasConfirmed extends Event
     public function __construct($user_id, $bookingReference)
     {
         $this->user_id = $user_id;
-
         $this->bookingReference = $bookingReference;
     }
 

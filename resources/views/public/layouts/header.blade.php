@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>@yield('pageTitle') | {{ companyName() }}</title>
+	<title>@yield('pageTitle') | {{ config('eclipse.name') }}</title>
 	<meta name="token" content="{{ csrf_token() }}" />
-	<meta name="publishable-key" content="{{ env('STRIPE_KEY') }}" />
-	<meta name="twocheckout-account-number" content="{{ env('TWOCHECKOUT_ACCOUNT_NUMBER') }}" />
-	<meta name="twocheckout-public-key" content="{{ env('TWOCHECKOUT_PUBLIC_KEY') }}" />
-	<meta name="site_url" content="{{ env('SITE_URL') }}" />
+	<meta name="publishable-key" content="{{ config('services.stripe.key') }}" />
+	<meta name="twocheckout-account-number" content="{{ config('services.twocheckout.accountNumber') }}" />
+	<meta name="twocheckout-public-key" content="{{ config('services.twocheckout.key') }}" />
+	<meta name="site_url" content="{{ config('eclipse.url') }}" />
 	<meta name="current_currency" content="{{ currentCurrency() }}" />
 
 	@if( isset($package) )
 		<meta property="og:title" content="{{ $package->name }}" />
 		<meta property="og:type" content="article" />
-		<meta property="og:image" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}" />
-		<meta property="og:url" content="{{ env('SITE_URL') }}package/{{$package->slug}}" />
+		<meta property="og:image" content="{{ config('eclipse.url') }}images/uploads/{{ $package->photos->first()->path }}" />
+		<meta property="og:url" content="{{ config('eclipse.url') }}package/{{$package->slug}}" />
 		<meta property="og:description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
 
 		<meta name="twitter:card" content="summary_large_image">
@@ -21,9 +21,9 @@
 		<meta name="twitter:title" content="{{ $package->name }}">
 		<meta name="twitter:description" content="{{ str_limit(strip_tags($package->description), 200) }}">
 		<meta name="twitter:creator" content="">
-		<meta name="twitter:image:src" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}">
-		<meta name="twitter:domain" content="{{ env('SITE_URL') }}">
-
+		<meta name="twitter:image:src" content="{{ config('eclipse.url') }}images/uploads/{{ $package->photos->first()->path }}">
+		<meta name="twitter:domain" content="{{ config('eclipse.url') }}">
+		
 		<meta name="description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
 	@else
 		<meta name="description" content="A Memorable Experience" />	
@@ -54,7 +54,7 @@
 
 				<div class="logo">
 					<a href="{{ route('home') }}">
-						{!! getPhoto('logo.png', companyName(), '') !!}
+						{!! getPhoto('logo.png', config('eclipse.name'), '') !!}
 					</a>
 				</div>
 			@endif	

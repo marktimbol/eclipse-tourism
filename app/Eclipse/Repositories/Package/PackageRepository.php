@@ -9,11 +9,40 @@ use Illuminate\Support\Facades\File;
 class PackageRepository implements PackageRepositoryInterface {
 	
 	public function all() {
-		return Package::with('photos', 'category', 'tickets', 'information')->get();
+		return Package::with('photos', 'category', 'tickets', 'information')
+			->get();
 	}
 
 	public function take($number) {
-		return Package::with('photos', 'category', 'information', 'tickets')->take($number)->get();
+		return Package::with('photos', 'category', 'information', 'tickets')
+			->take($number)
+			->get();
+	}
+
+	public function find($id) {
+		return Package::with('photos', 'information', 'tickets')
+			->findOrFail($id);
+	}
+
+	public function store($data) {
+		return Package::create($data);
+	}
+
+	public function update($id, $data)
+	{	
+		$package = $this->find($id);
+		$package->fill($data);
+		$package->save();
+
+		return $package;
+	}
+
+	public function delete($id)
+	{
+		$package = $this->find($id);
+		$this->deleteRelatedPhotos($package->id, 'Package');		
+
+		return $package->delete();
 	}
 
 	public function related($packageId)
@@ -28,44 +57,7 @@ class PackageRepository implements PackageRepositoryInterface {
 			->take(3)
 			->get();	
 	}
-
-	public function find($id) {
-		return Package::with('photos', 'information', 'tickets')->findOrFail($id);
-	}
-
-	public function store($data) {
-		return Package::create($data);
-	}
-
-	public function update($id, $data)
-	{	
-		$package = $this->find($id);
-		$package->fill($data);
-		$package->save();
-	}
-
-	public function delete($id)
-	{
-		$package = $this->find($id);
-		/**
-		 * Delete the photo from the directory /images/uploads
-		 */
-		$this->deleteExistingPhotos($id, 'Package');		
-
-		/**
-		 * Delete the record from the "categories" table
-		 */
-		$package->delete();
-
-	}
-
-	public function needsToConfirm($package) {
-		return $package->confirmAvailability;
-	}
-
-	/**
-	 * Add new package photo
-	 */
+	
 	public function addPhoto($id, $filename)
 	{
 		$package = $this->find($id);
@@ -76,60 +68,43 @@ class PackageRepository implements PackageRepositoryInterface {
 
 	public function deletePhoto($path)
 	{
-		/**
-		 * Delete the photo from the directory
-		 */
-		// $photoPath = public_path('images/uploads/'.$path);
+		$photoPath = public_path('images/uploads/'.$path);
 
-  //       if( File::isFile($photoPath) ) {
-
-  //           File::delete( $photoPath );
-
-  //       }	
-
-        /**
-         * Delete the photo from the "photos" table
-         */
-
-        Photo::wherePath($path)->delete();
+		try {
+	        if( File::isFile($photoPath) ) {
+	            File::delete( $photoPath );
+	        }	
+	        Photo::wherePath($path)->delete();
+		} catch (Exception $e) {
+			
+		}
 	}
 
-
-	public function updatePhoto($id, $filename)
-	{	
-		/**
-		 * Delete the existing photo
-		 */
-        $this->deleteExistingPhotos($id, 'Package');
-		$this->addPhoto($id, $filename);
-	}
-
-	/**
-	 * Find the related photo on the given Model, If there's an existing
-	 * photo, we will loop through them and then delete them one by one.
-	 * And finally, we will delete it's record from the "photos" table
-	 */
-	public function deleteExistingPhotos($id, $model)
+	public function deleteRelatedPhotos($id, $model)
 	{
 		$model = 'App\\'.$model;
-		$oldPhoto = Photo::where('imageable_type', $model)
+		$photos = Photo::where('imageable_type', $model)
 							->where('imageable_id', $id);
 
-		if( count($oldPhoto) > 0 ) {
+		if( count($photos) > 0 )
+		{
+			foreach( $photos->get() as $photo )
+			{
+				$photoPath = public_path('images/uploads/'.$photo->path);
+				try {
+			    	if( File::isFile($photoPath) ) {
+			        	File::delete( $photoPath );
+			        }					
+				} catch (Exception $e) {
+					
+				}
+		    }
 
-			// foreach( $oldPhoto->get() as $photo ) {
-
-			// 	$oldPhotoPath = public_path('images/uploads/'.$photo->path);
-
-		 //        if( File::isFile($oldPhotoPath) ) {
-
-		 //            File::delete( $oldPhotoPath );
-
-		 //        }
-		        
-		 //    }
-
-	        $oldPhoto->delete();
+	        $photos->delete();
 		}
 	}	
+
+	public function needsToConfirm($package) {
+		// return $package->confirmAvailability;
+	}
 }

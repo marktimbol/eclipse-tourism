@@ -33,7 +33,9 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'address1', 'address2', 'city', 'state', 'country', 'cardName', 'cardBrand', 'cardLastFour', 'cardExpiryMonth', 'cardExpiryYear'
+        'name', 'email', 'password', 'phone', 'address1', 
+        'address2', 'city', 'state', 'country', 'cardName', 
+        'cardBrand', 'cardLastFour', 'cardExpiryMonth', 'cardExpiryYear'
     ];  
 
     protected $dates = ['trial_ends_at', 'subscription_ends_at'];
@@ -46,18 +48,7 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    // public function setPasswordAttribute($password)
-    // {
-    //     return $this->attributes['password'] = Hash::make($password);
-    // }
-
-    // public function packages()
-    // {
-    //     return $this->hasMany(Package::class);
-    // }
-
-    public function bookings()
-    {
+    public function bookings() {
         return $this->hasMany(Booking::class);
     }
 }

@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Package;
 use App\Ticket;
+use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
 {
-    public function __construct()
+    protected $package;
+
+    public function __construct(PackageRepositoryInterface $package)
     {
-        $this->middleware('auth');
+        $this->package = $package;
     }
     
     public function store(Request $request)
@@ -23,7 +25,7 @@ class TicketsController extends Controller
             'childPrice'    => $request->childPrice
     	]);
 
-    	$package = Package::findOrFail($request->package_id);
+        $package = $this->package->find($request->package_id);
 
     	return $package->tickets()->save($newTicket);
     }
@@ -34,15 +36,15 @@ class TicketsController extends Controller
         $ticket->name = $request->name;
         $ticket->adultPrice = $request->adultPrice;
         $ticket->childPrice = $request->childPrice;
+
         $ticket->save();
 
-        return Package::findOrFail($request->package_id)->tickets;
+        return $this->package->find($request->package_id)->tickets;
     }
 
     public function destroy(Request $request)
     {
     	Ticket::findOrFail($request->id)->delete();
-
-    	return Package::findOrFail($request->package_id)->tickets;
+    	return $this->package->find($request->package_id)->tickets;
     }
 }

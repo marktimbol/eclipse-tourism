@@ -12,7 +12,6 @@ class UserPurchasedAPackage extends Event
     use SerializesModels;
 
     public $user;
-
     public $booking_reference;
     
     /**
@@ -23,7 +22,6 @@ class UserPurchasedAPackage extends Event
     public function __construct(User $user, $booking_reference)
     {
         $this->user = $user;
-
         $this->booking_reference = $booking_reference;
     }
 

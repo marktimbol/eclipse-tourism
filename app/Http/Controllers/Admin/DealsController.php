@@ -18,8 +18,7 @@ class DealsController extends Controller
 
     public function create()
     {
-    	$packages = Package::all();
-    	return view('admin.deals.create', compact('packages'));
+    	return view('admin.deals.create');
     }
 
     public function store(Request $request)

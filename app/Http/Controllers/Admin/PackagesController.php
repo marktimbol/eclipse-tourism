@@ -12,9 +12,7 @@ use Illuminate\Http\Request;
 class PackagesController extends Controller
 {
     protected $currentUser;
-    
     protected $package;
-
     protected $category;
 
     public function __construct(PackageRepositoryInterface $package, CategoryRepositoryInterface $category)
@@ -22,63 +20,41 @@ class PackagesController extends Controller
         parent::__construct();
 
         $this->currentUser = auth()->user();
-
         $this->package = $package;
-
         $this->category = $category;
 
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
         $packages = $this->package->all();
-
         return view('admin.packages.index', compact('packages'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
         $categories = $this->category->all();
-
         return view('admin.packages.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
     public function store(CreatePackageRequest $request)
     {
         $category = $this->category->find($request->category_id); 
-
         $package = $category->packages()->create($request->all());
-        
+
+        if( ! $package )
+        {
+            flash()->error('There was an error when adding a Package. Please double-check your inputs.');
+            return redirect()->back()->withInput(); 
+        }
+
         $this->package->addPhoto($package->id, 'default.png');
 
         flash()->success('You have successfully added new Package.');
-
         return redirect()->route('admin.packages.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($package)
     {
         \JavaScript::put([
@@ -88,47 +64,33 @@ class PackagesController extends Controller
         return view('admin.packages.show', compact('package'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function edit($package)
     {
         $categories = $this->category->all();
-
         return view('admin.packages.edit', compact('package', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
     public function update(CreatePackageRequest $request, $package)
     {                        
-        $this->package->update($package->id, $request->all());
+        if( ! $this->package->update($package->id, $request->all()) )
+        {
+            flash()->error('There was an error when updating a Package. Please double-check your inputs.');
+            return redirect()->back()->withInput(); 
+        }
 
         flash()->success('Package has been successfully updated.');
-
         return redirect()->route('admin.packages.index'); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($package)
     {
-        $this->package->delete($package->id);
+        if( ! $this->package->delete($package->id) )
+        {
+            flash()->error('There was an error when deleting a Package. Please try again.');
+            return redirect()->back()->withInput(); 
+        }
 
         flash()->success('Package has been successfully deleted.');
-
         return redirect()->route('admin.packages.index');         
     }
 }

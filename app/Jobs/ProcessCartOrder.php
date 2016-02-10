@@ -14,31 +14,18 @@ use Stripe\Error\Card;
 class ProcessCartOrder extends Job
 {
     protected $name;
-
     protected $email;
-
     protected $phone;
-
     protected $address1;
-
     protected $address2;
-
     protected $city;
-
     protected $state;
-
     protected $country;
-
     protected $token;
-
     protected $cardName;
-
     protected $cardBrand;
-
     protected $cardLastFour;
-
     protected $cardExpiryMonth;
-
     protected $cardExpiryYear;
 
     /**
@@ -120,7 +107,6 @@ class ProcessCartOrder extends Job
             $packageId = $item->options->selectedPackage->id;
             $adult_quantity = $item->qty;
             $child_quantity = $item->options->child_quantity;
-
             /**
              * Save the data to "booking_details" table
              */
@@ -137,6 +123,5 @@ class ProcessCartOrder extends Job
         $cart->destroy();
 
         event( new UserPurchasedAPackage($user, $booking->booking_reference) );
-
     }
 }

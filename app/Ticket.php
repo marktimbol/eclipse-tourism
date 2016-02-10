@@ -8,8 +8,7 @@ class Ticket extends Model
 {
 	protected $fillable = ['package_id', 'name', 'adultPrice', 'childPrice'];
 
-    public function package()
-    {
+    public function package() {
     	return $this->belongsTo(Package::class);
     }
 }

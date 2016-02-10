@@ -77,7 +77,7 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function() 
 	| Package photos Route
 	|--------------------------------------------------------------------------
 	*/
-	Route::put('packages/photos/upload', [
+	Route::post('packages/photos/upload', [
 				'as' => 'admin.packages.photos.upload', 
 				'uses' => 'Admin\PhotosController@uploadPackagePhoto'
 			]);	

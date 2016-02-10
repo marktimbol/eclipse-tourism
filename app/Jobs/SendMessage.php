@@ -4,17 +4,14 @@ namespace App\Jobs;
 
 use App\Events\UserSubmittedAnEnquiry;
 use App\Jobs\Job;
-use Eclipse\Repositories\Messages\MessageRepositoryInterface;
+use App\Message;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class SendMessage extends Job
 {
     public $name;
-
     public $email;
-
     public $phone;
-
     public $message;
     /**
      * Create a new job instance.
@@ -34,7 +31,7 @@ class SendMessage extends Job
      *
      * @return void
      */
-    public function handle(MessageRepositoryInterface $message)
+    public function handle()
     {
         $data = [
             'name'      => $this->name,
@@ -43,7 +40,7 @@ class SendMessage extends Job
             'message'   => $this->message
         ];
 
-        $inquiry = $message->store($data);
+        $inquiry = Message::create($data);
 
         event( new UserSubmittedAnEnquiry($inquiry) );
     }
