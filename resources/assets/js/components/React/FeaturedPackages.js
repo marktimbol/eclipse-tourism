@@ -4,13 +4,11 @@ var ReactDOM = require('react-dom');
 import FeaturedPackage from './FeaturedPackage';
 
 var FeaturedPackages = React.createClass({
-
 	componentDidMount() {
 		console.log(window.packages);
 	},
 	
 	render() {
-
 		var featuredPackages = window.packages.map(function(currentPackage) {
 			return (
 				<FeaturedPackage key={currentPackage.id} currentPackage={currentPackage} />

@@ -74,10 +74,10 @@ class PackageTableSeeder extends Seeder
                                         <li>Drop back to your hotel or residence</li>
                                     </ul>
                                     <p>*Pick up from other emirates is available at extra charge</p>',
-                'adult_price'   =>  '0',
-                'child_price'   =>  '0',
+                'adult_price'   =>  '295',
+                'child_price'   =>  '295',
                 'has_time_options'  => 0,
-                'confirm_availability'  => 1,
+                'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
                 'has_ticket_option' => 0
             ],
