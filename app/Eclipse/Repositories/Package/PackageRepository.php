@@ -8,13 +8,11 @@ use Illuminate\Support\Facades\File;
 
 class PackageRepository implements PackageRepositoryInterface {
 	
-	public function all()
-	{
+	public function all() {
 		return Package::with('photos', 'category', 'tickets', 'information')->get();
 	}
 
-	public function take($number)
-	{
+	public function take($number) {
 		return Package::with('photos', 'category', 'information', 'tickets')->take($number)->get();
 	}
 
@@ -26,39 +24,34 @@ class PackageRepository implements PackageRepositoryInterface {
 		return Package::with('photos')
 			->where('id', '<>', $packageId)
 			->where('category_id', $category)
-			->orderByRaw('RAND()')
+			// ->orderByRaw('RAND()')
 			->take(3)
 			->get();	
 	}
 
-	public function find($id)
-	{
+	public function find($id) {
 		return Package::with('photos', 'information', 'tickets')->findOrFail($id);
 	}
 
-	public function store($data)
-	{
+	public function store($data) {
 		return Package::create($data);
 	}
 
 	public function update($id, $data)
 	{	
 		$package = $this->find($id);
-		
 		$package->fill($data);
-		
 		$package->save();
 	}
 
 	public function delete($id)
 	{
 		$package = $this->find($id);
-
 		/**
 		 * Delete the photo from the directory /images/uploads
 		 */
 		$this->deleteExistingPhotos($id, 'Package');		
-		
+
 		/**
 		 * Delete the record from the "categories" table
 		 */
@@ -66,8 +59,7 @@ class PackageRepository implements PackageRepositoryInterface {
 
 	}
 
-	public function needsToConfirm($package)
-	{
+	public function needsToConfirm($package) {
 		return $package->confirmAvailability;
 	}
 
@@ -109,7 +101,6 @@ class PackageRepository implements PackageRepositoryInterface {
 		 * Delete the existing photo
 		 */
         $this->deleteExistingPhotos($id, 'Package');
-		
 		$this->addPhoto($id, $filename);
 	}
 
@@ -121,7 +112,6 @@ class PackageRepository implements PackageRepositoryInterface {
 	public function deleteExistingPhotos($id, $model)
 	{
 		$model = 'App\\'.$model;
-
 		$oldPhoto = Photo::where('imageable_type', $model)
 							->where('imageable_id', $id);
 
@@ -140,7 +130,6 @@ class PackageRepository implements PackageRepositoryInterface {
 		 //    }
 
 	        $oldPhoto->delete();
-
 		}
 	}	
 }

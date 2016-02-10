@@ -11,11 +11,9 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-
     protected $package;
 
-    public function __construct(PackageRepositoryInterface $package)
-    {
+    public function __construct(PackageRepositoryInterface $package) {
         $this->package = $package;
     }
 
@@ -30,44 +28,36 @@ class PagesController extends Controller
         return view('public.home');
     }    
 
-    public function touristInformation()
-    {
+    public function touristInformation() {
     	return view('public.tourist-information');
     }
 
-    public function corporate()
-    {
+    public function corporate() {
     	return view('public.corporate');
     }
 
-    public function about()
-    {
+    public function about() {
     	return view('public.about');
     }
 
-    public function contact()
-    {
+    public function contact() {
     	return view('public.contact');
     }
 
     public function submitContact(SendMessageRequest $request)
     {
         $this->dispatch( new SendMessage($request->name, $request->email, $request->phone, $request->message) );
-
         flash()->overlay('Your inquiry was sent successfully. Our customer representative will contact you shortly.');
-
         return redirect()->route('contact');
     }
 
     public function changeCurrency(Request $request)
     {  
         session(['currency' => $request->currency]);
-
         return session('currency');
     }
 
-    public function convertAmount($amount, $currency)
-    {
+    public function convertAmount($amount, $currency) {
         return convertedAmountWithCurrency($amount, $currency);
     }
 }

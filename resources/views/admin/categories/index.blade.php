@@ -1,13 +1,10 @@
 @extends('admin.layouts.admin')
-
 @section('pageTitle', 'Categories')
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-
             <h1 class="page-header">Categories</h1>
-
             <table class="table table-hover">
             	<thead>
             		<tr>

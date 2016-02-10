@@ -22,6 +22,6 @@ class DealsController extends Controller
         \JavaScript::put([
             'promo'   => $promo
             ]);
-    	return view('public.deals.show', compact('pageTitle', 'package'));
+    	return view('public.deals.show', compact('pageTitle'));
     }
 }

@@ -1,9 +1,4 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Web Middleware Group
-|--------------------------------------------------------------------------
-*/
 Route::group(['middleware' => 'web'], function() {
 	/*
 	|--------------------------------------------------------------------------
@@ -69,22 +64,14 @@ Route::group(['middleware' => 'web'], function() {
 	Route::resource('booking', 'BookingsController');
 });
 
-
-/*
-|--------------------------------------------------------------------------
-| Web & Auth Middleware Group
-|--------------------------------------------------------------------------
-*/
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function() {
-
 	/*
 	|--------------------------------------------------------------------------
 	| Dashboard Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('/', ['as' => 'admin.home', 'uses' => 'Admin\AdminController@home']);
-	Route::get('/dashboard', ['as' => 'admin.home', 'uses' => 'Admin\AdminController@home']);
-	
+
 	/*
 	|--------------------------------------------------------------------------
 	| Package photos Route
@@ -152,22 +139,23 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function() 
 	| Confirm Booking Route
 	|--------------------------------------------------------------------------
 	*/
-	Route::post('bookings/{bookingReference}/user/{user_id}/confirm', ['as' => 'bookings.confirm', 'uses' => 'Admin\BookingsController@confirm']);
+	Route::post('bookings/{bookingReference}/user/{user_id}/confirm', [
+			'as' => 'bookings.confirm', 
+			'uses' => 'Admin\BookingsController@confirm'
+		]);
 
 	/*
 	|--------------------------------------------------------------------------
 	| Bookings Route
 	|--------------------------------------------------------------------------
 	*/
-	Route::get('bookings/upon-requests', ['as' => 'admin.bookings.upon-requests', 'uses' => 'Admin\BookingsController@uponRequests']);
+	Route::get('bookings/upon-requests', [
+			'as' => 'admin.bookings.upon-requests', 
+			'uses' => 'Admin\BookingsController@uponRequests'
+		]);
 	Route::resource('bookings', 'Admin\BookingsController');
 });
 
-/*
-|--------------------------------------------------------------------------
-| APIs Group
-|--------------------------------------------------------------------------
-*/
 Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 {
 	/*
@@ -175,7 +163,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 	| Categories Route
 	|--------------------------------------------------------------------------
 	*/
-	Route::get('categories', ['as' => 'api.v1.categories', 'uses' => 'Api\CategoriesController@index']);
+	Route::get('categories', [
+			'as' => 'api.v1.categories', 
+			'uses' => 'Api\CategoriesController@index'
+		]);
 	
 	/*
 	|--------------------------------------------------------------------------

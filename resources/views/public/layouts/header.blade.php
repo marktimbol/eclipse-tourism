@@ -8,41 +8,36 @@
 	<meta name="twocheckout-public-key" content="{{ env('TWOCHECKOUT_PUBLIC_KEY') }}" />
 	<meta name="site_url" content="{{ env('SITE_URL') }}" />
 	<meta name="current_currency" content="{{ currentCurrency() }}" />
+
 	@if( isset($package) )
-	<!-- for Facebook -->          
-	<meta property="og:title" content="{{ $package->name }}" />
-	<meta property="og:type" content="article" />
-	<meta property="og:image" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}" />
-	<meta property="og:url" content="{{ env('SITE_URL') }}package/{{$package->slug}}" />
-	<meta property="og:description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
+		<meta property="og:title" content="{{ $package->name }}" />
+		<meta property="og:type" content="article" />
+		<meta property="og:image" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}" />
+		<meta property="og:url" content="{{ env('SITE_URL') }}package/{{$package->slug}}" />
+		<meta property="og:description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
 
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="">
-	<meta name="twitter:title" content="{{ $package->name }}">
-	<meta name="twitter:description" content="{{ str_limit(strip_tags($package->description), 200) }}">
-	<meta name="twitter:creator" content="">
-	<meta name="twitter:image:src" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}">
-	<meta name="twitter:domain" content="{{ env('SITE_URL') }}">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="">
+		<meta name="twitter:title" content="{{ $package->name }}">
+		<meta name="twitter:description" content="{{ str_limit(strip_tags($package->description), 200) }}">
+		<meta name="twitter:creator" content="">
+		<meta name="twitter:image:src" content="{{ env('SITE_URL') }}images/uploads/{{ $package->photos->first()->path }}">
+		<meta name="twitter:domain" content="{{ env('SITE_URL') }}">
 
-	<meta name="description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
-
+		<meta name="description" content="{{ str_limit(strip_tags($package->description), 300) }}" />
 	@else
-	<meta name="description" content="A Memorable Experience" />	
+		<meta name="description" content="A Memorable Experience" />	
 	@endif
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
-	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="{{ elixir('css/public.css') }}" />
 
 	@yield('header_styles')
-	
 </head>
-
 	<body class="@yield('body_class')" id="eclipseApp">
-
 		@yield('after_body')
-
 		<div class="fixed-action-btn mobile-menu">
 			<button id="trigger-overlay" type="button" class="btn-floating btn-medium transparent">
 				<i class="fa fa-bars"></i>
@@ -55,11 +50,7 @@
 			</div>
 
 			@if( $showLogo )
-
-				<div id="topLeftCorner" 
-					style="background-image: url({{ asset('images/top-left-corner.png') }});"
-				>
-				</div>		
+				<div id="topLeftCorner" style="background-image: url({{ asset('images/top-left-corner.png') }});"></div>		
 
 				<div class="logo">
 					<a href="{{ route('home') }}">
@@ -67,6 +58,5 @@
 					</a>
 				</div>
 			@endif	
-
 		</header>
 

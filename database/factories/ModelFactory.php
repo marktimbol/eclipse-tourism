@@ -37,11 +37,9 @@ $factory->define(App\Category::class, function(Faker\Generator $faker) {
         'name'  => $faker->sentence(2),
         'slug'  => $faker->slug
     ];
-    
 });
 
 $factory->define(App\Package::class, function(Faker\Generator $faker) {
-
 	return [
 		'category_id'	=> factory(App\Category::class)->create()->id,
 		'name'	=> $faker->sentence(2),
@@ -55,12 +53,12 @@ $factory->define(App\Package::class, function(Faker\Generator $faker) {
         'minimum_quantity'  => 1,
         'has_ticket_option' => false
 	];
-	
 });
 
 $factory->define(App\Deal::class, function(Faker\Generator $faker) {
     return [
         'name'  => $faker->sentence(2),
+        'slug'  => $faker->slug,
         'description' => $faker->paragraph(5)
     ];
 });

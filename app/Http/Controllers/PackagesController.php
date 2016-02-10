@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 class PackagesController extends Controller
 {
     protected $package;
-
     protected $category;
 
     public function __construct(PackageRepositoryInterface $package, CategoryRepositoryInterface $category)

@@ -1,5 +1,4 @@
 @extends('public.layouts.public')
-
 @section('pageTitle', $pageTitle)
 
 @section('header_styles')
@@ -23,7 +22,6 @@
 @endsection
 
 @section('content')
-
 	<div class="container">
 		<div class="row">
 			<div class="col m12 s12">
@@ -31,16 +29,12 @@
 					<div class="row">
 						<div id="PackageInformation"></div>
 					</div>
-
 					<div class="divider"></div>
-
 					<div id="RelatedPackages" class="package__related"></div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-
 @endsection
 
 @section('footer_scripts')

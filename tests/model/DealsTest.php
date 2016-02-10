@@ -9,6 +9,11 @@ class DealsTest extends TestCase
 {
 	use DatabaseMigrations;
 
+    /*
+    |--------------------------------------------------------------------------
+    | Public page
+    |--------------------------------------------------------------------------
+    */
     public function test_view_all_promos_on_the_public_page()
     {
         $promo = factory(App\Deal::class)->create();
@@ -23,6 +28,11 @@ class DealsTest extends TestCase
             ->see($promo->name);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin page
+    |--------------------------------------------------------------------------
+    */
     public function test_view_all_promos_on_the_admin_page()
     {
     	$promo = factory(App\Deal::class)->create();
