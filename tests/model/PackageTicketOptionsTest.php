@@ -16,13 +16,13 @@ class PackageTicketOptionsTest extends TestCase
 
         $url = '/admin/packages/'.$package->id.'/tickets';
 
-        $this->call('POST', $url, [
+        $response = $this->call('POST', $url, [
         	'package_id' => $package->id, 
         	'name' => 'Ticket Name',
             'adultPrice'    => 200,
             'childPrice'    => 150
         ]);
-
+        
         $this->seeInDatabase('tickets', [
         	'package_id' => $package->id,
         	'name' => 'Ticket Name',
@@ -32,7 +32,7 @@ class PackageTicketOptionsTest extends TestCase
 
     }
 
-    public function test_it_updates_a_package_information()
+    public function test_it_updates_a_ticket_option()
     {
     	$package = factory(App\Package::class)->create(['has_ticket_option' => true]);
         $setupTicket = factory(App\Ticket::class)->make();
@@ -66,7 +66,7 @@ class PackageTicketOptionsTest extends TestCase
         ]);
     }
 
-    public function test_it_delete_a_package_information()
+    public function test_it_deletes_a_ticket_option()
     {
     	$package = factory(App\Package::class)->create();
         $setupTicket = factory(App\Ticket::class)->make();

@@ -10,13 +10,9 @@ use Illuminate\Contracts\Bus\SelfHandling;
 class AddItemInBooking extends Job
 {
     public $package_id;
-
     public $quantity;
-
     public $child_quantity;
-
     public $date;
-
     public $date_submit;
 
     public function __construct($package_id, $quantity, $child_quantity, $date, $date_submit = '')
@@ -33,11 +29,11 @@ class AddItemInBooking extends Job
      *
      * @return void
      */
-    public function handle(PackageRepositoryInterface $package, Booking $booking)
+    public function handle(PackageRepositoryInterface $package)
     {
         $selectedPackage = $package->find($this->package_id);
             
-        $newItem = [
+        $item = [
             'id'            => $selectedPackage->id,
             'name'          => $selectedPackage->name,
             'qty'           => (int) $this->quantity,               //adult_quantity
@@ -49,9 +45,9 @@ class AddItemInBooking extends Job
                 'selectedPackage'       => $selectedPackage
             ]
         ];
+        
+        Booking::add($item);
 
-        $booking->add($newItem);
-
-        return $newItem;
+        return $item;
     }
 }

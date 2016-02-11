@@ -10,30 +10,26 @@ use Illuminate\Http\Request;
 
 class BookingsController extends Controller
 {
-    protected $booking;
-
     protected $bookingRepo;
 
-    public function __construct(Booking $booking, BookingRepositoryInterface $bookingRepo)
+    public function __construct(BookingRepositoryInterface $bookingRepo)
     {
-        $this->booking = $booking;
-
         $this->bookingRepo = $bookingRepo;
     }
 
     public function content()
     {
-        return $this->booking->content();
+        return Booking::content();
     }
 
     public function count()
     {
-        return $this->booking->count();
+        return Booking::count();
     }
 
     public function total()
     {
-        return $this->booking->total();
+        return Booking::total();
     }
 
     public function getBooking($bookingReference)

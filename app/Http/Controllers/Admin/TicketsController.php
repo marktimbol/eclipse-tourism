@@ -4,47 +4,43 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Ticket;
 use Eclipse\Repositories\Package\PackageRepositoryInterface;
+use Eclipse\Repositories\Ticket\TicketOptionsRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
 {
     protected $package;
+    protected $ticket;
 
-    public function __construct(PackageRepositoryInterface $package)
+    public function __construct(PackageRepositoryInterface $package, TicketOptionsRepositoryInterface $ticket)
     {
         $this->package = $package;
+        $this->ticket = $ticket;
     }
     
     public function store(Request $request)
     {
-    	$newTicket = new Ticket([
-    		'name' => $request->name,
-            'adultPrice'    => $request->adultPrice,
-            'childPrice'    => $request->childPrice
-    	]);
-
-        $package = $this->package->find($request->package_id);
-
-    	return $package->tickets()->save($newTicket);
+        $this->ticket->store($request->all());
     }
 
     public function update(Request $request)
     {
-    	$ticket = Ticket::findOrFail($request->id);
-        $ticket->name = $request->name;
-        $ticket->adultPrice = $request->adultPrice;
-        $ticket->childPrice = $request->childPrice;
+        $this->ticket->update($request->id, $request->all());
 
-        $ticket->save();
-
+        /**
+         * return all the package ticket options to feed the React.
+         */       
         return $this->package->find($request->package_id)->tickets;
     }
 
     public function destroy(Request $request)
     {
-    	Ticket::findOrFail($request->id)->delete();
+        $this->ticket->delete($request->id);
+
+        /**
+         * return all the package ticket options to feed the React.
+         */        
     	return $this->package->find($request->package_id)->tickets;
     }
 }

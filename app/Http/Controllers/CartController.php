@@ -16,24 +16,18 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     protected $user;
-    
-    protected $cart;
-
     protected $gateway;
 
-    public function __construct(UserRepositoryInterface $user, ShoppingCart $cart, BillingGateway $gateway)
+    public function __construct(UserRepositoryInterface $user, BillingGateway $gateway)
     {
         $this->user = $user;
-
-        $this->cart = $cart;
-
         $this->gateway = $gateway;
     }
 
     public function index()
     {
         \JavaScript::put([
-            'total' => $this->cart->total()
+            'total' => ShoppingCart::total()
         ]);
 
         return view('public.cart.index');
@@ -43,8 +37,13 @@ class CartController extends Controller
     {
         $this->dispatch(
             new AddItemInCart(
-                $request->package_id, $request->quantity, $request->child_quantity, 
-                $request->date, $request->date_submit, $request->time, $request->ticket
+                $request->package_id, 
+                $request->quantity, 
+                $request->child_quantity, 
+                $request->date, 
+                $request->date_submit, 
+                $request->time, 
+                $request->ticket
             )
         );
     }
@@ -53,27 +52,25 @@ class CartController extends Controller
     {   
         $child_quantity = intval($request->child_quantity);
 
-        if( $child_quantity < 0 )
-        {
+        if( $child_quantity < 0 ) {
             $child_quantity = 0;
         }
 
-        $this->cart->update($request->rowId, [
+        ShoppingCart::update($request->rowId, [
             'options'   => [
                 'child_quantity'    => $child_quantity
             ]
         ]);
 
-        $this->cart->update($request->rowId, $request->adult_quantity);
+        ShoppingCart::update($request->rowId, $request->adult_quantity);
 
-        return $this->cart->content();
+        return ShoppingCart::content();
     }
 
     public function destroy($rowId)
     {
-        $this->cart->remove($rowId);
-
-        return $this->cart->content();
+        ShoppingCart::remove($rowId);
+        return ShoppingCart::content();
     }
 
     public function checkout()
@@ -101,7 +98,7 @@ class CartController extends Controller
 
         $user = $this->user->store($userInput);        
 
-        $transaction = $this->gateway->charge($user, $this->cart->total(), $request->token);
+        $transaction = $this->gateway->charge($user, ShoppingCart::total(), $request->token);
 
         if( ! $transaction )
         {
@@ -127,7 +124,7 @@ class CartController extends Controller
             'comments'          => ''
         ]); 
 
-        foreach( $this->cart->content() as $item )
+        foreach( ShoppingCart::content() as $item )
         {
             $packageId = $item->options->selectedPackage->id;
             $adult_quantity = $item->qty;
@@ -146,7 +143,7 @@ class CartController extends Controller
                 ]);       
         }
 
-        $this->cart->destroy();
+        ShoppingCart::destroy();
 
         event( new UserPurchasedAPackage($user, $booking->booking_reference) );
 

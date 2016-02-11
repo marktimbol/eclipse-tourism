@@ -10,33 +10,43 @@ class Booking {
 	{
 		return Cart::instance('booking')->add($content);
 	}
-	
-	public static function content()
-	{
-		return Cart::instance('booking')->content();
-	}	
-
-	public static function total()
-	{
-		return Cart::instance('booking')->total();
-	}
 
 	public static function count()
 	{
 		return Cart::instance('booking')->count(false);
+	}
+
+	// public function add(array $content)
+	// {
+	// 	return Cart::instance('booking')->add($content);
+	// }	
+	
+	public function content()
+	{
+		return Cart::instance('booking')->content();
 	}	
 
-	public static function update($rowId, $quantity)
+	public function total()
+	{
+		return Cart::instance('booking')->total();
+	}
+
+	// public function count()
+	// {
+	// 	return Cart::instance('booking')->count(false);
+	// }	
+
+	public function update($rowId, $quantity)
 	{
 		return Cart::instance('booking')->update($rowId, $quantity);
 	}	
 
-	public static function remove($rowId)
+	public function remove($rowId)
 	{
 		Cart::instance('booking')->remove($rowId);
 	}	
 
-	public static function destroy()
+	public function destroy()
 	{
 		Cart::instance('booking')->destroy();
 	}	

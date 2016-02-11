@@ -17,6 +17,9 @@ class CategoriesController extends Controller
     	$this->category = $category;
     }
 
+    /**
+     * We're just showing 8 categories on the Mega Menu
+     */
     public function index()
     {
 		return $this->category->take(8);

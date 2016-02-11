@@ -55,11 +55,11 @@ Route::group(['middleware' => 'web'], function() {
 	*/
 	Route::get('booking/checkout', ['as' => 'booking.checkout', 'uses' => 'BookingsController@checkout']);
 	Route::post('booking/checkout', ['as' => 'booking.checkout', 'uses' => 'BookingsController@onCheckout']);
-	Route::get('booking/checkout/success', ['as' => 'booking.checkout.success', 'uses' => 'BookingsController@bookingSuccess']);
+	Route::get('booking/checkout/success', ['as' => 'booking.checkout.success', 'uses' => 'BookingsController@checkoutSuccess']);
 
-	Route::get('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@getBookingPayment']);
-	Route::put('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@onBookingPayment']);
-	Route::get('booking/{bookingReference}/payment/success', ['as' => 'booking.payment.success', 'uses' => 'BookingsController@bookingPaymentSuccess']);
+	// Route::get('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@getBookingPayment']);
+	// Route::put('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@onBookingPayment']);
+	// Route::get('booking/{bookingReference}/payment/success', ['as' => 'booking.payment.success', 'uses' => 'BookingsController@bookingPaymentSuccess']);
 
 	Route::resource('booking', 'BookingsController');
 });
@@ -160,7 +160,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 {
 	/*
 	|--------------------------------------------------------------------------
-	| Categories Route
+	| Categories API Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('categories', [
@@ -170,7 +170,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 	
 	/*
 	|--------------------------------------------------------------------------
-	| Packages Route
+	| Packages API Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('packages', ['as' => 'api.v1.packages', 'uses' => 'Api\PackagesController@index']);
@@ -179,7 +179,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 	
 	/*
 	|--------------------------------------------------------------------------
-	| Shopping Cart Route
+	| Shopping Cart API Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('cart/count', 'Api\Shop\ShoppingCartController@count');
@@ -188,7 +188,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 
 	/*
 	|--------------------------------------------------------------------------
-	| Bookings Route
+	| Bookings API Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('booking/count', 'Api\Shop\BookingsController@count');
@@ -198,14 +198,15 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 
 	/*
 	|--------------------------------------------------------------------------
-	| Package Information Route
+	| Package Information API Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('packages/{packageId}/information', 'Api\PackagesInformationController@all');
+	Route::get('packages/{packageId}/information/{id}', 'Api\PackagesInformationController@get');
 
 	/*
 	|--------------------------------------------------------------------------
-	| Package Ticket options Route
+	| Package Ticket options API Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('packages/{packageId}/tickets', 'Api\TicketsController@all');
@@ -213,7 +214,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 	
 	/*
 	|--------------------------------------------------------------------------
-	| Convert amount to selected currency Route
+	| Convert amount to selected currency API Route
 	|--------------------------------------------------------------------------
 	*/
 	Route::get('/convert-amount/{amount}/{currency}', 'PagesController@convertAmount');

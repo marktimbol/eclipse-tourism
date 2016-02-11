@@ -9,25 +9,18 @@ use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
-    protected $cart;
-
-    public function __construct(ShoppingCart $cart)
-    {
-        $this->cart = $cart;
-    }
-
     public function content()
     {
-        return $this->cart->content();
+        return ShoppingCart::content();
     }
 
     public function count()
     {
-        return $this->cart->count();
+        return ShoppingCart::count();
     }
 
     public function total()
     {
-        return $this->cart->total();
+        return ShoppingCart::total();
     }
 }

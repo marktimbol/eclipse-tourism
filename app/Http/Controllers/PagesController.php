@@ -22,7 +22,7 @@ class PagesController extends Controller
         setDefaultCurrency();
 
         \JavaScript::put([
-            'packages' => $this->package->take(9)
+            'packages' => $this->package->take(9) //featuredPackages
             ]);
 
         return view('public.home');
@@ -48,6 +48,7 @@ class PagesController extends Controller
     {
         $this->dispatch( new SendMessage($request->name, $request->email, $request->phone, $request->message) );
         flash()->overlay('Your inquiry was sent successfully. Our customer representative will contact you shortly.');
+        
         return redirect()->route('contact');
     }
 

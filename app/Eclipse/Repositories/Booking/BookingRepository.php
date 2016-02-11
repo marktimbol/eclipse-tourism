@@ -3,12 +3,23 @@
 namespace Eclipse\Repositories\Booking;
 
 use App\Booking;
+use App\User;
 
 class BookingRepository implements BookingRepositoryInterface {
 
 	public function findByReference($reference) {
 		return Booking::with('user', 'packages.photos', 'packages.tickets')
 			->where('booking_reference', $reference)->first();
+	}
+
+	public function createBooking(User $user, $data)
+	{
+        return $user->bookings()->create([
+            'booking_reference' => $data['booking_reference'],
+            'paid'              => $data['paid'],
+            'status'            => $data['status'],
+            'comments'          => $data['comments']
+        ]); 
 	}
 
 	public function paid() {

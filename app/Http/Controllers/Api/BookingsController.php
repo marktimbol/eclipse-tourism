@@ -18,9 +18,6 @@ class BookingsController extends Controller
 
     public function getBooking($bookingReference)
     {
-        $booking = $this->booking->findByReference($bookingReference);
-        
-        return $booking;
+        return $this->booking->findByReference($bookingReference);
     }
-	
 }

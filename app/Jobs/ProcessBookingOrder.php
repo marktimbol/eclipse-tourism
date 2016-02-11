@@ -2,28 +2,22 @@
 
 namespace App\Jobs;
 
-use App\Jobs\Job;
 use App\Events\UserBookedAPackage;
+use App\Jobs\Job;
+use Eclipse\Repositories\Booking\BookingRepositoryInterface;
+use Eclipse\Repositories\User\UserRepositoryInterface;
 use Eclipse\Shop\Booking;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Eclipse\Repositories\User\UserRepositoryInterface;
 
 class ProcessBookingOrder extends Job
 {
     protected $name;
-
     protected $email;
-
     protected $phone;
-
     protected $address1;
-
     protected $address2;
-
     protected $city;
-
     protected $state;
-
     protected $country;
 
     /**
@@ -48,7 +42,7 @@ class ProcessBookingOrder extends Job
      *
      * @return void
      */
-    public function handle(UserRepositoryInterface $userRepo, Booking $bookingInstance) 
+    public function handle(UserRepositoryInterface $userRepository, BookingRepositoryInterface $bookingRepository) 
     {
         $data = [
             'name'      => $this->name,
@@ -61,21 +55,30 @@ class ProcessBookingOrder extends Job
             'country'   => $this->country
         ]; 
 
-        $user = $userRepo->store($data);
+        $user = $userRepository->store($data);
 
         if( $user )
         {
             /**
              * Save the data to "bookings" table
              */
-            $booking = $user->bookings()->create([
+            $bookingData = [
                 'booking_reference' => time(),
                 'paid'              => false,
                 'status'            => 'Not yet paid',
                 'comments'          => ''
-            ]); 
+            ];
 
-            foreach( $bookingInstance->content() as $item )
+            $booking = $this->booking->createBooking($user, $bookingData);
+
+            // $booking = $user->bookings()->create([
+            //     'booking_reference' => time(),
+            //     'paid'              => false,
+            //     'status'            => 'Not yet paid',
+            //     'comments'          => ''
+            // ]); 
+
+            foreach( Booking::content() as $item )
             {
                 $packageId = $item->options->selectedPackage->id;
                 $quantity = $item->qty;
@@ -93,7 +96,7 @@ class ProcessBookingOrder extends Job
                     ]);       
             }
 
-            $bookingInstance->destroy();
+            Booking::destroy();
 
             event( new UserBookedAPackage($user, $booking->booking_reference) );
 
@@ -105,7 +108,7 @@ class ProcessBookingOrder extends Job
             /**
              * If payment is unsuccessful, delete the user to avoid duplicating his/her record on the "users" table
              */
-            $userRepo->delete($user->id);
+            $userRepository->delete($user->id);
 
         }
     }

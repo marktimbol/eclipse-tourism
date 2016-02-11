@@ -4,43 +4,43 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\PackageInformation;
-use Eclipse\Repositories\Package\PackageRepositoryInterface;
+use Eclipse\Repositories\PackageInformation\PackageInformationRepositoryInterface as PackageInformationRepository;
+use Eclipse\Repositories\Package\PackageRepositoryInterface as PackageRepository;
 use Illuminate\Http\Request;
 
 class PackagesInformationController extends Controller
 {
-    public function __construct(PackageRepositoryInterface $package)
+    protected $package;
+    protected $packageInformation;
+
+    public function __construct(PackageRepository $package, PackageInformationRepository $packageInformation)
     {
         $this->package = $package;
+        $this->packageInformation = $packageInformation;
     }
 
     public function store(Request $request)
     {
-    	$data = new PackageInformation([
-    		'title' => $request->title,
-    		'description'	=> $request->description
-    	]);
-
-        $package = $this->package->find($request->package_id);
-
-    	return $package->information()->save($data);
+        return $this->packageInformation->store($request->all());
     }
 
     public function update(Request $request)
     {
-    	$packageInformation = PackageInformation::findOrFail($request->id);
-        $packageInformation->title = $request->title;
-        $packageInformation->description = $request->description;
-        
-        $packageInformation->save();
+        $this->packageInformation->update($request->id, $request->all());
 
+        /**
+         * return all the package information to feed the React.
+         */
         return $this->package->find($request->package_id)->information;
     }
 
     public function destroy(Request $request)
     {
-    	PackageInformation::findOrFail($request->id)->delete();
+        $this->packageInformation->delete($request->id);
+
+        /**
+         * return all the package information to feed the React.
+         */
         return $this->package->find($request->package_id)->information;
     }
 }

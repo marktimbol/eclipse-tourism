@@ -16,12 +16,12 @@ class PackageInformationTest extends TestCase
 
         $url = '/admin/packages/'.$package->id.'/information';
 
-        $this->call('POST', $url, [
+        $response = $this->call('POST', $url, [
         	'package_id' => $package->id, 
         	'title' => 'Title', 
         	'description' => 'Description'
         ]);
-
+        
         $this->seeInDatabase('package_information', [
         	'package_id' => $package->id,
         	'title' => 'Title',

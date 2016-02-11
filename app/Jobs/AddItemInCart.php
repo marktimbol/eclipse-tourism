@@ -4,8 +4,8 @@ namespace App\Jobs;
 
 use App\Events\ItemWasAddedOnTheCart;
 use App\Jobs\Job;
-use App\Ticket;
 use Eclipse\Repositories\Package\PackageRepositoryInterface;
+use Eclipse\Repositories\Ticket\TicketOptionsRepositoryInterface;
 use Eclipse\Shop\ShoppingCart;
 use Illuminate\Contracts\Bus\SelfHandling;
 
@@ -35,7 +35,7 @@ class AddItemInCart extends Job
      *
      * @return void
      */
-    public function handle(PackageRepositoryInterface $package, ShoppingCart $cart)
+    public function handle(PackageRepositoryInterface $package, TicketOptionsRepositoryInterface $ticketOption)
     {
         $selectedPackage = $package->find($this->package_id);
         $adultPrice = $selectedPackage->adult_price;
@@ -43,7 +43,7 @@ class AddItemInCart extends Job
 
         if( $selectedPackage->has_ticket_option )
         {
-            $ticket = Ticket::findOrFail($this->ticket);
+            $ticket = $ticketOption->find($this->ticket);
             $adultPrice = $ticket->adultPrice;
             $ticketId = $ticket->id;
         }
@@ -63,7 +63,7 @@ class AddItemInCart extends Job
             ]
         ];
 
-        $cart->add($data);
+        ShoppingCart::add($data);
 
         event(new ItemWasAddedOnTheCart($data) );
         
