@@ -89,7 +89,7 @@ class ShopBookingTest extends TestCase
 
     public function test_booking_checkout()
     {
-        // $this->expectsJobs()
+        // $this->expectsJobs(ProcessBookingOrder::class);
         // $this->call('POST', '/cart/checkout', []);
     }
 }
