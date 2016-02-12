@@ -42,7 +42,7 @@ var MegaMenu = React.createClass({
 				return (
 					<li key={currentPackage.id}>
 						<a href={packageUrl}>
-							{ currentPackage.name }
+							{ currentPackage.name.substr(0, 30) }
 						</a>
 					</li>
 				);
