@@ -1,5 +1,8 @@
 <?php
+
+
 Route::group(['middleware' => 'web'], function() {
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Authentication Routes
@@ -55,7 +58,7 @@ Route::group(['middleware' => 'web'], function() {
 	*/
 	Route::get('booking/checkout', ['as' => 'booking.checkout', 'uses' => 'BookingsController@checkout']);
 	Route::post('booking/checkout', ['as' => 'booking.checkout', 'uses' => 'BookingsController@onCheckout']);
-	Route::get('booking/checkout/success', ['as' => 'booking.checkout.success', 'uses' => 'BookingsController@checkoutSuccess']);
+	// Route::get('booking/checkout/success', ['as' => 'booking.checkout.success', 'uses' => 'BookingsController@checkoutSuccess']);
 
 	// Route::get('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@getBookingPayment']);
 	// Route::put('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@onBookingPayment']);

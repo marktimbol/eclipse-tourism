@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Requests\CartCheckoutRequest;
 use App\Jobs\AddItemInCart;
 use Eclipse\Billings\BillingGateway;
+use Eclipse\Repositories\Booking\BookingRepositoryInterface;
 use Eclipse\Repositories\User\UserRepositoryInterface;
 use Eclipse\Shop\ShoppingCart;
 use Illuminate\Http\Request;
@@ -16,11 +17,13 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     protected $user;
+    protected $booking;
     protected $gateway;
 
-    public function __construct(UserRepositoryInterface $user, BillingGateway $gateway)
+    public function __construct(UserRepositoryInterface $user, BookingRepositoryInterface $booking, BillingGateway $gateway)
     {
         $this->user = $user;
+        $this->booking = $booking;
         $this->gateway = $gateway;
     }
 
@@ -114,39 +117,33 @@ class CartController extends Controller
             return redirect()->back()->withInput();
         }
 
-        /**
-         * Save the data to "bookings" table
-         */
-        $booking = $user->bookings()->create([
+        $bookingData = [
             'booking_reference' => bookingReference($transaction),
             'paid'              => $transaction->paid,
             'status'            => $transaction->status,
             'comments'          => ''
-        ]); 
+        ];
 
-        foreach( ShoppingCart::content() as $item )
-        {
-            $packageId = $item->options->selectedPackage->id;
-            $adult_quantity = $item->qty;
-            $child_quantity = $item->options->child_quantity;
+        $booking = $this->booking->createBooking($user, $bookingData);
 
-            /**
-             * Save the data to "booking_details" table
-             */
-            $booking->packages()->attach($packageId, [
-                'adult_quantity'    => $adult_quantity,
-                'child_quantity'    => $child_quantity,
-                'date'              => $item->options->date,   //Day, Month Year
-                'date_submit'       => $item->options->date_submit, //YYYY-MM-DD
-                'time'              => $item->options->time,
-                'ticket'            => $item->options->ticket             
-                ]);       
-        }
+        /**
+         * Attach the selected packages on the bookings table
+         *
+         * @param $booking App\Booking
+         * @param $content Gloudemans\Shoppingcart\CartCollection
+         */
+        $this->booking->attachPackages($booking, ShoppingCart::content());
 
+        /**
+         * Delete the Booked items
+         */
         ShoppingCart::destroy();
 
+        /**
+         * Fire off an email
+         */
         event( new UserPurchasedAPackage($user, $booking->booking_reference) );
-
+    
         flash()->overlay('You have successfully booked the Package(s).');
 
         return redirect()->route('cart.checkout.success');

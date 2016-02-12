@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ProcessBookingOrder;
 use Eclipse\Shop\Booking;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -32,7 +33,7 @@ class ShopBookingTest extends TestCase
 	        	'rowId'	=> $item->rowid,
 	            'qty'           => 3,
 	            'options'       => [
-	                'child_quantity'        => 2
+	                'child_quantity'   => 2
 	            ]
 	        ];
 
@@ -67,9 +68,42 @@ class ShopBookingTest extends TestCase
         
     }
 
+
+    public function test_booking_checkout()
+    {
+        $this->expectsJobs(ProcessBookingOrder::class);
+
+        $this->addNewItem();
+
+        $data = [
+            'name'  => 'Mark Timbol',
+            'email' => 'mark.timbol@hotmail.com',
+            'password'  => bcrypt('marktimbol'),
+            'phone' => '+971 56 375 9865',
+            'address1' => 'Address 1',
+            'address2' => 'Address 2',
+            'city'  => 'City',
+            'state' => 'State',
+            'country'   => 'Country'
+        ];
+
+        $this->call('POST', '/booking/checkout', $data);
+
+        $this->seePageIs('/booking/checkout');
+    
+        // (new ProcessBookingOrder($data))->handle();
+
+        // $this->seeInDatabase('users', [
+        //     'name'  => 'Mark Timbol',
+        //     'email' => 'mark.timbol@hotmail.com'
+        // ]);
+
+
+    }
+
     private function addNewItem()
     {
-    	$package = factory(App\Package::class)->create();
+        $package = factory(App\Package::class)->create();
 
         $item = [
             'id'            => $package->id,
@@ -78,18 +112,12 @@ class ShopBookingTest extends TestCase
             'price'         => $package->adult_price,
             'options'       => [
                 'child_quantity'        => 1,
-	    		'date' => 'February 11, 2016',
-	    		'date_submit' => '',   
+                'date' => 'February 11, 2016',
+                'date_submit' => '',   
                 'selectedPackage'       => $package
             ]
         ];
 
-    	return Booking::add($item);
-    }
-
-    public function test_booking_checkout()
-    {
-        // $this->expectsJobs(ProcessBookingOrder::class);
-        // $this->call('POST', '/cart/checkout', []);
+        return Booking::add($item);
     }
 }

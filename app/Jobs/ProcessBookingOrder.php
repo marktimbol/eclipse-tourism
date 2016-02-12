@@ -59,9 +59,7 @@ class ProcessBookingOrder extends Job
 
         if( $user )
         {
-            /**
-             * Save the data to "bookings" table
-             */
+
             $bookingData = [
                 'booking_reference' => time(),
                 'paid'              => false,
@@ -69,39 +67,31 @@ class ProcessBookingOrder extends Job
                 'comments'          => ''
             ];
 
-            $booking = $this->booking->createBooking($user, $bookingData);
+            $booking = $bookingRepository->createBooking($user, $bookingData);
 
-            // $booking = $user->bookings()->create([
-            //     'booking_reference' => time(),
-            //     'paid'              => false,
-            //     'status'            => 'Not yet paid',
-            //     'comments'          => ''
-            // ]); 
+            /**
+             * Attach the selected packages on the bookings table
+             *
+             * @param $items array
+             * @param $content Gloudemans\Shoppingcart\CartCollection
+             */
+            $bookingRepository->attachPackages($booking, Booking::content());
 
-            foreach( Booking::content() as $item )
-            {
-                $packageId = $item->options->selectedPackage->id;
-                $quantity = $item->qty;
-                $child_quantity = $item->options->child_quantity;
 
-                /**
-                 * Save the data to "booking_details" table
-                 */
-                $booking->packages()->attach($packageId, [
-                    'adult_quantity'    => $quantity,
-                    'child_quantity'    => $child_quantity,
-                    'date'              => $item->options->date,   //Day, Month Year
-                    'date_submit'       => $item->options->date_submit, //YYYY-MM-DD
-                    'time'              => $item->options->time ?: ''                    
-                    ]);       
-            }
-
+            /**
+             * Delete the Booked items
+             */
             Booking::destroy();
 
+            /**
+             * Fire off an email
+             */
             event( new UserBookedAPackage($user, $booking->booking_reference) );
 
         } 
+
         else 
+        
         {
             event( new UserBookingWasNotSuccessful($user) );
             

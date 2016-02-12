@@ -77,10 +77,10 @@ class BookingsController extends Controller
         );
     }
 
-    public function checkoutSuccess()
-    {
-        return view('public.booking.booking-payment-success');
-    }
+    // public function checkoutSuccess()
+    // {
+    //     return view('public.booking.booking-payment-success');
+    // }
 
     // public function getBookingPayment($bookingReference)
     // {    

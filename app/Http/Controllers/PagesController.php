@@ -13,12 +13,13 @@ class PagesController extends Controller
 {
     protected $package;
 
-    public function __construct(PackageRepositoryInterface $package) {
+    public function __construct(PackageRepositoryInterface $package)
+    {
         $this->package = $package;
     }
 
     public function home()
-    {        
+    {                
         setDefaultCurrency();
 
         \JavaScript::put([
@@ -47,6 +48,7 @@ class PagesController extends Controller
     public function submitContact(SendMessageRequest $request)
     {
         $this->dispatch( new SendMessage($request->name, $request->email, $request->phone, $request->message) );
+
         flash()->overlay('Your inquiry was sent successfully. Our customer representative will contact you shortly.');
         
         return redirect()->route('contact');
@@ -58,7 +60,8 @@ class PagesController extends Controller
         return session('currency');
     }
 
-    public function convertAmount($amount, $currency) {
+    public function convertAmount($amount, $currency)
+    {
         return convertedAmountWithCurrency($amount, $currency);
     }
 }
