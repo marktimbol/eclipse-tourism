@@ -54,7 +54,8 @@ class BookingRepository implements BookingRepositoryInterface {
                 'child_quantity'    => $child_quantity,
                 'date'              => $item->options->date,   //Day, Month Year
                 'date_submit'       => $item->options->date_submit, //YYYY-MM-DD
-                'time'              => $item->options->time ?: ''                    
+                'time'              => $item->options->time ?: '',
+                'ticket'            => $item->options->ticket ?: ''                    
                 ]);       
         }
 	}
