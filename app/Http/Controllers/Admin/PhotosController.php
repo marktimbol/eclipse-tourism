@@ -5,6 +5,7 @@ use App\Deal;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Photo;
+use Eclipse\Repositories\Deal\DealsRepositoryInterface;
 use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Illuminate\Http\Request;
 use Image;
@@ -14,10 +15,12 @@ class PhotosController extends Controller
 {
     protected $uploadsDirectory = '/images/uploads/';
     protected $package;
+    protected $promo;
 
-    public function __construct(PackageRepositoryInterface $package)
+    public function __construct(PackageRepositoryInterface $package, DealsRepositoryInterface $promo)
     {
         $this->package = $package;
+        $this->promo = $promo;
     }
 
     public function uploadPackagePhoto(Request $request)
@@ -60,11 +63,14 @@ class PhotosController extends Controller
         {
             $file = $request->file('photo');
             $filename = $this->makeThumbnail($file);
-
-            $promo = Deal::findOrFail($deals->id);
-            $photo = new Photo;
-            $photo->path = $filename;
-            return $promo->photos()->save($photo);
+            
+            return $this->promo->addPhoto($request->package_id, $filename);
         }
+    }
+
+    public function deletePromoPhoto($path)
+    {
+        $this->promo->deletePhoto($path);
+        return redirect()->back();
     }
 }

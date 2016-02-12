@@ -8,6 +8,8 @@ use Eclipse\Repositories\Booking\BookingRepository;
 use Eclipse\Repositories\Booking\BookingRepositoryInterface;
 use Eclipse\Repositories\Category\CategoryRepository;
 use Eclipse\Repositories\Category\CategoryRepositoryInterface;
+use Eclipse\Repositories\Deal\DealsRepository;
+use Eclipse\Repositories\Deal\DealsRepositoryInterface;
 use Eclipse\Repositories\PackageInformation\PackageInformationRepository;
 use Eclipse\Repositories\PackageInformation\PackageInformationRepositoryInterface;
 use Eclipse\Repositories\Package\PackageRepository;
@@ -44,5 +46,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(BillingGateway::class, StripeBilling::class);
         $this->app->bind(PackageInformationRepositoryInterface::class, PackageInformationRepository::class);
         $this->app->bind(TicketOptionsRepositoryInterface::class, TicketOptionsRepository::class);
+        $this->app->bind(DealsRepositoryInterface::class, DealsRepository::class);
     }
 }

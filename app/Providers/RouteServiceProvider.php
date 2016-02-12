@@ -27,27 +27,35 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $this->bind('package', function($slug) {
-            return Package::with('information', 'tickets', 'photos')->whereSlug($slug)->firstOrFail();
+        $this->bind('package', function($slug)
+        {
+            return Package::with('information', 'tickets', 'photos')
+                ->whereSlug($slug)->firstOrFail();
         });
 
-        $this->bind('category', function($slug) {
+        $this->bind('category', function($slug)
+        {
             return Category::whereSlug($slug)->firstOrFail();
         });        
 
-        $this->bind('packages', function($id) {
+        $this->bind('packages', function($id)
+        {
             return Package::findOrFail($id);
         });
 
-        $this->bind('categories', function($id) {
+        $this->bind('categories', function($id)
+        {
             return Category::findOrFail($id);
         });   
 
-        $this->bind('deal', function($slug) {
-            return Deal::with('photos')->whereSlug($slug)->first();
+        $this->bind('deal', function($slug)
+        {
+            return Deal::with('photos')
+                ->whereSlug($slug)->first();
         });   
 
-        $this->bind('deals', function($id) {
+        $this->bind('deals', function($id)
+        {
             return Deal::findOrFail($id);
         });   
 

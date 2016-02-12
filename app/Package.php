@@ -20,7 +20,8 @@ class Package extends Model
         'has_ticket_option'
     ];
 
-    public function photos() {
+    public function photos()
+    {
         return $this->morphMany(Photo::class, 'imageable');
     }
 
@@ -37,15 +38,18 @@ class Package extends Model
                     ->withPivot('adult_quantity', 'child_quantity', 'date', 'date_submit', 'time');
     }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function information() {
+    public function information()
+    {
         return $this->hasMany(PackageInformation::class);
     }
 
-    public function tickets() {
+    public function tickets()
+    {
         return $this->hasMany(Ticket::class);
     }
 

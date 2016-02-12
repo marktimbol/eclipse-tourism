@@ -2,7 +2,6 @@
 
 
 Route::group(['middleware' => 'web'], function() {
-	
 	/*
 	|--------------------------------------------------------------------------
 	| Authentication Routes
@@ -58,13 +57,12 @@ Route::group(['middleware' => 'web'], function() {
 	*/
 	Route::get('booking/checkout', ['as' => 'booking.checkout', 'uses' => 'BookingsController@checkout']);
 	Route::post('booking/checkout', ['as' => 'booking.checkout', 'uses' => 'BookingsController@onCheckout']);
+	Route::resource('booking', 'BookingsController');
 	// Route::get('booking/checkout/success', ['as' => 'booking.checkout.success', 'uses' => 'BookingsController@checkoutSuccess']);
 
 	// Route::get('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@getBookingPayment']);
 	// Route::put('booking/{bookingReference}/payment', ['as' => 'booking.payment', 'uses' => 'BookingsController@onBookingPayment']);
 	// Route::get('booking/{bookingReference}/payment/success', ['as' => 'booking.payment.success', 'uses' => 'BookingsController@bookingPaymentSuccess']);
-
-	Route::resource('booking', 'BookingsController');
 });
 
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function() {
@@ -130,6 +128,11 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function() 
 				'as' => 'admin.deals.photos.upload', 
 				'uses' => 'Admin\PhotosController@uploadPromoPhoto'
 			]);	
+
+	Route::delete('deals/photos/delete/{path}', [
+				'as' => 'admin.deals.photos.delete', 
+				'uses' => 'Admin\PhotosController@deletePromoPhoto'
+			]);		
 	/*
 	|--------------------------------------------------------------------------
 	| Promo / Deals Route

@@ -51,6 +51,9 @@
                             {!! method_field('DELETE') !!}
                             <button type="submit" name="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete Package</button>
                         </form>
+
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
 		            	
 					</div>
 				</div>

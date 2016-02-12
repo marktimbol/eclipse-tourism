@@ -59,7 +59,6 @@ class ProcessBookingOrder extends Job
 
         if( $user )
         {
-
             $bookingData = [
                 'booking_reference' => time(),
                 'paid'              => false,
@@ -71,12 +70,8 @@ class ProcessBookingOrder extends Job
 
             /**
              * Attach the selected packages on the bookings table
-             *
-             * @param $items array
-             * @param $content Gloudemans\Shoppingcart\CartCollection
              */
             $bookingRepository->attachPackages($booking, Booking::content());
-
 
             /**
              * Delete the Booked items

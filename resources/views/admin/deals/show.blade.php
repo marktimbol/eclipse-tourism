@@ -32,7 +32,7 @@
 	            					<div class="package-photo">
 	            						{!! getUploadedPhoto($photo->path, 'thumbnail img-responsive') !!}
 	            						@if( count($promo->photos) > 1)
-		            						<form method="POST" action="#">
+		            						<form method="POST" action="{{ route('admin.deals.photos.delete', $photo->path) }}">
 		            							{!! csrf_field() !!}
 		            							{!! method_field('DELETE') !!}
 		     									<button type="submit" name="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
@@ -46,6 +46,7 @@
 
 		            <form class="dropzone" id="UploadPhotosForm" action="{{ route('admin.deals.photos.upload', $promo->id) }}">
 		            	{!! csrf_field() !!}
+		            	<input type="hidden" name="package_id" value="{{ $promo->id }}" />
 		            </form>
 				</div>
 			</div>

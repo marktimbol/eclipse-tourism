@@ -63,6 +63,7 @@ class PackageRepository implements PackageRepositoryInterface {
 		$package = $this->find($id);
 		$photo = new Photo;
 		$photo->path = $filename;
+		
 		return $package->photos()->save($photo);
 	}	
 

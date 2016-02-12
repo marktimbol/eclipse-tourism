@@ -106,6 +106,7 @@ class CartController extends Controller
         if( ! $transaction )
         {
             event( new UserPurchaseWasNotSuccessful($user) );
+
             /**
              * If payment is not successful, delete the user to avoid duplicating his/her
              * record on the "users" table
@@ -128,9 +129,6 @@ class CartController extends Controller
 
         /**
          * Attach the selected packages on the bookings table
-         *
-         * @param $booking App\Booking
-         * @param $content Gloudemans\Shoppingcart\CartCollection
          */
         $this->booking->attachPackages($booking, ShoppingCart::content());
 
@@ -140,10 +138,10 @@ class CartController extends Controller
         ShoppingCart::destroy();
 
         /**
-         * Fire off an email
+         * Fire off an event
          */
         event( new UserPurchasedAPackage($user, $booking->booking_reference) );
-    
+
         flash()->overlay('You have successfully booked the Package(s).');
 
         return redirect()->route('cart.checkout.success');

@@ -4,17 +4,27 @@ namespace Eclipse\Repositories\Booking;
 
 use App\Booking;
 use App\User;
-use Eclipse\Shop\Booking as ItemsInBooking;
 use Gloudemans\Shoppingcart\CartCollection;
 
 class BookingRepository implements BookingRepositoryInterface {
 
+    /**
+     * Get the booking details by it's reference number
+     *
+     * @param $reference string
+     */
 	public function findByReference($reference)
     {
 		return Booking::with('user', 'packages.photos', 'packages.tickets')
 			->where('booking_reference', $reference)->first();
 	}
 
+    /**
+     * Save the data to bookings table
+     *
+     * @param $user App\User
+     * @param $data array
+     */
 	public function createBooking(User $user, $data)
 	{
         return $user->bookings()->create([
@@ -25,6 +35,12 @@ class BookingRepository implements BookingRepositoryInterface {
         ]); 
 	}
 
+    /**
+     * Attach the selected packages on the bookings table
+     *
+     * @param $booking App\Booking
+     * @param $content Gloudemans\Shoppingcart\CartCollection
+     */ 
 	public function attachPackages(Booking $booking, CartCollection $items)
 	{
         foreach( $items as $item )
@@ -33,9 +49,6 @@ class BookingRepository implements BookingRepositoryInterface {
             $quantity = $item->qty;
             $child_quantity = $item->options->child_quantity;
 
-            /**
-             * Save the data to "booking_details" table
-             */
             $booking->packages()->attach($packageId, [
                 'adult_quantity'    => $quantity,
                 'child_quantity'    => $child_quantity,
@@ -46,6 +59,9 @@ class BookingRepository implements BookingRepositoryInterface {
         }
 	}
 
+    /**
+     * Get all the paid bookings
+     */
 	public function paid() {
 		return Booking::with('user', 'packages.tickets')
 			->latest()
@@ -53,6 +69,10 @@ class BookingRepository implements BookingRepositoryInterface {
 			->get();
 	}
 
+    /**
+     * Get all the unpaid booking. These are the upon 
+     * requests booking.
+     */
 	public function notPaid() {
 		return Booking::with('user', 'packages.tickets')
 			->latest()

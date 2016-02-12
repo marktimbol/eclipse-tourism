@@ -24,7 +24,7 @@
             		<tr>
                         <td>
                             <a href="{{ route('admin.packages.show', $package->id) }}">
-                                {{ $package->name }}
+                                {{ str_limit($package->name, 30) }}
                             </a>
                         </td>                    
                         <td>
