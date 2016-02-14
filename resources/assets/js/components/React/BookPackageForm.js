@@ -175,6 +175,10 @@ var BookPackageForm = React.createClass({
 			}.bind(this)
 		});
 
+		this.setState({ ticket: this.props.selectedTicket });
+
+		console.log('componentDidMount' + this.state.ticket);
+
 	},
 
 	render() {
@@ -260,7 +264,7 @@ var BookPackageForm = React.createClass({
 						<div className="col m12 mb-0" style={ticketOptionsStyle}>
 							<div className="form-group">
 								<label htmlFor="time">Ticket:</label>
-								<select className="form-control" onChange={this.fetchTicketPrice}>
+								<select className="form-control" value={this.state.ticket} onChange={this.fetchTicketPrice}>
 									<option value="0">Choose your ticket</option>
 									{ ticketOptions }
 								</select>

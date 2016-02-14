@@ -1,0 +1,64 @@
+.ticketOptions {
+	margin-top: 40px;
+	.collection {
+		border: none;
+		.collection-item {
+			border-bottom: none;
+			text-align: center;
+			font-size: 1.07rem;
+			line-height: 1.6em;
+			strong {
+				font-weight: bold;
+				text-transform: uppercase;
+				display: block;
+			}
+		}
+	}
+
+	.card {
+		.card-image {
+			position: relative;
+			width: 100%;
+			.card-title {
+				position: relative;
+				font-size: 1.28rem;
+				line-height: 1.6em;
+				text-align: center;
+				width: 100%;
+				padding: 10px 15px;
+				text-transform: uppercase;
+				background: rgba(0, 0, 0, 0.1);
+			}
+			.price {
+				position: relative;
+				font-size: 4rem;
+				line-height: 1.6em;
+				color: #fff;
+				font-weight: 300;
+				text-align: center;
+				sup {
+					font-weight: 100;
+					font-size: 1.42rem;
+					line-height: 1.6em;
+					top: -35px;
+				}
+				sub {
+					font-weight: 100;
+					font-size: 1.42rem;
+					line-height: 1.6em;
+					top: 0px;
+				}
+			}
+
+			.price-desc {
+				text-align: center;
+				color: #fff;
+				padding-bottom: 10px;
+			}
+		}
+
+		.card-content {
+			padding: 0;
+		}
+	}
+}

@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 import PackagePhotos from './PackagePhotos';
 import PackagePrice from './PackagePrice';
 import PackageInfo from './PackageInfo';
+import TicketOptions from './TicketOptions';
 import BookPackageForm from './BookPackageForm';
 import SharePackage from './SharePackage';
 
@@ -13,7 +14,8 @@ var PackageInformation = React.createClass({
 		return {
 			adultPrice: window.package.adult_price,
 			childPrice: window.package.child_price,
-			displayPrice: true
+			displayPrice: true,
+			selectedTicket: 0
 		}
 	},
 
@@ -27,12 +29,15 @@ var PackageInformation = React.createClass({
 		this.setState({
 			adultPrice: adultPrice,
 			childPrice: childPrice,
-			displayPrice: true
+			displayPrice: true,
+			selectedTicket: ticketId
 		});
 
 		if( ticketId == 0 ) {
 			this.setState({ displayPrice: false });
 		}
+
+		console.log('SetPrices ' + this.state.selectedTicket);
 	},
 
 	componentDidMount() {
@@ -41,7 +46,7 @@ var PackageInformation = React.createClass({
 		}
 	},
 
-	render() {
+	render() {		
 		var packageUrl = '/package/' + window.package.slug;
 		return (
 			<div>
@@ -52,6 +57,14 @@ var PackageInformation = React.createClass({
 					<div className="package__description">
 						<h3>{ window.package.subtitle }</h3>
 						<div dangerouslySetInnerHTML={this.showDescription()}></div>
+
+						{ window.package.has_ticket_option ?
+							<TicketOptions 
+								currentPackage={window.package}
+								setPrices={this.setPrices} />
+							: ''
+						}
+
 					</div>
 				</div>
 
@@ -69,6 +82,7 @@ var PackageInformation = React.createClass({
 
 					<BookPackageForm 
 						setPrices={this.setPrices}
+						selectedTicket={this.state.selectedTicket}
 						currentPackage={window.package} />
 
 					<SharePackage url={packageUrl} />
