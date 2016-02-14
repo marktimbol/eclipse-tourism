@@ -28,6 +28,12 @@ var TicketOptions = React.createClass({
 	                                    <strong>5 AED</strong> Merchandise Voucher
 	                                </li>
 	                                <li className="collection-item">
+	                                    <strong>Child Height</strong> Under 1.3m
+	                                </li>
+	                                <li className="collection-item">
+	                                    <strong>Child Age</strong> Under 3 years old FOC
+	                                </li>
+	                                <li className="collection-item">
 	                                	<strong>&nbsp;</strong> &nbsp;
 	                                </li>
 	                                <li className="collection-item">
@@ -62,6 +68,12 @@ var TicketOptions = React.createClass({
 	                                </li>
 	                                <li className="collection-item">
 	                                    <strong>3 Used</strong> Fast Pass
+	                                </li>
+	                                <li className="collection-item">
+	                                    <strong>Child Height</strong> Under 1.3m
+	                                </li>
+	                                <li className="collection-item">
+	                                    <strong>Child Age</strong> Under 3 years old FOC
 	                                </li>
 	                                <li className="collection-item">
 	                                     <strong>&nbsp;</strong> &nbsp;
@@ -99,6 +111,13 @@ var TicketOptions = React.createClass({
 	                                <li className="collection-item">
 	                                    <strong>Priority</strong> Seating
 	                                </li>
+	                                <li className="collection-item">
+	                                    <strong>Child Height</strong> Under 1.3m
+	                                </li>
+	                                <li className="collection-item">
+	                                    <strong>Child Age</strong> Under 3 years old FOC
+	                                </li>
+
 	                            </ul>
 	                        </div>
 	                    </div>
