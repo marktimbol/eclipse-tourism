@@ -174,11 +174,6 @@ var BookPackageForm = React.createClass({
 				this.setState({ date_submit: picker.get('select', 'yyyy-mm-dd') });
 			}.bind(this)
 		});
-
-		this.setState({ ticket: this.props.selectedTicket });
-
-		console.log('componentDidMount' + this.state.ticket);
-
 	},
 
 	render() {

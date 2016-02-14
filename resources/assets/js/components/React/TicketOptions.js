@@ -1,14 +1,6 @@
 var React = require('react');
 
 var TicketOptions = React.createClass({
-	fetchTicketPrice(e) {
-		var ticketId = e.target.value;
-		var url = '/api/v1/packages/' + this.props.currentPackage.id + '/tickets/' + ticketId;
-		$.get(url, function(response) {
-			this.props.setPrices(ticketId, response.adultPrice, response.childPrice);
-		}.bind(this));
-	},
-
 	render() {
 		return (
             <div className="ticketOptions">
@@ -36,9 +28,6 @@ var TicketOptions = React.createClass({
 	                                    <strong>5 AED</strong> Merchandise Voucher
 	                                </li>
 	                            </ul>
-	                        </div>
-	                        <div className="card-action center-align">                      
-	                            <button className="waves-effect waves-light light-blue btn" value="1" onClick={this.fetchTicketPrice}>Select Ticket</button>
 	                        </div>
 	                    </div>
 	                </div>
@@ -69,9 +58,6 @@ var TicketOptions = React.createClass({
 	                                    <strong>3 Used</strong> Fast Pass
 	                                </li>
 	                            </ul>
-	                        </div>
-	                        <div className="card-action center-align">                      
-	                            <button className="waves-effect waves-light light-blue btn" value="2" onClick={this.fetchTicketPrice}>Select Ticket</button>
 	                        </div>
 	                    </div>
 	                </div>
@@ -105,9 +91,6 @@ var TicketOptions = React.createClass({
 	                                    <strong>Priority</strong> Seating
 	                                </li>
 	                            </ul>
-	                        </div>
-	                        <div className="card-action center-align">                      
-	                            <button className="waves-effect waves-light light-blue btn" value="3" onClick={this.fetchTicketPrice}>Select Ticket</button>
 	                        </div>
 	                    </div>
 	                </div>

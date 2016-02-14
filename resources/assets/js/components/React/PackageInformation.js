@@ -15,7 +15,6 @@ var PackageInformation = React.createClass({
 			adultPrice: window.package.adult_price,
 			childPrice: window.package.child_price,
 			displayPrice: true,
-			selectedTicket: 0
 		}
 	},
 
@@ -30,14 +29,11 @@ var PackageInformation = React.createClass({
 			adultPrice: adultPrice,
 			childPrice: childPrice,
 			displayPrice: true,
-			selectedTicket: ticketId
 		});
 
 		if( ticketId == 0 ) {
 			this.setState({ displayPrice: false });
 		}
-
-		console.log('SetPrices ' + this.state.selectedTicket);
 	},
 
 	componentDidMount() {
@@ -59,9 +55,7 @@ var PackageInformation = React.createClass({
 						<div dangerouslySetInnerHTML={this.showDescription()}></div>
 
 						{ window.package.has_ticket_option ?
-							<TicketOptions 
-								currentPackage={window.package}
-								setPrices={this.setPrices} />
+							<TicketOptions />
 							: ''
 						}
 
