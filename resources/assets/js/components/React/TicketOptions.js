@@ -27,6 +27,12 @@ var TicketOptions = React.createClass({
 	                                <li className="collection-item">
 	                                    <strong>5 AED</strong> Merchandise Voucher
 	                                </li>
+	                                <li className="collection-item">
+	                                	<strong>&nbsp;</strong> &nbsp;
+	                                </li>
+	                                <li className="collection-item">
+	                                    <strong>&nbsp;</strong> &nbsp;
+	                                </li>
 	                            </ul>
 	                        </div>
 	                    </div>
@@ -56,6 +62,9 @@ var TicketOptions = React.createClass({
 	                                </li>
 	                                <li className="collection-item">
 	                                    <strong>3 Used</strong> Fast Pass
+	                                </li>
+	                                <li className="collection-item">
+	                                     <strong>&nbsp;</strong> &nbsp;
 	                                </li>
 	                            </ul>
 	                        </div>
