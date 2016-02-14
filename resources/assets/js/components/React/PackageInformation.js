@@ -53,12 +53,6 @@ var PackageInformation = React.createClass({
 					<div className="package__description">
 						<h3>{ window.package.subtitle }</h3>
 						<div dangerouslySetInnerHTML={this.showDescription()}></div>
-
-						{ window.package.has_ticket_option ?
-							<TicketOptions currentPackage={window.package} />
-							: ''
-						}
-
 					</div>
 				</div>
 
@@ -80,6 +74,13 @@ var PackageInformation = React.createClass({
 						currentPackage={window.package} />
 
 					<SharePackage url={packageUrl} />
+				</div>
+
+				<div className="col s12 m12">
+					{ window.package.has_ticket_option ?
+						<TicketOptions currentPackage={window.package} />
+						: ''
+					}
 				</div>
 			</div>
 		);
