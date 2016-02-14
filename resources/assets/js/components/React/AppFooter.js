@@ -20,6 +20,7 @@ var AppFooter = React.createClass({
 											<li><a href="/cart">Cart</a></li>
 											<li><a href="/booking">Bookings</a></li>
 											<li><a href="/faqs">FAQs</a></li>
+											<li><a href="/privacy-policy">Privacy Policy</a></li>
 											<li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>		
 											<li><a href="/login">Employee Login</a></li>								
 										</ul>
@@ -28,8 +29,9 @@ var AppFooter = React.createClass({
 									<div className="col m2 s6">
 										<h5 className="footer__title">Follow Us</h5>
 										<ul className="footer__links">
-											<li><a href="#">Twitter</a></li>
-											<li><a href="#">Facebook</a></li>									
+											<li><a href="https://www.facebook.com/eclipse.tourism" target="_blank">Facebook</a></li>									
+											<li><a href="https://twitter.com/eclipsetourism" target="_blank">Twitter</a></li>
+											<li><a href="https://www.instagram.com/eclipsetourism/" target="_blank">Instagram</a></li>
 										</ul>
 									</div>	
 

@@ -23,8 +23,12 @@ var TicketOptions = React.createClass({
                             <div className="card-title">{ticket.name}</div>
                             <div className="price">
                             	<sup>AED</sup>
-                            	{ ticket.adultPrice}
-                            	<sub>/adult</sub>
+                            	{
+                                    ticket.adultPrice == 0 ?
+                                    ticket.childPrice :
+                                    ticket.adultPrice
+                                }
+                            	<sub>{ ticket.adultPrice == 0 ? '/child' : '/adult' }</sub>
                             </div>
                              <p className="price-desc">1 day ticket</p>
                         </div>
