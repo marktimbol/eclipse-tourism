@@ -19721,7 +19721,9 @@ var TicketInformation = React.createClass({
 			adultPrice: this.props.adultPrice,
 			childPrice: this.props.childPrice,
 
-			showForm: false
+			showForm: false,
+			ticketName: '',
+			ticketDescription: ''
 		};
 	},
 	onDelete: function onDelete(e) {
@@ -19756,6 +19758,12 @@ var TicketInformation = React.createClass({
 	},
 	hideForm: function hideForm() {
 		this.setState({ showForm: false });
+	},
+	handleTicketNameChange: function handleTicketNameChange(e) {
+		this.setState({ ticketName: e.target.value });
+	},
+	handleTicketDescriptionChange: function handleTicketDescriptionChange(e) {
+		this.setState({ ticketDescription: e.target.value });
 	},
 	onSubmitTicketInformation: function onSubmitTicketInformation(e) {
 		e.preventDefault();

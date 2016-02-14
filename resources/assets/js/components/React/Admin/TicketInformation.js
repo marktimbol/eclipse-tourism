@@ -13,6 +13,8 @@ var TicketInformation = React.createClass({
 			childPrice: this.props.childPrice,
 
 			showForm: false,
+			ticketName: '',
+			ticketDescription: ''
 		}
 	},
 
@@ -56,6 +58,14 @@ var TicketInformation = React.createClass({
 
 	hideForm() {
 		this.setState({ showForm: false });
+	},
+
+	handleTicketNameChange(e) {
+		this.setState({ ticketName: e.target.value });
+	},
+
+	handleTicketDescriptionChange(e) {
+		this.setState({ ticketDescription: e.target.value });
 	},
 
 	onSubmitTicketInformation(e)
