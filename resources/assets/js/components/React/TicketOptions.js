@@ -11,7 +11,7 @@ var TicketOptions = React.createClass({
 	                            <div className="card-title">BRONZE</div>
 	                            <div className="price">
 	                            	<sup>AED</sup>
-	                            	250
+	                            	{ this.props.currentPackage.tickets[0].adultPrice}
 	                            	<sub>/adult</sub>
 	                            </div>
 	                             <p className="price-desc">1 day ticket</p>
@@ -19,7 +19,7 @@ var TicketOptions = React.createClass({
 	                        <div className="card-content">
 	                            <ul className="collection">
 	                                <li className="collection-item">
-	                                    <strong>AED 205</strong> per child
+	                                    <strong>AED { this.props.currentPackage.tickets[0].childPrice}</strong> per child
 	                                </li>
 	                                <li className="collection-item">
 	                                    <strong>Unlimited</strong> access to the park
@@ -38,7 +38,7 @@ var TicketOptions = React.createClass({
 	                            <div className="card-title">SILVER</div>
 	                            <div className="price">
 	                            	<sup>AED</sup>
-	                            	350
+	                            	{ this.props.currentPackage.tickets[1].adultPrice}
 	                            	<sub>/adult</sub>
 	                            </div>
 	                            <p className="price-desc">1 day ticket</p>
@@ -46,7 +46,7 @@ var TicketOptions = React.createClass({
 	                        <div className="card-content">
 	                            <ul className="collection">
 	                                <li className="collection-item">
-	                                    <strong>AED 305</strong> per child
+	                                    <strong>AED { this.props.currentPackage.tickets[1].childPrice}</strong> per child
 	                                </li>
 	                                <li className="collection-item">
 	                                    <strong>Unlimited</strong> access to the park
@@ -68,7 +68,7 @@ var TicketOptions = React.createClass({
 	                            <div className="card-title">GOLD</div>
 	                            <div className="price">
 	                            	<sup>AED</sup>
-	                            	500
+	                            	{ this.props.currentPackage.tickets[2].adultPrice}
 	                            	<sub>/adult</sub>
 	                            </div>
 	                            <p className="price-desc">1 day ticket</p>
@@ -76,7 +76,7 @@ var TicketOptions = React.createClass({
 	                        <div className="card-content">
 	                            <ul className="collection">
 	                                <li className="collection-item">
-	                                    <strong>AED 415</strong> per child
+	                                    <strong>AED { this.props.currentPackage.tickets[2].childPrice}</strong> per child
 	                                </li>
 	                                <li className="collection-item">
 	                                    <strong>Unlimited</strong> access to the park

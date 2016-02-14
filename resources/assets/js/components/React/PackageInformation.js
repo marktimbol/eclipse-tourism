@@ -55,7 +55,7 @@ var PackageInformation = React.createClass({
 						<div dangerouslySetInnerHTML={this.showDescription()}></div>
 
 						{ window.package.has_ticket_option ?
-							<TicketOptions />
+							<TicketOptions currentPackage={window.package} />
 							: ''
 						}
 

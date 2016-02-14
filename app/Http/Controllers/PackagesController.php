@@ -30,7 +30,7 @@ class PackagesController extends Controller
     }
 
     public function package($package)
-    {
+    {        
         $pageTitle = sprintf('%s - %s', $package->name, $package->subtitle);
 
         \JavaScript::put([
