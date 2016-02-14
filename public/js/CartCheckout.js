@@ -9800,7 +9800,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -15969,7 +15972,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.6';
+module.exports = '0.14.7';
 },{}],115:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -17064,6 +17067,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -17097,8 +17101,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -17109,7 +17111,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -19989,13 +19995,14 @@ var CartCheckout = React.createClass({
 		};
 	},
 	fetchCartItems: function fetchCartItems() {
-		$.get('/api/v1/cart', (function (data) {
+		$.get('/api/v1/cart', function (data) {
 			this.setState({
 				cartItems: data,
 				cartCount: data.length
 			});
-		}).bind(this));
+		}.bind(this));
 	},
+
 
 	stripeResponseHandler: function stripeResponseHandler(status, response) {
 
@@ -20251,11 +20258,11 @@ var CheckoutItems = React.createClass({
 
 		var total = 0;
 
-		var checkoutItems = Object.keys(this.props.cartItems).map((function (item) {
+		var checkoutItems = Object.keys(this.props.cartItems).map(function (item) {
 			total += this.props.cartItems[item].subtotal;
 
 			return React.createElement(_CheckoutItem2.default, { key: item, item: this.props.cartItems[item] });
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',

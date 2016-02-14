@@ -9800,7 +9800,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -15969,7 +15972,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.6';
+module.exports = '0.14.7';
 },{}],115:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -17064,6 +17067,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -17097,8 +17101,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -17109,7 +17111,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -19740,9 +19746,9 @@ var BookPackageForm = React.createClass({
 		var ticketId = e.target.value;
 		this.setState({ ticket: ticketId });
 		var url = '/api/v1/packages/' + this.props.currentPackage.id + '/tickets/' + ticketId;
-		$.get(url, (function (response) {
+		$.get(url, function (response) {
 			this.props.setPrices(ticketId, response.adultPrice, response.childPrice);
-		}).bind(this));
+		}.bind(this));
 	},
 	handleDateChange: function handleDateChange(e) {
 		this.setState({ date: e.target.value });
@@ -19771,7 +19777,7 @@ var BookPackageForm = React.createClass({
 				ticket: this.state.ticket
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				var newBookedPackages = this.state.bookedPackages.concat(response);
 				this.setState({ bookedPackages: newBookedPackages });
 
@@ -19787,8 +19793,8 @@ var BookPackageForm = React.createClass({
 					showConfirmButton: false
 				});
 				this.resetFormState();
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				var message = "There was an error when booking a package " + err.toString();
 				swal({
 					title: "Eclipse Tourism",
@@ -19798,7 +19804,7 @@ var BookPackageForm = React.createClass({
 					showConfirmButton: false
 				});
 				this.resetFormState();
-			}).bind(this)
+			}.bind(this)
 		});
 	},
 	beforeSubmitForm: function beforeSubmitForm(e) {
@@ -19865,11 +19871,11 @@ var BookPackageForm = React.createClass({
 			max: false,
 			clear: 'Clear',
 			close: 'Close',
-			onSet: (function (context) {
+			onSet: function (context) {
 				var picker = inputDate.pickadate('picker');
 				this.setState({ date: picker.get() });
 				this.setState({ date_submit: picker.get('select', 'yyyy-mm-dd') });
-			}).bind(this)
+			}.bind(this)
 		});
 	},
 	render: function render() {
@@ -19885,7 +19891,7 @@ var BookPackageForm = React.createClass({
 			return React.createElement(
 				'option',
 				{ key: ticket.id, value: ticket.id },
-				ticket.name + ' - AED ' + ticket.adultPrice
+				ticket.name
 			);
 		});
 
@@ -20364,6 +20370,7 @@ var React = require('react');
 
 var PackagePhotos = React.createClass({
 	displayName: 'PackagePhotos',
+
 
 	// componentDidMount() {
 	// 	$('.owl-carousel').owlCarousel({

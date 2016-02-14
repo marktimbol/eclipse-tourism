@@ -20,6 +20,9 @@ var TicketInfo = React.createClass({
 	},
 
 	onUpdate() {
+		// console.log(this.props.ticket);
+		this.props.onUpdateInformation(this.props.ticket.id, this.props.ticket.ticket_id, this.state.name, this.state.description);
+
 		this.setState({
 			editing: false
 		});
@@ -27,6 +30,8 @@ var TicketInfo = React.createClass({
 	
 	onDelete(e) {
 		e.preventDefault();
+
+		this.props.onDeleteInformation(this.props.ticket.id, this.props.ticket.ticket_id);
 	},
 
 	handleNameChange(e) {
@@ -40,18 +45,18 @@ var TicketInfo = React.createClass({
 	render() {
 		return (
 			<li>
-				<div className="col-md-9">
+				<div className="col-md-8">
 				{ this.state.editing ? 
 					<div className="row">
-						<div className="col-md-5">
+						<div className="col-md-5 col-sm-12">
 							<input className="form-control input-sm" value={this.state.name} onChange={this.handleNameChange} />
 						</div>
 
-						<div className="col-md-5">
+						<div className="col-md-5 col-sm-12">
 							<input className="form-control input-sm" value={this.state.description} onChange={this.handleDescriptionChange} />
 						</div>	
 
-						<div className="col-md-2">
+						<div className="col-md-2 col-sm-12">
 							<button className="btn btn-default btn-sm" onClick={this.onCancelEdit}>Cancel</button>
 						</div>
 					</div>
@@ -62,12 +67,12 @@ var TicketInfo = React.createClass({
 				}
 				</div>
 
-				<div className="col-md-3">
+				<div className="col-md-4">
 					<div className="actionButtons">
 						<div className="btn-group">
 							{ this.state.editing ?
-								<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary">Update</button> :
-								<a onClick={this.onEdit} className="btn btn-sm btn-primary">Edit</a>
+								<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary"><i className="fa fa-save"></i></button> :
+								<a onClick={this.onEdit} className="btn btn-sm btn-primary"><i className="fa fa-pencil"></i></a>
 							}
 							<button type="submit" className="delete btn btn-sm btn-danger" onClick={this.onDelete}>&times;</button>
 						</div>

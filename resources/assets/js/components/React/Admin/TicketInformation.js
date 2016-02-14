@@ -23,6 +23,10 @@ var TicketInformation = React.createClass({
 		this.props.onDelete(this.props.id);
 	},
 
+	onDeleteInformation(id, ticketId) {
+		this.props.onDeleteInformation(id, ticketId);
+	},
+
 	onEdit(e) {
 		e.preventDefault();
 		this.setState({ editing: true });
@@ -34,6 +38,14 @@ var TicketInformation = React.createClass({
 
 	onUpdate() {
 		this.props.onUpdate(this.props.id, this.state.name, this.state.adultPrice, this.state.childPrice);
+
+		this.setState({
+			editing: false
+		});
+	},
+
+	onUpdateInformation(id, ticketId, name, description) {
+		this.props.onUpdateInformation(id, ticketId, name, description);
 
 		this.setState({
 			editing: false
@@ -87,7 +99,11 @@ var TicketInformation = React.createClass({
 	render() {
 		var ticketInformation = this.props.information.map(function(ticket) {
 			return (
-				<TicketInfo key={ticket.id} ticket={ticket} />
+				<TicketInfo 
+					key={ticket.id} 
+					ticket={ticket} 
+					onUpdateInformation={this.onUpdateInformation}
+					onDeleteInformation={this.onDeleteInformation} />
 			)
 		}.bind(this));
 		return (
@@ -135,7 +151,7 @@ var TicketInformation = React.createClass({
 							</div>
 
 							{ this.state.showForm ? 
-								<div>
+								<div className="row">
 									<hr />
 									<form method="POST" className="form-inline" onSubmit={this.onSubmitTicketInformation}>
 										<input type="hidden" name="_token" value={csrfToken} />
@@ -159,7 +175,7 @@ var TicketInformation = React.createClass({
 											<div className="form-group">
 												<label>&nbsp;</label>
 												<button type="submit" className="btn btn-default btn-sm" 
-													onClick={this.onSubmitTicketInformation}>Save Information</button>
+													onClick={this.onSubmitTicketInformation}><i className="fa fa-save"></i> Save</button>
 											</div>
 										</div>
 									</form>
@@ -173,11 +189,18 @@ var TicketInformation = React.createClass({
 					<div className="col-md-3">
 						<div className="actionButtons">
 							<div className="btn-group">
-								{ this.state.editing === true ?
-									<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary">Update</button> :
-									<a onClick={this.onEdit} className="btn btn-sm btn-primary">Edit</a>
+								{ this.state.editing ?
+									<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary">
+										<i className="fa fa-save"></i>
+									</button> :
+									<a onClick={this.onEdit} className="btn btn-sm btn-primary">
+										<i className="fa fa-pencil"></i>
+									</a>
 								}
-								<button type="submit" className="delete btn btn-sm btn-danger" onClick={this.onDelete}>&times;</button>
+								<button type="submit" className="delete btn btn-sm btn-danger" 
+									onClick={this.onDelete}>
+									&times;
+								</button>
 							</div>
 						</div>
 					</div>

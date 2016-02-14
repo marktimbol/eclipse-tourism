@@ -9119,7 +9119,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -15288,7 +15291,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.6';
+module.exports = '0.14.7';
 },{}],114:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -16383,6 +16386,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -16416,8 +16420,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -16428,7 +16430,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -19122,11 +19128,11 @@ var AdditionalPackageInformation = React.createClass({
 							this.state.editing === true ? React.createElement(
 								"button",
 								{ type: "submit", onClick: this.onUpdate, className: "btn btn-sm btn-primary" },
-								"Update"
+								React.createElement("i", { className: "fa fa-save" })
 							) : React.createElement(
 								"a",
 								{ onClick: this.onEdit, className: "btn btn-sm btn-primary" },
-								"Edit"
+								React.createElement("i", { className: "fa fa-pencil" })
 							),
 							React.createElement(
 								"button",
@@ -19456,9 +19462,9 @@ var PackageInformation = React.createClass({
 	fetchPackageInformation: function fetchPackageInformation() {
 		var url = '/api/v1/packages/' + window.package_id + '/information';
 
-		$.get(url, (function (data) {
+		$.get(url, function (data) {
 			this.setState({ packageInformation: data });
-		}).bind(this));
+		}.bind(this));
 	},
 	onSubmit: function onSubmit(title, description) {
 
@@ -19473,10 +19479,10 @@ var PackageInformation = React.createClass({
 				description: description
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.fetchPackageInformation();
-			}).bind(this),
-			error: (function (xhr, status, err) {}).bind(this)
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
 		});
 	},
 	onUpdate: function onUpdate(id, title, description) {
@@ -19492,10 +19498,10 @@ var PackageInformation = React.createClass({
 				description: description
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.fetchPackageInformation();
-			}).bind(this),
-			error: (function (xhr, status, err) {}).bind(this)
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
 		});
 	},
 	onDelete: function onDelete(id) {
@@ -19509,10 +19515,10 @@ var PackageInformation = React.createClass({
 				package_id: window.package_id
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.fetchPackageInformation();
-			}).bind(this),
-			error: (function (xhr, status, err) {}).bind(this)
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
 		});
 	},
 	render: function render() {
@@ -19554,14 +19560,14 @@ var PackageInformationList = React.createClass({
 		this.props.onUpdate(id, title, description);
 	},
 	render: function render() {
-		var packageInformation = this.props.items.map((function (item) {
+		var packageInformation = this.props.items.map(function (item) {
 			return React.createElement(_AdditionalPackageInformation2.default, { key: item.id,
 				id: item.id,
 				title: item.title,
 				description: item.description,
 				onDelete: this.onDelete,
 				onUpdate: this.onUpdate });
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',
@@ -19608,12 +19614,17 @@ var TicketInfo = React.createClass({
 		this.setState({ editing: false });
 	},
 	onUpdate: function onUpdate() {
+		// console.log(this.props.ticket);
+		this.props.onUpdateInformation(this.props.ticket.id, this.props.ticket.ticket_id, this.state.name, this.state.description);
+
 		this.setState({
 			editing: false
 		});
 	},
 	onDelete: function onDelete(e) {
 		e.preventDefault();
+
+		this.props.onDeleteInformation(this.props.ticket.id, this.props.ticket.ticket_id);
 	},
 	handleNameChange: function handleNameChange(e) {
 		this.setState({ name: e.target.value });
@@ -19627,23 +19638,23 @@ var TicketInfo = React.createClass({
 			null,
 			React.createElement(
 				'div',
-				{ className: 'col-md-9' },
+				{ className: 'col-md-8' },
 				this.state.editing ? React.createElement(
 					'div',
 					{ className: 'row' },
 					React.createElement(
 						'div',
-						{ className: 'col-md-5' },
+						{ className: 'col-md-5 col-sm-12' },
 						React.createElement('input', { className: 'form-control input-sm', value: this.state.name, onChange: this.handleNameChange })
 					),
 					React.createElement(
 						'div',
-						{ className: 'col-md-5' },
+						{ className: 'col-md-5 col-sm-12' },
 						React.createElement('input', { className: 'form-control input-sm', value: this.state.description, onChange: this.handleDescriptionChange })
 					),
 					React.createElement(
 						'div',
-						{ className: 'col-md-2' },
+						{ className: 'col-md-2 col-sm-12' },
 						React.createElement(
 							'button',
 							{ className: 'btn btn-default btn-sm', onClick: this.onCancelEdit },
@@ -19665,7 +19676,7 @@ var TicketInfo = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'col-md-3' },
+				{ className: 'col-md-4' },
 				React.createElement(
 					'div',
 					{ className: 'actionButtons' },
@@ -19675,11 +19686,11 @@ var TicketInfo = React.createClass({
 						this.state.editing ? React.createElement(
 							'button',
 							{ type: 'submit', onClick: this.onUpdate, className: 'btn btn-sm btn-primary' },
-							'Update'
+							React.createElement('i', { className: 'fa fa-save' })
 						) : React.createElement(
 							'a',
 							{ onClick: this.onEdit, className: 'btn btn-sm btn-primary' },
-							'Edit'
+							React.createElement('i', { className: 'fa fa-pencil' })
 						),
 						React.createElement(
 							'button',
@@ -19711,6 +19722,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var React = require('react');
 var csrfToken = $('meta[name="token"]').attr('content');
 
+
 var TicketInformation = React.createClass({
 	displayName: 'TicketInformation',
 	getInitialState: function getInitialState() {
@@ -19730,6 +19742,9 @@ var TicketInformation = React.createClass({
 		e.preventDefault();
 		this.props.onDelete(this.props.id);
 	},
+	onDeleteInformation: function onDeleteInformation(id, ticketId) {
+		this.props.onDeleteInformation(id, ticketId);
+	},
 	onEdit: function onEdit(e) {
 		e.preventDefault();
 		this.setState({ editing: true });
@@ -19739,6 +19754,13 @@ var TicketInformation = React.createClass({
 	},
 	onUpdate: function onUpdate() {
 		this.props.onUpdate(this.props.id, this.state.name, this.state.adultPrice, this.state.childPrice);
+
+		this.setState({
+			editing: false
+		});
+	},
+	onUpdateInformation: function onUpdateInformation(id, ticketId, name, description) {
+		this.props.onUpdateInformation(id, ticketId, name, description);
 
 		this.setState({
 			editing: false
@@ -19777,9 +19799,13 @@ var TicketInformation = React.createClass({
 		});
 	},
 	render: function render() {
-		var ticketInformation = this.props.information.map((function (ticket) {
-			return React.createElement(_TicketInfo2.default, { key: ticket.id, ticket: ticket });
-		}).bind(this));
+		var ticketInformation = this.props.information.map(function (ticket) {
+			return React.createElement(_TicketInfo2.default, {
+				key: ticket.id,
+				ticket: ticket,
+				onUpdateInformation: this.onUpdateInformation,
+				onDeleteInformation: this.onDeleteInformation });
+		}.bind(this));
 		return React.createElement(
 			'li',
 			{ className: 'list-group-item' },
@@ -19865,7 +19891,7 @@ var TicketInformation = React.createClass({
 					),
 					this.state.showForm ? React.createElement(
 						'div',
-						null,
+						{ className: 'row' },
 						React.createElement('hr', null),
 						React.createElement(
 							'form',
@@ -19918,7 +19944,8 @@ var TicketInformation = React.createClass({
 										'button',
 										{ type: 'submit', className: 'btn btn-default btn-sm',
 											onClick: this.onSubmitTicketInformation },
-										'Save Information'
+										React.createElement('i', { className: 'fa fa-save' }),
+										' Save'
 									)
 								)
 							)
@@ -19934,18 +19961,19 @@ var TicketInformation = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'btn-group' },
-							this.state.editing === true ? React.createElement(
+							this.state.editing ? React.createElement(
 								'button',
 								{ type: 'submit', onClick: this.onUpdate, className: 'btn btn-sm btn-primary' },
-								'Update'
+								React.createElement('i', { className: 'fa fa-save' })
 							) : React.createElement(
 								'a',
 								{ onClick: this.onEdit, className: 'btn btn-sm btn-primary' },
-								'Edit'
+								React.createElement('i', { className: 'fa fa-pencil' })
 							),
 							React.createElement(
 								'button',
-								{ type: 'submit', className: 'delete btn btn-sm btn-danger', onClick: this.onDelete },
+								{ type: 'submit', className: 'delete btn btn-sm btn-danger',
+									onClick: this.onDelete },
 								'×'
 							)
 						)
@@ -19978,27 +20006,35 @@ var TicketOptionList = React.createClass({
 	onDelete: function onDelete(id) {
 		this.props.onDelete(id);
 	},
+	onDeleteInformation: function onDeleteInformation(id, ticketId) {
+		this.props.onDeleteInformation(id, ticketId);
+	},
 	onEdit: function onEdit(id) {
 		this.props.onEdit(id);
 	},
 	onUpdate: function onUpdate(id, name, adultPrice, childPrice) {
 		this.props.onUpdate(id, name, adultPrice, childPrice);
 	},
+	onUpdateInformation: function onUpdateInformation(id, ticketId, name, description) {
+		this.props.onUpdateInformation(id, ticketId, name, description);
+	},
 	onSubmitTicketInformation: function onSubmitTicketInformation(ticketId, name, description) {
 		this.props.onSubmitTicketInformation(ticketId, name, description);
 	},
 	render: function render() {
-		var ticketOptions = this.props.tickets.map((function (item) {
+		var ticketOptions = this.props.tickets.map(function (item) {
 			return React.createElement(_TicketInformation2.default, { key: item.id,
 				id: item.id,
 				name: item.name,
 				adultPrice: item.adultPrice,
 				childPrice: item.childPrice,
-				onDelete: this.onDelete,
 				onUpdate: this.onUpdate,
+				onUpdateInformation: this.onUpdateInformation,
+				onDelete: this.onDelete,
+				onDeleteInformation: this.onDeleteInformation,
 				information: item.information,
 				onSubmitTicketInformation: this.onSubmitTicketInformation });
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',
@@ -20052,9 +20088,9 @@ var TicketOptions = React.createClass({
 	fetchTicketOptions: function fetchTicketOptions() {
 		var url = '/api/v1/packages/' + window.package_id + '/tickets';
 
-		$.get(url, (function (data) {
+		$.get(url, function (data) {
 			this.setState({ ticketOptions: data });
-		}).bind(this));
+		}.bind(this));
 	},
 	onSubmit: function onSubmit(name, adultPrice, childPrice) {
 		var url = '/admin/packages/' + window.package_id + '/tickets';
@@ -20069,10 +20105,10 @@ var TicketOptions = React.createClass({
 				childPrice: childPrice
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.fetchTicketOptions();
-			}).bind(this),
-			error: (function (xhr, status, err) {}).bind(this)
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
 		});
 	},
 	onUpdate: function onUpdate(id, name, adultPrice, childPrice) {
@@ -20089,10 +20125,29 @@ var TicketOptions = React.createClass({
 				childPrice: childPrice
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.fetchTicketOptions();
-			}).bind(this),
-			error: (function (xhr, status, err) {}).bind(this)
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
+		});
+	},
+	onUpdateInformation: function onUpdateInformation(id, ticketId, name, description) {
+		var url = '/admin/tickets/' + ticketId + '/information/' + id;
+
+		$.ajax({
+			url: url,
+			type: 'PUT',
+			data: {
+				id: id,
+				ticket_id: ticketId,
+				name: name,
+				description: description
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: function (response) {
+				this.fetchTicketOptions();
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
 		});
 	},
 	onDelete: function onDelete(id) {
@@ -20106,10 +20161,26 @@ var TicketOptions = React.createClass({
 				package_id: window.package_id
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.fetchTicketOptions();
-			}).bind(this),
-			error: (function (xhr, status, err) {}).bind(this)
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
+		});
+	},
+	onDeleteInformation: function onDeleteInformation(id, ticketId) {
+		var url = '/admin/tickets/' + ticketId + '/information/' + id;
+
+		$.ajax({
+			url: url,
+			type: 'DELETE',
+			data: {
+				id: id
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: function (response) {
+				this.fetchTicketOptions();
+			}.bind(this),
+			error: function (xhr, status, err) {}.bind(this)
 		});
 	},
 	onSubmitTicketInformation: function onSubmitTicketInformation(ticketId, name, description) {
@@ -20124,13 +20195,13 @@ var TicketOptions = React.createClass({
 				description: description
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.fetchTicketOptions();
 				console.log(response, 'setState here');
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				console.log(err.toString());
-			}).bind(this)
+			}.bind(this)
 		});
 	},
 	render: function render() {
@@ -20140,7 +20211,9 @@ var TicketOptions = React.createClass({
 			React.createElement(_TicketOptionList2.default, {
 				tickets: this.state.ticketOptions,
 				onDelete: this.onDelete,
+				onDeleteInformation: this.onDeleteInformation,
 				onUpdate: this.onUpdate,
+				onUpdateInformation: this.onUpdateInformation,
 				onSubmitTicketInformation: this.onSubmitTicketInformation }),
 			React.createElement(_NewTicketOption2.default, { onSubmit: this.onSubmit })
 		);

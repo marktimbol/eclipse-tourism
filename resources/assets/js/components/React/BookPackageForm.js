@@ -188,7 +188,7 @@ var BookPackageForm = React.createClass({
 		var ticketOptions = this.props.currentPackage.tickets.map(function(ticket) {
 			return (
 				<option key={ticket.id} value={ticket.id}>
-					{ ticket.name + ' - AED ' + ticket.adultPrice }
+					{ ticket.name }
 				</option>
 			);
 		});

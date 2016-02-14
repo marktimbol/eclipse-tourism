@@ -8,12 +8,20 @@ var TicketOptionList = React.createClass({
 		this.props.onDelete(id);
 	},
 
+	onDeleteInformation(id, ticketId) {
+		this.props.onDeleteInformation(id, ticketId);
+	},
+
 	onEdit(id) {
 		this.props.onEdit(id);
 	},
 
 	onUpdate(id, name, adultPrice, childPrice) {
 		this.props.onUpdate(id, name, adultPrice, childPrice);
+	},
+
+	onUpdateInformation(id, ticketId, name, description) {
+		this.props.onUpdateInformation(id, ticketId, name, description);
 	},
 
 	onSubmitTicketInformation(ticketId, name, description) {
@@ -28,8 +36,10 @@ var TicketOptionList = React.createClass({
 					name={item.name} 
 					adultPrice={item.adultPrice}
 					childPrice={item.childPrice}
-					onDelete={this.onDelete}
 					onUpdate={this.onUpdate}
+					onUpdateInformation={this.onUpdateInformation}
+					onDelete={this.onDelete}
+					onDeleteInformation={this.onDeleteInformation}
 					information={item.information}
 					onSubmitTicketInformation={this.onSubmitTicketInformation} />
 			)	

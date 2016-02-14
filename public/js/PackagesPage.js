@@ -9119,7 +9119,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -15288,7 +15291,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.6';
+module.exports = '0.14.7';
 },{}],114:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -16383,6 +16386,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -16416,8 +16420,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -16428,7 +16430,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -19039,13 +19045,13 @@ var ReactDOM = require('react-dom');
 var CategoriesFilter = React.createClass({
 	displayName: 'CategoriesFilter',
 	render: function render() {
-		var categories = window.categories.map((function (category) {
+		var categories = window.categories.map(function (category) {
 			return React.createElement(
 				'li',
 				{ key: category.id },
 				React.createElement(_CategoryWithPackages2.default, { category: category, packages: category.packages })
 			);
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',
@@ -19222,14 +19228,14 @@ var PackagesList = React.createClass({
 	},
 	render: function render() {
 
-		var packages = window.packages.map((function (currentPackage) {
+		var packages = window.packages.map(function (currentPackage) {
 			var packageName = currentPackage.name.toLowerCase();
 			var filterText = this.state.filterText.toLowerCase();
 
 			if (packageName.indexOf(filterText) >= 0) {
 				return React.createElement(_Package2.default, { key: currentPackage.id, currentPackage: currentPackage });
 			}
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',

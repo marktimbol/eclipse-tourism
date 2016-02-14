@@ -55,4 +55,30 @@ class TicketsController extends Controller
 
         return $ticket->information()->save($newTicketInformation);        
     }
+
+    public function updateInformation(Request $request)
+    {
+        // dd($request->all());
+
+        // $this->ticket->update($request->id, $request->all());
+
+        $ticketInformation = TicketInformation::findOrFail($request->id);
+        $ticketInformation->fill($request->all());
+        $ticketInformation->save();
+
+        /**
+         * return all the package ticket options to feed the React.
+         */       
+        // return $this->package->find($request->package_id)->tickets;
+    }
+
+    public function destroyInformation(Request $request)
+    {
+        TicketInformation::findOrFail($request->id)->delete();
+
+        /**
+         * return all the package ticket options to feed the React.
+         */        
+        // return $this->package->find($request->package_id)->tickets;
+    }
 }

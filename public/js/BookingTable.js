@@ -9800,7 +9800,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -15969,7 +15972,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.6';
+module.exports = '0.14.7';
 },{}],115:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -17064,6 +17067,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -17097,8 +17101,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -17109,7 +17111,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -19742,13 +19748,13 @@ var BookingTable = React.createClass({
 			url: '/api/v1/booking',
 			type: 'GET',
 			cache: false,
-			success: (function (response) {
+			success: function (response) {
 				this.setState({ cartItems: response });
 				this.setState({ cartCount: response.length });
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				console.log(err);
-			}).bind(this)
+			}.bind(this)
 		});
 	},
 	updateCartItem: function updateCartItem(rowId, adultQuantity, childQuantity) {
@@ -19764,7 +19770,7 @@ var BookingTable = React.createClass({
 				child_quantity: childQuantity
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.setState({ cartItems: response });
 				this.setState({ cartCount: response.length });
 
@@ -19775,8 +19781,8 @@ var BookingTable = React.createClass({
 					timer: 2000,
 					showConfirmButton: false
 				});
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				swal({
 					title: "Eclipse Tourism",
 					text: err.toString(),
@@ -19784,7 +19790,7 @@ var BookingTable = React.createClass({
 					timer: 2000,
 					showConfirmButton: false
 				});
-			}).bind(this)
+			}.bind(this)
 		});
 
 		$('#item' + rowId).closeModal();
@@ -19797,13 +19803,13 @@ var BookingTable = React.createClass({
 			url: deleteUrl,
 			type: 'DELETE',
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.setState({ cartItems: response });
 				this.setState({ cartCount: response.length });
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				console.log(err);
-			}).bind(this)
+			}.bind(this)
 		});
 
 		$('#item' + rowId).closeModal();
@@ -19815,11 +19821,11 @@ var BookingTable = React.createClass({
 	render: function render() {
 		var total = 0;
 
-		var cartItems = Object.keys(this.state.cartItems).map((function (item) {
+		var cartItems = Object.keys(this.state.cartItems).map(function (item) {
 			total += this.state.cartItems[item].subtotal;
 
 			return React.createElement(_CartItem2.default, { key: item, item: this.state.cartItems[item], updateCartItem: this.updateCartItem, deleteCartItem: this.deleteCartItem });
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',

@@ -68,6 +68,28 @@ var TicketOptions = React.createClass({
 		});
 	},
 
+	onUpdateInformation(id, ticketId, name, description) {
+	    var url = '/admin/tickets/' + ticketId + '/information/' + id;
+
+		$.ajax({
+			url: url,
+			type: 'PUT',
+			data: {
+				id: id,
+				ticket_id: ticketId,
+				name: name,
+				description: description
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: function(response) {
+				this.fetchTicketOptions();
+			}.bind(this),
+			error: function(xhr, status, err) {
+
+			}.bind(this)
+		});
+	},
+
 	onDelete(id) {
 	    var url = '/admin/packages/' + window.package_id + '/tickets/' + id;
 
@@ -77,6 +99,25 @@ var TicketOptions = React.createClass({
 			data: {
 				id: id,
 				package_id: window.package_id
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: function(response) {
+				this.fetchTicketOptions();
+			}.bind(this),
+			error: function(xhr, status, err) {
+
+			}.bind(this)
+		});
+	},
+
+	onDeleteInformation(id, ticketId) {
+	    var url = '/admin/tickets/' + ticketId + '/information/' + id;
+
+		$.ajax({
+			url: url,
+			type: 'DELETE',
+			data: {
+				id: id,
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response) {
@@ -119,7 +160,9 @@ var TicketOptions = React.createClass({
 				<TicketOptionList 
 					tickets={this.state.ticketOptions} 
 					onDelete={this.onDelete} 
+					onDeleteInformation={this.onDeleteInformation} 
 					onUpdate={this.onUpdate} 
+					onUpdateInformation={this.onUpdateInformation}
 					onSubmitTicketInformation={this.onSubmitTicketInformation} />
 					
 				<NewTicketOption onSubmit={this.onSubmit}/>

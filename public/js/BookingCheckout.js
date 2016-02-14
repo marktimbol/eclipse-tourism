@@ -9800,7 +9800,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -15969,7 +15972,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.6';
+module.exports = '0.14.7';
 },{}],115:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -17064,6 +17067,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -17097,8 +17101,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -17109,7 +17111,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -19761,12 +19767,12 @@ var BookingCheckout = React.createClass({
 		this.setState({ isFormSubmitted: false });
 	},
 	fetchCartItems: function fetchCartItems() {
-		$.get('/api/v1/booking', (function (response) {
+		$.get('/api/v1/booking', function (response) {
 			this.setState({
 				cartItems: response,
 				cartCount: response.length
 			});
-		}).bind(this));
+		}.bind(this));
 	},
 	submitFormAjax: function submitFormAjax() {
 
@@ -19779,7 +19785,7 @@ var BookingCheckout = React.createClass({
 			type: 'POST',
 			data: $('#booking-form').serialize(),
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 
 				swal({
 					title: "Eclipse Tourism",
@@ -19791,8 +19797,8 @@ var BookingCheckout = React.createClass({
 
 				this.fetchCartItems();
 				this.resetFormState();
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				swal({
 					title: "Eclipse Tourism",
 					text: err.toString(),
@@ -19802,7 +19808,7 @@ var BookingCheckout = React.createClass({
 				});
 
 				this.resetFormState();
-			}).bind(this)
+			}.bind(this)
 		});
 	},
 	onSubmit: function onSubmit(e) {
@@ -20005,11 +20011,11 @@ var CheckoutItems = React.createClass({
 
 		var total = 0;
 
-		var checkoutItems = Object.keys(this.props.cartItems).map((function (item) {
+		var checkoutItems = Object.keys(this.props.cartItems).map(function (item) {
 			total += this.props.cartItems[item].subtotal;
 
 			return React.createElement(_CheckoutItem2.default, { key: item, item: this.props.cartItems[item] });
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',

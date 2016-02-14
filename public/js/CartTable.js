@@ -9800,7 +9800,10 @@ var ReactDOMOption = {
       }
     });
 
-    nativeProps.children = content;
+    if (content) {
+      nativeProps.children = content;
+    }
+
     return nativeProps;
   }
 
@@ -15969,7 +15972,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.6';
+module.exports = '0.14.7';
 },{}],115:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -17064,6 +17067,7 @@ var warning = require('fbjs/lib/warning');
  */
 var EventInterface = {
   type: null,
+  target: null,
   // currentTarget is set when dispatching; no use in copying it here
   currentTarget: emptyFunction.thatReturnsNull,
   eventPhase: null,
@@ -17097,8 +17101,6 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
   this.dispatchConfig = dispatchConfig;
   this.dispatchMarker = dispatchMarker;
   this.nativeEvent = nativeEvent;
-  this.target = nativeEventTarget;
-  this.currentTarget = nativeEventTarget;
 
   var Interface = this.constructor.Interface;
   for (var propName in Interface) {
@@ -17109,7 +17111,11 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEvent
     if (normalize) {
       this[propName] = normalize(nativeEvent);
     } else {
-      this[propName] = nativeEvent[propName];
+      if (propName === 'target') {
+        this.target = nativeEventTarget;
+      } else {
+        this[propName] = nativeEvent[propName];
+      }
     }
   }
 
@@ -19949,30 +19955,31 @@ var CartTable = React.createClass({
 		console.log('componentWillUnmount');
 	},
 	fetchCartItems: function fetchCartItems() {
-		$.get('/api/v1/cart', (function (data) {
+		$.get('/api/v1/cart', function (data) {
 			this.setState({
 				cartItems: data,
 				cartCount: data.length
 			});
-		}).bind(this));
+		}.bind(this));
 	},
 	getTotal: function getTotal() {
-		$.get('/api/v1/cart/total', (function (data) {
+		$.get('/api/v1/cart/total', function (data) {
 			this.setState({
 				total: data
 			});
-		}).bind(this));
+		}.bind(this));
 	},
 	convertAmount: function convertAmount(currency) {
 		var url = '/api/v1/convert-amount/' + this.state.total + '/' + currency;
 
-		$.get(url, (function (response) {
+		$.get(url, function (response) {
 			this.setState({
 				convertedTotal: response,
 				loaded: true
 			});
-		}).bind(this));
+		}.bind(this));
 	},
+
 
 	// handleChangeCurrency(currency) {
 	// 	this.setState({ loaded: false });
@@ -19995,7 +20002,7 @@ var CartTable = React.createClass({
 				child_quantity: childQuantity
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.setState({ cartItems: response });
 				this.setState({ cartCount: response.length });
 
@@ -20010,8 +20017,8 @@ var CartTable = React.createClass({
 				this.getTotal();
 				this.fetchCartItems();
 				// this.handleChangeCurrency(this.state.selectedCurrency);
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				swal({
 					title: "Eclipse Tourism",
 					text: err.toString(),
@@ -20019,7 +20026,7 @@ var CartTable = React.createClass({
 					timer: 2000,
 					showConfirmButton: false
 				});
-			}).bind(this)
+			}.bind(this)
 		});
 
 		$('#item' + rowId).closeModal();
@@ -20031,7 +20038,7 @@ var CartTable = React.createClass({
 			url: deleteUrl,
 			type: 'DELETE',
 			headers: { 'X-CSRF-Token': csrfToken },
-			success: (function (response) {
+			success: function (response) {
 				this.getTotal();
 				this.setState({ cartItems: response });
 				this.setState({ cartCount: response.length });
@@ -20039,10 +20046,10 @@ var CartTable = React.createClass({
 				this.getTotal();
 				this.fetchCartItems();
 				// this.handleChangeCurrency(this.state.selectedCurrency);
-			}).bind(this),
-			error: (function (xhr, status, err) {
+			}.bind(this),
+			error: function (xhr, status, err) {
 				console.log(err);
-			}).bind(this)
+			}.bind(this)
 		});
 
 		$('#item' + rowId).closeModal();
@@ -20057,11 +20064,11 @@ var CartTable = React.createClass({
 			);
 		}
 
-		var cartItems = Object.keys(this.state.cartItems).map((function (item) {
+		var cartItems = Object.keys(this.state.cartItems).map(function (item) {
 			return React.createElement(_CartItem2.default, { key: item, item: this.state.cartItems[item],
 				updateCartItem: this.updateCartItem,
 				deleteCartItem: this.deleteCartItem });
-		}).bind(this));
+		}.bind(this));
 
 		return React.createElement(
 			'div',

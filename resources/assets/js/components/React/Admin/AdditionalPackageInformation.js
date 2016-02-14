@@ -71,8 +71,8 @@ var AdditionalPackageInformation = React.createClass({
 						<div className="actionButtons">
 							<div className="btn-group">
 								{ this.state.editing === true ?
-									<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary">Update</button> :
-									<a onClick={this.onEdit} className="btn btn-sm btn-primary">Edit</a>
+									<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary"><i className="fa fa-save"></i></button> :
+									<a onClick={this.onEdit} className="btn btn-sm btn-primary"><i className="fa fa-pencil"></i></a>
 								}
 								<button type="submit" className="delete btn btn-sm btn-danger" onClick={this.onDelete}>&times;</button>
 							</div>
