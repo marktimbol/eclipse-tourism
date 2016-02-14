@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\File;
 class PackageRepository implements PackageRepositoryInterface {
 	
 	public function all() {
-		return Package::with('photos', 'category', 'tickets', 'information')
+		return Package::with('photos', 'category', 'tickets.information', 'information')
 			->get();
 	}
 
 	public function take($number) {
-		return Package::with('photos', 'category', 'information', 'tickets')
+		return Package::with('photos', 'category', 'information', 'tickets.information')
 			->take($number)
 			->get();
 	}
 
 	public function find($id) {
-		return Package::with('photos', 'information', 'tickets')
+		return Package::with('photos', 'information', 'tickets.information')
 			->findOrFail($id);
 	}
 

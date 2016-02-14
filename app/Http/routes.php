@@ -114,6 +114,10 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function() 
 	Route::put('packages/{packageId}/tickets/{id}', 'Admin\TicketsController@update');
 	Route::delete('packages/{packageId}/tickets/{id}', 'Admin\TicketsController@destroy');
 
+	Route::post('tickets/{tickets}/information', 'Admin\TicketsController@storeInformation');
+	Route::put('tickets/{tickets}/information/{id}', 'Admin\TicketsController@updateInformation');
+	Route::delete('tickets/{tickets}/information/{id}', 'Admin\TicketsController@destroyInformation');
+
 	/*
 	|--------------------------------------------------------------------------
 	| Packages Route
@@ -220,6 +224,14 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1'], function()
 	Route::get('packages/{packageId}/tickets', 'Api\TicketsController@all');
 	Route::get('packages/{packageId}/tickets/{id}', 'Api\TicketsController@get');
 	
+	/*
+	|--------------------------------------------------------------------------
+	| Package Ticket Information API Route
+	|--------------------------------------------------------------------------
+	*/
+	Route::get('tickets/{tickets}/information', 'Api\TicketsController@allInformation');
+	Route::get('tickets/{tickets}/information/{id}', 'Api\TicketsController@getInformation');
+
 	/*
 	|--------------------------------------------------------------------------
 	| Convert amount to selected currency API Route

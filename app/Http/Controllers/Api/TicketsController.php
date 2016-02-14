@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Ticket;
+use App\TicketInformation;
 use Eclipse\Repositories\Package\PackageRepositoryInterface;
 use Eclipse\Repositories\Ticket\TicketOptionsRepositoryInterface;
 use Illuminate\Http\Request;
@@ -27,5 +29,15 @@ class TicketsController extends Controller
     public function get($packageId, $ticketId)
     {
         return $this->ticket->find($ticketId);
+    }
+
+    public function allInformation($ticketId)
+    {   
+        return Ticket::findOrFail($ticketId)->information;
+    }
+
+    public function getInformation($ticketId, $informationId)
+    {
+        return TicketInformation::findOrFail($informationId);
     }
 }

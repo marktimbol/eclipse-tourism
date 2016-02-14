@@ -17,7 +17,7 @@ class TicketOptionsRepository implements TicketOptionsRepositoryInterface {
 
 	public function find($id)
 	{
-		return Ticket::findOrFail($id);
+		return Ticket::with('information')->findOrFail($id);
 	}
 
 	public function store($data)

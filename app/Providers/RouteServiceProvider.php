@@ -29,7 +29,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->bind('package', function($slug)
         {
-            return Package::with('information', 'tickets', 'photos')
+            return Package::with('information', 'tickets.information', 'photos')
                 ->whereSlug($slug)->firstOrFail();
         });
 
@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->bind('packages', function($id)
         {
-            return Package::findOrFail($id);
+            return Package::with('information', 'tickets.information', 'photos')->findOrFail($id);
         });
 
         $this->bind('categories', function($id)

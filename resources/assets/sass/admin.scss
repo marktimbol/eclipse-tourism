@@ -64,6 +64,13 @@ body {
 	}
 }
 
+#TicketOptions {
+	.ticket-includes {
+		padding-left: 0;
+		list-style: none;
+	}
+}
+
 .actionButtons {
 	float: right;
 }

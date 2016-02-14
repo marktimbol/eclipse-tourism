@@ -10,12 +10,12 @@ var PackageInformation = React.createClass({
 
 	getInitialState() {
 		return {
-			packageInformation: []
+			packageInformation: window.currentPackage.information
 		}
 	},
 
 	componentDidMount() {
-		this.fetchPackageInformation();
+		// this.fetchPackageInformation();
 	},
 
 	fetchPackageInformation() {

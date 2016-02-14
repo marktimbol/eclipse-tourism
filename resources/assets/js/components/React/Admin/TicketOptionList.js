@@ -16,6 +16,10 @@ var TicketOptionList = React.createClass({
 		this.props.onUpdate(id, name, adultPrice, childPrice);
 	},
 
+	onSubmitTicketInformation(ticketId, name, description) {
+		this.props.onSubmitTicketInformation(ticketId, name, description);
+	},
+
 	render() {
 		var ticketOptions = this.props.tickets.map(function(item) {
 			return (
@@ -25,7 +29,9 @@ var TicketOptionList = React.createClass({
 					adultPrice={item.adultPrice}
 					childPrice={item.childPrice}
 					onDelete={this.onDelete}
-					onUpdate={this.onUpdate} />
+					onUpdate={this.onUpdate}
+					information={item.information}
+					onSubmitTicketInformation={this.onSubmitTicketInformation} />
 			)	
 		}.bind(this));
 

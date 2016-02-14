@@ -58,6 +58,7 @@ class PackagesController extends Controller
     public function show($package)
     {
         \JavaScript::put([
+            'currentPackage'   => $package,
             'package_id'    => $package->id
         ]);
 

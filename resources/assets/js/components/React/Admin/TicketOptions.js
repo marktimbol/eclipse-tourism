@@ -10,12 +10,8 @@ var TicketOptions = React.createClass({
 
 	getInitialState() {
 		return {
-			ticketOptions: []
+			ticketOptions: window.currentPackage.tickets
 		}
-	},
-
-	componentDidMount() {
-		this.fetchTicketOptions();
 	},
 
 	fetchTicketOptions() {
@@ -27,7 +23,6 @@ var TicketOptions = React.createClass({
 	},	
 
 	onSubmit(name, adultPrice, childPrice) {
-
 		var url = '/admin/packages/' + window.package_id + '/tickets';
 
 		$.ajax({
@@ -93,11 +88,40 @@ var TicketOptions = React.createClass({
 		});
 	},
 
+	onSubmitTicketInformation(ticketId, name, description)
+	{
+		var url = '/admin/tickets/' + ticketId + '/information';
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: {
+				ticketId: ticketId,
+				name: name,
+				description: description
+			},
+			headers: { 'X-CSRF-Token': csrfToken },
+			success: function(response)
+			{
+				this.fetchTicketOptions();
+				console.log(response, 'setState here');
+			}.bind(this),
+			error: function(xhr, status, err)
+			{
+				console.log(err.toString());
+			}.bind(this)
+		});
+	},
+
 	render() {
 		return (
 			<div className="row">
-				<TicketOptionList tickets={this.state.ticketOptions} onDelete={this.onDelete} onUpdate={this.onUpdate} />
-
+				<TicketOptionList 
+					tickets={this.state.ticketOptions} 
+					onDelete={this.onDelete} 
+					onUpdate={this.onUpdate} 
+					onSubmitTicketInformation={this.onSubmitTicketInformation} />
+					
 				<NewTicketOption onSubmit={this.onSubmit}/>
 			</div>
 		);
