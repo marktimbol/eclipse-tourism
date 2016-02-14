@@ -54,6 +54,16 @@ class PagesController extends Controller
         return redirect()->route('contact');
     }
 
+    public function termsAndConditions()
+    {
+        return view('public.terms-and-conditions');
+    }
+
+    public function privacyPolicy()
+    {
+        return view('public.privacy-policy');
+    }
+
     public function changeCurrency(Request $request)
     {  
         session(['currency' => $request->currency]);

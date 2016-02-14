@@ -22,6 +22,8 @@ Route::group(['middleware' => 'web'], function() {
 	Route::get('about', ['as' => 'about', 'uses' => 'PagesController@about']);
 	Route::get('contact', ['as' => 'contact', 'uses' => 'PagesController@contact']);
 	Route::post('contact', ['as' => 'contact.submit', 'uses' => 'PagesController@submitContact']);
+	Route::get('terms-and-conditions', ['as' => 'terms-and-conditions', 'uses' => 'PagesController@termsAndConditions']);
+	Route::get('privacy-policy', ['as' => 'privacy-policy', 'uses' => 'PagesController@privacyPolicy']);
 
 	/*
 	|--------------------------------------------------------------------------
