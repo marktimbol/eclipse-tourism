@@ -153,6 +153,7 @@ var Ticket = React.createClass({
 									<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary">
 										Update Information
 									</button>
+									&nbsp;
 									<button className="btn btn-default btn-sm" onClick={this.onCancelEdit}>Cancel</button>
 								</div>
 							</div>

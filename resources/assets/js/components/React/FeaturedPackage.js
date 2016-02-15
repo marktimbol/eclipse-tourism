@@ -53,36 +53,43 @@ var FeaturedPackage = React.createClass({
 						<div className="svg" dangerouslySetInnerHTML={this.showSVG()}></div>
 						<div className="card__content">
 							<i className="card__btn-close fa fa-times"></i>
-							<div className="card__caption">
-								<h2 className="card__title">{ this.props.currentPackage.name }</h2>
-								<p className="card__subtitle">{ this.props.currentPackage.subtitle }</p>
+							<div className="container">
+								<div className="col s12 m12">
+									<div className="card__caption">
+										<h2 className="card__title">{ this.props.currentPackage.name }</h2>
+										<p className="card__subtitle">{ this.props.currentPackage.subtitle }</p>
+									</div>
+								</div>
+								<div className="clearfix"></div>
 							</div>
 							<div className="card__copy">
-								<div className="col m12 s12">
-									<div className="package">
-										<div className="container">
-											<div className="row">
-												<div className="col m9 s12">
-													<p dangerouslySetInnerHTML={this.showDescription()}></p>
-												</div>
-												<div className="col m3 s12">
-													<PackagePrice 
-														displayPrice={this.state.displayPrice} 
-														adultPrice={this.props.currentPackage.adult_price}
-														currentPackage={this.props.currentPackage} />			
+								<div className="row">
+									<div className="col m12 s12">
+										<div className="package">
+											<div className="container">
+												<div className="row">
+													<div className="col m9 s12">
+														<p dangerouslySetInnerHTML={this.showDescription()}></p>
+													</div>
+													<div className="col m3 s12">
+														<PackagePrice 
+															displayPrice={this.state.displayPrice} 
+															adultPrice={this.props.currentPackage.adult_price}
+															currentPackage={this.props.currentPackage} />			
 
-													<PackageInfo 
-														displayPrice={this.state.displayPrice}
-														adultPrice={this.props.currentPackage.adult_price}
-														childPrice={this.props.currentPackage.child_price}
-														currentPackage={this.props.currentPackage} />
+														<PackageInfo 
+															displayPrice={this.state.displayPrice}
+															adultPrice={this.props.currentPackage.adult_price}
+															childPrice={this.props.currentPackage.child_price}
+															currentPackage={this.props.currentPackage} />
 
-													<a href={packageUrl} className="btn btn-large btn-block waves-effect waves-light blue">View Package</a>
-												</div>
-											</div>	
+														<a href={packageUrl} className="btn btn-large btn-block waves-effect waves-light blue">View Package</a>
+													</div>
+												</div>	
+											</div>
 										</div>
 									</div>
-								</div>		
+								</div>
 							</div>
 						</div>
 					</div>

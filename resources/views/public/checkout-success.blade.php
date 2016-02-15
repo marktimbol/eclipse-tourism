@@ -13,7 +13,6 @@
 					<p class="text-center">Thank you for booking packages with us. You will receive an electronic payment receipt shortly.<br />
 					One of our customer representative will contact you shortly.
 					</p>
-
 					<p>&nbsp;</p>
 					<p class="text-center">{{ config('eclipse.name') }}</p>
 				</div>

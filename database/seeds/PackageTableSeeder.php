@@ -1,11 +1,16 @@
 <?php
 
 use App\Package;
+use App\PackageInformation;
+use App\Photo;
+use App\Ticket;
+use App\TicketInformation;
 use Illuminate\Database\Seeder;
 
 
 class PackageTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -15,6 +20,7 @@ class PackageTableSeeder extends Seeder
     {
     	$packages = [
             [
+                //Safari
                 'category_id'   => 1,
                 'name'          => 'Morning Desert Safari',
                 'subtitle'      => 'The Exhilarating Early Bird Adventure',
@@ -42,10 +48,55 @@ class PackageTableSeeder extends Seeder
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Morning-Desert-Safari.jpg'
+                    ],
+                    [
+                        'path'  => 'Morning-Desert-Safari-1.jpg'
+                    ],
+                    [
+                        'path'  => 'Morning-Desert-Safari-2.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs Daily at',
+                        'description'   => '08:30 – 10:00 am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '12:00 – 13:00pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '3 Hours (Including pick up and drop)'
+                    ],
+
+                    [
+                        'title'         => 'Exclusive car',
+                        'description'   => '600 AED  (This price includes for up to 6 people)'
+                    ],
+
+                    [
+                        'title'         => '0-3 Year olds are free of charge.  Child to be seated on parents or guardians laps.',
+                        'description'   => ''
+                    ],
+
+                    [
+                        'title'         => 'Please note that prices are indicated for a minimum of 3 persons.',
+                        'description'   => ''
+                    ]
+                ],
+
+                'tickets' => []
             ],
 
             [
+                //Safari
                 'category_id'   => 1,
                 'name'          => 'Evening Desert Safari',
                 'subtitle'      => 'A Thrilling Adventure in the Magnificent Sands of Arabia',
@@ -79,10 +130,44 @@ class PackageTableSeeder extends Seeder
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Evening-Desert-Safari.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '14:30 – 15:30 pm'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '21:00 – 22:00'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '7 Hours (including pick up and drop)'
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '4-11 years old'
+                    ],
+
+                    [
+                        'title'         => '0-3 Year olds are free of charge.  Child to be seated on parents or guardians laps.',
+                        'description'   => ''
+                    ],
+                ],
+
+                'tickets' => []
             ],
 
             [
+                //Safari
                 'category_id'   => 1,
                 'name'          => 'VIP Evening Desert Safari',
                 'subtitle'      => 'A Luxury Thrilling Adventure in the Magnificent Sands of Arabia',
@@ -115,10 +200,44 @@ class PackageTableSeeder extends Seeder
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'VIP-Evening-Desert-Safari.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '14:30 – 15:30 pm '
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '21:00 – 22:00'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '7 Hours (including pick up and drop) '
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '4-11 years old'
+                    ],
+
+                    [
+                        'title'         => '0-3 Year olds are free of charge.  Child to be seated on parents or guardians laps.',
+                        'description'   => ''
+                    ],
+                ],
+
+                'tickets' => []
             ],
 
             [
+                //Safari
                 'category_id'   => 1,
                 'name'          => 'Royal Evening Desert Safari with Dinner at Bab Al Shams 5* Resort AL Hadheerah Restaurant',
                 'subtitle'      => 'A Thrilling Adventure in the Magnificent Sands of Arabia Ending with a Perfect Place to Experience Traditional Far Amid Rolling Sand Dunes',
@@ -153,10 +272,58 @@ class PackageTableSeeder extends Seeder
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Royal-Evening-Desert-Safari.jpg'
+                    ],
+                    [
+                        'path'  => 'Royal-Evening-Desert-Safari-2.jpg'
+                    ],
+                    [
+                        'path'  => 'Royal-Evening-Desert-Safari-3.jpg'
+                    ],
+                    [
+                        'path'  => 'Royal-Evening-Desert-Safari-4.jpg'
+                    ],
+                    [
+                        'path'  => 'Royal-Evening-Desert-Safari-5.jpg'
+                    ],
+                    [
+                        'path'  => 'Royal-Evening-Desert-Safari-6.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '14:30 – 15:30 pm'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '21:00 – 22:00'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '7 Hours (including pick up and drop)'
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '4-11 years old'
+                    ],
+
+                    [
+                        'title'         => '0-3 Year olds are free of charge.  Child to be seated on parents or guardians laps.',
+                        'description'   => ''
+                    ]
+                ],
+                'tickets' => []
             ],
 
             [
+                //Safari
                 'category_id'   => 1,
                 'name'          => 'Overnight Desert Safari',
                 'subtitle'      => 'A night under the stars',
@@ -191,10 +358,43 @@ class PackageTableSeeder extends Seeder
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Overnight-Desert-Safari.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '14:30 – 15:30 pm'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '8:30 – 9:30 am next day'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '18 Hours (Including pick up and drop)'
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '4-11 years old'
+                    ],
+
+                    [
+                        'title'         => '0-3 Year olds are free of charge.  Child to be seated on parents or guardians laps.',
+                        'description'   => ''
+                    ],
+                ],
+                'tickets' => []
             ],
 
     		[
+                //Safari
     			'category_id'	=> 1,
     			'name'			=> 'Evening Dinner in the Desert',
     			'subtitle'		=> 'Traditional Arabic Dining in a Bedouin',
@@ -227,10 +427,43 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Evening-Dinner-in-the-Desert.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '17:00 – 17:30 pm'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '21:00 – 22:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '4 Hours  (Including pick up and drop)'
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '4-11 years old'
+                    ],
+
+                    [
+                        'title'         => '0-3 Year olds are free of charge.  Child to be seated on parents or guardians laps.',
+                        'description'   => ''
+                    ],
+                ],
+                'tickets' => []
     		],    		
 
     		[
+                //Safari
     			'category_id'	=> 2,
     			'name'			=> 'Dune Buggy Drive',
     			'subtitle'		=> 'Action Packed Off Road Exploring',
@@ -250,10 +483,53 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dune-Buggy-Drive.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily',
+                        'description'   => 'upon request.'
+                    ],
+
+                    [
+                        'title'         => 'Duration of Excursion',
+                        'description'   => '1 Hour'
+                    ],
+
+                    [
+                        'title'         => 'Total Duration',
+                        'description'   => '3 Hours (Including pick up and drop)'
+                    ],
+
+                    [
+                        'title'         => 'Please note that prices are indicated for a minimum of 2 persons',
+                        'description'   => ''
+                    ],
+
+                    [
+                        'title'         => 'The Minimum age for driving is 16 years old.',
+                        'description'   => ''
+                    ],
+
+                    [
+                        'title'         => 'A helmet is provided.',
+                        'description'   => ''
+                    ],
+
+                    [
+                        'title'         => 'Disclaimer form against damage and personal injury required to be signed.',
+                        'description'   => ''
+                    ],
+                ],
+                'tickets' => []
     		],   
 
     		[
+                //Safari Adventure
     			'category_id'	=> 2,
     			'name'			=> 'Quad Biking',
     			'subtitle'		=> 'Quad the experience of a lifetime',
@@ -272,10 +548,58 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Quad-Biking.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily',
+                        'description'   => 'upon request.'
+                    ],
+
+                    [
+                        'title'         => 'Duration of Excursion',
+                        'description'   => '1 Hour'
+                    ],
+
+
+                    [
+                        'title'         => 'Total Duration',
+                        'description'   => '3 Hours (Including pick up and drop)'
+                    ],
+
+
+                    [
+                        'title'         => 'Please note that prices are indicated for a minimum of 2 persons',
+                        'description'   => ''
+                    ],
+
+
+                    [
+                        'title'         => 'The Minimum age for driving is 16 years old.',
+                        'description'   => ''
+                    ],
+
+
+                    [
+                        'title'         => 'Helmet and goggles provided.',
+                        'description'   => ''
+                    ],
+
+
+                    [
+                        'title'         => 'Disclaimer form against damage and personal injury required to be signed.',
+                        'description'   => ''
+                    ],
+                ],
+                'tickets' => []
     		],      
 
     		[
+                //Safari Adventure
     			'category_id'	=> 2,
     			'name'			=> 'Dune Bashing',
     			'subtitle'		=> 'Thrilling Roller Coaster Drive',
@@ -296,10 +620,47 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 2,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dune-Bashing.jpg'
+                    ],
+                    [
+                        'path'  => 'Dune-Bashing-2.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '08:30 – 09:00 am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '12:00 – 12:30 pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration of Excursion',
+                        'description'   => '1 hour'
+                    ],
+
+                    [
+                        'title'         => 'Total Duration',
+                        'description'   => '3 Hours (Including pick up and drop)'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2 - 3 Hours'
+                    ],
+                ],
+
+                'tickets' => []
     		], 
 
     		[
+                //Safari Adventure
     			'category_id'	=> 2,
     			'name'			=> 'Sand Boarding',
     			'subtitle'		=> 'Experience the Exhilarating Rush',
@@ -318,10 +679,34 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 3,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Sand-Boarding.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '08:30 – 09:00 am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '12:00 – 12:30'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '3 Hours'
+                    ],
+                ],
+
+                'tickets' => []
     		],     		         		 		 	
 
     		[
+                //Safari Adventure
     			'category_id'	=> 2,
     			'name'			=> 'Camel Ride',
     			'subtitle'		=> 'An adventure whilst experiencing nature',
@@ -341,10 +726,52 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 2,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Camel-Ride.jpg',
+                    ],
+
+                    [
+                        'path'  => 'Camel-Ride-2.jpg',
+                    ],
+
+                    [
+                        'path'  => 'Camel-Ride-3.jpg',
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '08:30 – 09:00 am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '12:00 – 12:30'
+                    ],
+
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '14:30 – 15:30 am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '18:30 – 19:00 '
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '3 Hours'
+                    ],
+                ],
+
+                'tickets' => []
     		],  
 
     		[
+                //Cruise / Boats
     			'category_id'	=> 3,
     			'name'			=> 'Dubai Marina Tour',
     			'subtitle'		=> 'Panoramic Skyline of New Dubai',
@@ -370,10 +797,29 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dubai-Marina-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '10:30 am -  11:30 am, 01:30 pm -  02:30 pm, 04:00 pm -  05:00 pm, 06:30 pm -  07:30 pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 Hour Cruise'
+                    ],
+                ],
+
+                'tickets' => []
     		],    
 
     		[
+                //Cruise / Boats
     			'category_id'	=> 3,
     			'name'			=> 'Sightseeing Palm Cruise',
     			'subtitle'		=> 'Panoramic views of Glittering sky scrappers',
@@ -397,10 +843,28 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Sightseeing-Palm-Cruise.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '09:0 am -  11:00 am. On Private or Sharing and On Request Basis.'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2 Hour Cruise'
+                    ],
+                ],
+                'tickets' => []
     		],       
 
-    		[
+    		[ 
+                //Cruise / Boats
     			'category_id'	=> 3,
     			'name'			=> 'Dhow Dinner Cruise',
     			'subtitle'		=> 'A moonlight dinner onboard a dhow – Simply Divine',
@@ -430,10 +894,33 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dhow-Dinner-Cruise.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs at',
+                        'description'   => '20:30 - 22:30'
+                    ],
+
+                    [
+                        'title'         => 'Boarding Time',
+                        'description'   => '20:00'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2 Hour Cruise'
+                    ],
+                ],
+                'tickets' => []
     		], 
 
     		[
+                //Cruise / Boats
     			'category_id'	=> 3,
     			'name'			=> 'Rustar Dhow Dinner Cruise',
     			'subtitle'		=> 'The World’s Biggest Wooden Floating Restaurant',
@@ -466,10 +953,78 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Rustar-Dhow-Dinner-Cruise.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs at',
+                        'description'   => '21:00 - 23:00'
+                    ],
+
+                    [
+                        'title'         => 'Boarding Time',
+                        'description'   => '20:00'
+                    ],
+
+                    [
+                        'title'         => 'Duration of Excursion',
+                        'description'   => '2 hours'
+                    ],
+
+                    [
+                        'title'         => 'Total Duration',
+                        'description'   => '3 – 4 Hours (including pick up and drop off)'
+                    ],
+                ],
+                'tickets' => []
     		], 
 
+            [
+                //'Cruise / Boats',
+                'category_id'   => 3,
+                'name'          => 'Xclusive Marina Cruise',
+                'subtitle'      => '',
+                'description'   =>  '
+                                    <h3>Our Xclusive Marina Cruise Includes</h3>
+                                    <ul>
+                                        <li>International Buffet</li>
+                                        <li>Unlimited Juices, Tea & Coffee
+                                    </ul>
+                                    ',
+                'adult_price'   =>  '250',
+                'child_price'   =>  '250',
+                'has_time_options'  => 0,
+                'confirm_availability'  => 0,
+                'minimum_quantity'  => 1,
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Xclusive-Marina-Cruise.jpg'
+                    ],
+                    [
+                        'path'  => 'Xclusive-Marina-Cruise-2.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Boarding Time',
+                        'description'   => '8pm'
+                    ],
+
+                    [
+                        'title'         => 'Cruise Time',
+                        'description'   => '8:30pm to 10:30pm'
+                    ]
+                ],
+                'tickets' => []
+            ], 
+
     		[
+                //City Tours,
     			'category_id'	=> 4,
     			'name'			=> 'Dubai City Tour',
     			'subtitle'		=> 'Touring the City of Gold',
@@ -509,10 +1064,28 @@ class PackageTableSeeder extends Seeder
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dubai-City-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '9:00am – 13:00pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '4 Hours'
+                    ],
+                ],
+                'tickets' => []
     		],  
 
     		[
+                //City Tours,
     			'category_id'	=> 4,
     			'name'			=> 'Abu Dhabi Tour',
     			'subtitle'		=> 'Discover the beautiful capital city of Abu Dhabi',
@@ -551,10 +1124,28 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Abu-Dhabi-Tour.jpg'
+                    ]
+                ],
+                'information'   => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '8:00am – 08:30pm – Arrive 14:30 – 15:00pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '6- 7 Hours'
+                    ],
+                ],
+                'tickets' => []
     		], 
 
     		[
+                //City Tours,
     			'category_id'	=> 4,
     			'name'			=> 'Al Ain City Tour',
     			'subtitle'		=> 'The Garden City of The Gulf',
@@ -587,10 +1178,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Al-Ain-City-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '8:00am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '14:30pm – 15:00pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '6- 7 Hours'
+                    ],
+                ],
+                'tickets' => []
     		],    
 
     		[
+                //City Tours,
     			'category_id'	=> 4,
     			'name'			=> 'Sharjah & Ajman',
     			'subtitle'		=> 'Magnificent show piece of local heritage',
@@ -625,10 +1239,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Sharjah-and-Ajman.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '9:00am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '13:00pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '6- 7 Hours'
+                    ],
+                ],
+                'tickets' => []
     		],        		 		     		   		    		          		 		  		   		         		 		 	
 
     		[
+                //City Tours,
     			'category_id'	=> 4,
     			'name'			=> 'East Coast (Fujairah) Tour',
     			'subtitle'		=> 'A Cultural Experience',
@@ -662,10 +1299,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'East-Coast-Fujairah-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '8:00am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '14:30pm – 15:00pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '6- 7 Hours'
+                    ],
+                ],
+                'tickets' => []
     		],
 
     		[
+                //City Tours,
     			'category_id'	=> 4,
     			'name'			=> 'Khasab Tour - Musandam (Oman)',
     			'subtitle'		=> 'A Calm Oasis & Village',
@@ -692,10 +1352,48 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Khasab-Tour-Musandam-Oman.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '6:00am – 6:30 am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '19:00pm – 20:00pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '12 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Visa Charges (Oman visa fee & UAE exit fee) are not included in our price & should be paid by the guest at the border:',
+                        'description'   => ''
+                    ],
+
+                    [
+                        'title'         => 'UAE Residence Visa Holders',
+                        'description'   => '85 AED'
+                    ],
+
+                    [
+                        'title'         => 'UAE Tourist Visa Holders',
+                        'description'   => '235 AED'
+                    ],
+                ],
+                'tickets' => []
     		],    
 
     		[
+                //City Tours,
     			'category_id'	=> 4,
     			'name'			=> 'Hatta Mountain Trek Tour',
     			'subtitle'		=> 'Ultimate Location for Endurance Driving',
@@ -722,10 +1420,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Hatta-Mountain-Trek-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '8:00am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '14:30pm'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '7 Hours'
+                    ],
+                ],
+                'tickets' => []
     		],        				        		 		     		   		    		          		 		  		   		         		 		 	
 
     		[
+                //'Bus Tours',
     			'category_id'	=> 5,
     			'name'			=> 'Wonder Bus Tours',
     			'subtitle'		=> 'A sea & Land Adventure',
@@ -750,10 +1471,38 @@ On this tour you will learn everything about the oil- the so called "black gold"
     			'has_time_options'	=> 0,
     			'confirm_availability'	=> 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Wonder-Bus-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily:',
+                        'description'   => 'The trip timings are based according to the Tide schedule.  Please enquire'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 Hour 15 Minutes'
+                    ],
+
+                    [
+                        'title'         => 'Meeting Point',
+                        'description'   => 'Burjuman Shopping mall in Bur Dubai'
+                    ],
+
+                    [
+                        'title'         => 'Transfers',
+                        'description'   => 'Available on request – with additional charge'
+                    ],
+                ],
+                'tickets' => []
     		],     
 
             [
+                //'Bus Tours - 24 id',
                 'category_id'   => 5,
                 'name'          => 'Big Bus Tours',
                 'subtitle'      => 'Hop on & Hop Off',
@@ -784,10 +1533,18 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Big-Bus-Tour.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],  
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Sea Wings Pearl Tour',
                 'subtitle'      => 'See Dubai as you’ve never seen it before',
@@ -825,10 +1582,28 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Sea-Wings-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => 'Timing According to availability'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 -2 Hours'
+                    ],
+                ],
+                'tickets' => []
             ],    
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Sea Wings Silver Tour',
                 'subtitle'      => 'See Dubai as you’ve never seen it before',
@@ -874,10 +1649,28 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Sea-Wings-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => 'Timing According to availability'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 -2 Hours'
+                    ],
+                ],
+                'tickets' => []
             ], 
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Sea Wings Gold Tour',
                 'subtitle'      => 'See Dubai as you’ve never seen it before',
@@ -926,10 +1719,28 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Sea-Wings-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => 'Timing According to availability'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 -2 Hours'
+                    ],
+                ],
+                'tickets' => []
             ], 
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Helicopter Tour - 15 Minutes',
                 'subtitle'      => 'An Enchanting Birds eye view',
@@ -969,10 +1780,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Helicopter-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => 'Timing According to availability'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 -2 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Meeting Point',
+                        'description'   => 'Atlantis Palm'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Helicopter Tour - 25 Minutes',
                 'subtitle'      => 'An Enchanting Birds eye view',
@@ -1016,10 +1850,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Helicopter-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => 'Timing According to availability'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 -2 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Meeting Point',
+                        'description'   => 'Atlantis Palm'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Helicopter Tour - 45 Minutes',
                 'subtitle'      => 'An Enchanting Birds eye view',
@@ -1066,10 +1923,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Helicopter-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => 'Timing According to availability'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 -2 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Meeting Point',
+                        'description'   => 'Atlantis Palm'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Helicopter Tour - 60 Minutes',
                 'subtitle'      => 'An Enchanting Birds eye view',
@@ -1118,10 +1998,33 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Helicopter-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => 'Timing According to availability'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1 -2 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Meeting Point',
+                        'description'   => 'Atlantis Palm'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Hot Air Balloon Ride',
                 'subtitle'      => 'Out of this World Experience',
@@ -1144,10 +2047,38 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Hot-Air-Balloon-Ride.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Availability',
+                        'description'   => 'October – May Only'
+                    ],
+
+                    [
+                        'title'         => 'Departs daily at',
+                        'description'   => '04:30am  - 05:00 am – Arrive 8:30 – 9:30 am'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '4-5 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '5-12 years old'
+                    ],
+                ],
+                'tickets' => []
             ],     
 
             [
+                //'Air Tours',
                 'category_id'   => 6,
                 'name'          => 'Sky Diving Tour',
                 'subtitle'      => 'Experience the world beneath you',
@@ -1167,10 +2098,48 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Sky-Diving-Tour.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Age',
+                        'description'   => '18 & above'
+                    ],
+
+                    [
+                        'title'         => 'Dress Code',
+                        'description'   => 'Warm Clothes and closed shoes.'
+                    ],
+
+                    [
+                        'title'         => 'Restrictions',
+                        'description'   => 'Weight Restrictions apply (not more than 100kg)'
+                    ],
+
+                    [
+                        'title'         => 'Availability',
+                        'description'   => 'Daily except Sundays'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Sky Diving Duration',
+                        'description'   => '20 mins'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'Fishing & Yachting',
                 'category_id'   => 7,
                 'name'          => 'Deep Sea Fishing',
                 'subtitle'      => 'The catch of the day',
@@ -1195,10 +2164,23 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Deep-Sea-Fishing.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Availability',
+                        'description'   => 'Daily'
+                    ],
+                ],
+                'tickets' => []
             ],   
 
             [
+                //'Fishing & Yachting',
                 'category_id'   => 7,
                 'name'          => 'Crab Hunting',
                 'subtitle'      => 'A Rare Crab hunting Programme',
@@ -1222,10 +2204,43 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Crab-Hunting.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Time',
+                        'description'   => '18:00 pm – 23:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'Availability',
+                        'description'   => 'Daily'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '5 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '5-11 years old'
+                    ],
+
+                    [
+                        'title'         => 'Meeting Point',
+                        'description'   => 'Flamingo Beach Resort in Umm Al Quwain'
+                    ],
+                ],
+                'tickets' => []
             ], 
 
             [
+                //'Water Parks / Entertainment',
                 'category_id'   => 8,
                 'name'          => 'Wild Wadi',
                 'subtitle'      => 'Wild Water Adventures',
@@ -1252,10 +2267,71 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 1,
+                'photos'    => [
+                    [
+                        'path'  => 'Wild-Wadi.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Timings',
+                        'description'   => '11am - Different closing hours throughout the year. In Jan, Feb, Nov and Dec it closes at 6pm. In March, April, May, Sept and Oct it closes at 7pm. During the summer months (June, July and Aug), it closes at 9pm '
+                    ],
+
+                    [
+                        'title'         => 'To Note',
+                        'description'   => 'Thursdays is an women’s only day'
+                    ],
+
+                    [
+                        'title'         => 'Please note',
+                        'description'   => '1 way transfer to the park is included in price.  Pick up is available at extra charge.'
+                    ],
+                ],
+
+                'tickets' => [
+                    [
+                        'name'          => 'General Admission (Adult)',
+                        'duration'      => 'All day ticket',
+                        'adultPrice'    => '275',
+                        'childPrice'    => '0',
+                        'information'   => [
+                            [
+                                'name'  => '1.1 meters',
+                                'description'   => 'in height & above'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name'          => 'General Admission (Child)',
+                        'duration'      => 'All day ticket',
+                        'adultPrice'    => '0',
+                        'childPrice'    => '230',
+                        'information'   => [
+                            [
+                                'name'  => '1.1 meters',
+                                'description'   => 'in height'
+                            ]
+                        ]
+                    ],
+                    [
+                        'name'          => 'Infant (Free of charge)',
+                        'duration'      => 'All day ticket',
+                        'adultPrice'    => '0',
+                        'childPrice'    => '0',
+                        'information'   => [
+                            [
+                                'name'  => '2 years old',
+                                'description'   => 'and under'
+                            ]
+                        ]
+                    ]
+                ]
             ],  
 
             [
+                //'Water Parks / Entertainment',
                 'category_id'   => 8,
                 'name'          => 'Atlantis Aqua Adventure',
                 'subtitle'      => 'An Aqua venture',
@@ -1274,10 +2350,28 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Atlantis-Aqua-Adventure.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Timings',
+                        'description'   => '11am – 18:30'
+                    ],
+
+                    [
+                        'title'         => 'Please note',
+                        'description'   => '1 way transfer to the park is included in price.  Pick up is available at extra charge.'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'Water Parks / Entertainment',
                 'category_id'   => 8,
                 'name'          => 'Dreamland Aqua Park',
                 'subtitle'      => 'Sun & Fun at the water park',
@@ -1307,16 +2401,64 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dreamland-Aqua-Park.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Park Timings:',
+                        'description'   => ''
+                    ],
+
+                    [
+                        'title'         => 'January to March',
+                        'description'   => '10 am - 6 pm'
+                    ],
+
+                    [
+                        'title'         => 'April to May',
+                        'description'   => '10 am - 7 pm'
+                    ],
+
+                    [
+                        'title'         => 'June to August',
+                        'description'   => '11 am - 9 pm'
+                    ],
+
+                    [
+                        'title'         => 'Sept to Dec',
+                        'description'   => '10 am - 6 pm'
+                    ],
+
+                    [
+                        'title'         => 'Holy Month of Ramadan',
+                        'description'   => '10 am - 4 pm'
+                    ],
+
+                    [
+                        'title'         => 'Note',
+                        'description'   => 'Fridays and public holidays are STRICTLY for families'
+                    ],
+
+                    [
+                        'title'         => 'Please note',
+                        'description'   => '1 way transfer to the park is included in price.  Pick up is available at extra charge.'
+                    ],
+                ],
+                'tickets' => []
             ],
 
             [
+                //'Water Parks / Entertainment',
                 'category_id'   => 8,
                 'name'          => 'Wonder Land Water and Theme Park',
                 'subtitle'      => '2 Parks for the price of 1',
                 'description'   =>  '<p>Welcome to our 2 parks, Wonderland theme park, and Splashland.</p>
                                     <p>Wonderland is the largest Amusement park in the U.A.E. We offer to dear guests, the possibility to enjoy more than 30 rides and attractions, internationally famous along a world-class water-park over 22 acres.
-You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlets where you can have delightful meals, fresh drinks and sweets or ice-creams. And of course, you will get a souvenir that lasts forever!</p>
+                                    You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlets where you can have delightful meals, fresh drinks and sweets or ice-creams. And of course, you will get a souvenir that lasts forever!</p>
                                     <p>Wonderland is located alongside the Dubai Creek Park, near Al Garhoud Bridge in Duba</p>
 
                                     <h3>Our Wonderland Water & Theme Park Price Includes</h3>
@@ -1333,10 +2475,38 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Wonder-Land-Water-and-Theme-Park.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Timings Water Park',
+                        'description'   => '10:00 am – 19:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'Timings Theme Park',
+                        'description'   => '16:00 pm – 22:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'To Note',
+                        'description'   => 'Wednesday is an only woman’s day'
+                    ],
+
+                    [
+                        'title'         => 'Please note',
+                        'description'   => '1 way transfer to the park is included in price.  Pick up is available at extra charge.'
+                    ],
+                ],
+                'tickets' => []
             ], 
 
             [
+                //'Water Parks / Entertainment',
                 'category_id'   => 8,
                 'name'          => 'Dubai Dolphinarium',
                 'subtitle'      => 'Be enthralled by the world’s most loved animal',
@@ -1357,10 +2527,38 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dubai-Dolphinarium.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Timings',
+                        'description'   => 'Pick up: 10:00 am –10:30 am'
+                    ],
+
+                    [
+                        'title'         => 'Arrive',
+                        'description'   => '12:00 – 12:30'
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2 – 3 Hours'
+                    ],
+
+                    [
+                        'title'         => 'Available',
+                        'description'   => 'Daily, Apart from Sundays.'
+                    ],
+                ],
+                'tickets' => []
             ],
 
             [
+                //'Water Parks / Entertainment',
                 'category_id'   => 8,
                 'name'          => 'Jet Ski Tour',
                 'subtitle'      => 'Enjoy the Ultimate Thrill',
@@ -1381,10 +2579,41 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Jet-Ski-Tour.jpg'
+                    ]
+                ],
+
+                'information' => [
+                    [
+                        'title'         => 'Timings',
+                        'description'   => 'Available on your request '
+                    ],
+
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2 – 3 Hours'
+                    ],
+
+
+                    [
+                        'title'         => 'Available',
+                        'description'   => 'Daily'
+                    ],
+
+
+                    [
+                        'title'         => 'Age',
+                        'description'   => 'Over 19 only'
+                    ],
+                ],
+                'tickets' => []
             ], 
 
             [
+                //'UAE Attractions',
                 'category_id'   => 9,
                 'name'          => 'Burj Khalifa',
                 'subtitle'      => 'Worlds Tallest Building',
@@ -1413,10 +2642,23 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 1,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Burj-Khalifa.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Please note',
+                        'description'   => '1 way transfer to the park is included in price.  Pick up is available at extra charge.'
+                    ],
+                ],
+                'tickets' => []
             ],   
 
             [
+                //'UAE Attractions',
                 'category_id'   => 9,
                 'name'          => 'Afternoon Tea at Burj Al Arab',
                 'subtitle'      => 'Dining Among the Stars and Below the Sea',
@@ -1446,10 +2688,33 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Afternoon-Tea-at-Burj-Al-Arab.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '1-2 Hours '
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '3 -10 Years old'
+                    ],
+
+                    [
+                        'title'         => 'Infants',
+                        'description'   => 'Free'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'UAE Attractions',
                 'category_id'   => 9,
                 'name'          => 'Lunch at Burj Al Arab',
                 'subtitle'      => 'Dining Among the Stars and Below the Sea',
@@ -1476,10 +2741,33 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Lunch-at-Burj-Al-Arab.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2-3 Hours '
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '3-10 years old'
+                    ],
+
+                    [
+                        'title'         => 'Infants',
+                        'description'   => 'Free'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'UAE Attractions',
                 'category_id'   => 9,
                 'name'          => 'Dinner at Burj Al Arab',
                 'subtitle'      => 'Dining Among the Stars and Below the Sea',
@@ -1519,10 +2807,33 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dinner-at-Burj-Al-Arab.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Duration',
+                        'description'   => '2-3 Hours '
+                    ],
+
+                    [
+                        'title'         => 'Child should be',
+                        'description'   => '3-10 years old'
+                    ],
+
+                    [
+                        'title'         => 'Infants',
+                        'description'   => 'Free'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'UAE Attractions',
                 'category_id'   => 9,
                 'name'          => 'Ferrari World Theme Park',
                 'subtitle'      => 'Ferrari Experience',
@@ -1547,10 +2858,99 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 1
+                'has_ticket_option' => 1,
+                'photos'    => [
+                    [
+                        'path'  => 'Ferrari-World-Theme-Park.jpg',
+                    ]
+                ],
+                'information' => [
+                    [
+                        'package_id'    => 46,
+                        'title'         => 'Timings',
+                        'description'   => 'Pick Up 09:30 – 10:00 am – Drop off 19:00 – 19:30'
+                    ],
+
+                    [
+                        'package_id'    => 46,
+                        'title'         => 'Tuesday - Sunday',
+                        'description'   => ''
+                    ],
+                ],
+                'tickets' => [
+                    [
+                        'name'          => 'Bronze',
+                        'duration'      => '1 day ticket',
+                        'adultPrice'    => '250',
+                        'childPrice'    => '205',
+                        'information'   => [
+                            [
+                                'name'  => 'Unlimited',
+                                'description'   => 'access to the park'
+                            ],
+
+                            [
+                                'name'  => '5 AED',
+                                'description'   => 'Merchandise Voucher'
+                            ]
+                        ]
+                    ],
+
+                    [
+                        'name'          => 'Silver',
+                        'duration'      => '1 day ticket',
+                        'adultPrice'    => '350',
+                        'childPrice'    => '305',
+                        'information'   => [
+                            [
+                                'name'  => 'Unlimited',
+                                'description'   => 'access to the park'
+                            ],
+
+                            [
+                                'name'  => '10 AED',
+                                'description'   => 'Merchandise Voucher'
+                            ],
+
+                            [
+                                'name'  => '3 Use',
+                                'description'   => 'Fast Pass'
+                            ],
+                        ]
+                    ],
+
+                    [
+                        'name'          => 'Gold',
+                        'duration'      => '1 day ticket',
+                        'adultPrice'    => '500',
+                        'childPrice'    => '415',
+                        'information'   => [
+                            [
+                                'name'  => 'Unlimited',
+                                'description'   => 'access to the park'
+                            ],
+
+                            [
+                                'name'  => '15 AED',
+                                'description'   => 'Merchandise Voucher'
+                            ],
+
+                            [
+                                'name'  => 'Unlimited',
+                                'description'   => 'Fast Pass'
+                            ],
+
+                            [
+                                'name'  => 'Priority',
+                                'description'   => 'Seating'
+                            ],
+                        ]
+                    ]
+                ]
             ],
 
             [
+                //'Shopping Malls',
                 'category_id'   => 10,
                 'name'          => 'Dubai Mall',
                 'subtitle'      => 'Everything you Desire',
@@ -1563,10 +2963,28 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dubai-Mall.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Sun - Wed: 10:00 am – 22:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Thurs – Sun: 10:00 am – 24:00 pm'
+                    ],
+                ],
+                'tickets' => []
             ],  
 
             [
+                //'Shopping Malls',
                 'category_id'   => 10,
                 'name'          => 'Mall of Emirates',
                 'subtitle'      => 'Shopping is just the beginning',
@@ -1578,10 +2996,28 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Mall-of-Emirates.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Sun - Wed: 10:00 am – 24:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Thurs – Sun: 10:00 am – 22:00 pm'
+                    ],
+                ],
+                'tickets' => []
             ],       
 
             [
+                //'Shopping Malls',
                 'category_id'   => 10,
                 'name'          => 'Burjuman Centre',
                 'subtitle'      => 'The Haven of Luxury Shopping',
@@ -1591,10 +3027,28 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Burjuman-Centre.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Sat - Wed: 10:00 am – 23:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Thurs – Fri: 10:00 am – 24:00 pm'
+                    ],
+                ],
+                'tickets' => []
             ],
 
             [
+                //'Shopping Malls',
                 'category_id'   => 10,
                 'name'          => 'IBN Battuta Mall',
                 'subtitle'      => 'Great Stuff, Fantastic Place',
@@ -1604,10 +3058,28 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'IBN-Battuta-Mall.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Sun - Wed: 10:00 am – 24:00 pm '
+                    ],
+
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Thurs – Sun: 10:00 am – 22:00 '
+                    ],
+                ],
+                'tickets' => []
             ],
 
             [
+                //'Shopping Malls',
                 'category_id'   => 10,
                 'name'          => 'Dubai Festival Centre',
                 'subtitle'      => 'Live a More Colourful Life',
@@ -1617,10 +3089,18 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dubai-Festival-Centre.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],
 
             [
+                //'Shopping Malls',
                 'category_id'   => 10,
                 'name'          => 'Dubai Mall Marina',
                 'subtitle'      => 'Shopping & Lifestyle Destination',
@@ -1635,10 +3115,18 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Dubai-Mall-Marina.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],
 
             [
+                //'Shopping Malls',
                 'category_id'   => 10,
                 'name'          => 'Deira City Centre',
                 'subtitle'      => 'Where you love to shop',
@@ -1653,10 +3141,28 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Deira-City-Centre.jpg'
+                    ]
+                ],
+                'information' => [
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Sun - Wed: 10:00 am – 22:00 pm'
+                    ],
+
+                    [
+                        'title'         => 'Opening Hours',
+                        'description'   => 'Thurs – Sun: 10:00 am – 24:00 pm'
+                    ],
+                ],
+                'tickets' => []
             ],
 
             [
+                //'Souks'
                 'category_id'   => 11,
                 'name'          => 'Gold Souk',
                 'subtitle'      => 'Shimmering Gold',
@@ -1690,10 +3196,18 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Gold-Souk.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],
 
             [
+                //'Souks'
                 'category_id'   => 11,
                 'name'          => 'Spice Souk',
                 'subtitle'      => 'Smoky & Spicy Aroma',
@@ -1709,10 +3223,18 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Spice-Souk.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],
 
             [
+                //'Souks'
                 'category_id'   => 11,
                 'name'          => 'Perfume Souk',
                 'subtitle'      => 'Exotic Scents',
@@ -1729,10 +3251,18 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 1,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Perfume-Souk.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],
 
             [
+                //'Souks'
                 'category_id'   => 11,
                 'name'          => 'Textile Souk',
                 'subtitle'      => 'Colourful Fabrics & Ethnic Designs',
@@ -1748,10 +3278,18 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Textile-Souk.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],
 
             [
+                //'Souks'
                 'category_id'   => 11,
                 'name'          => 'Fish Souk',
                 'subtitle'      => 'Fresh Fish',
@@ -1766,45 +3304,86 @@ You will enjoy a warm welcome, an impressive free-parking, and 6 catering outlet
                 'has_time_options'  => 0,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
+                'has_ticket_option' => 0,
+                'photos'    => [
+                    [
+                        'path'  => 'Fish-Souk.jpg'
+                    ]
+                ],
+                'information' => [],
+                'tickets' => []
             ],
-
-            [
-                'category_id'   => 3,
-                'name'          => 'Xclusive Marina Cruise',
-                'subtitle'      => '',
-                'description'   =>  '
-                                    <h3>Our Xclusive Marina Cruise Includes</h3>
-                                    <ul>
-                                        <li>International Buffet</li>
-                                        <li>Unlimited Juices, Tea & Coffee
-                                    </ul>
-                                    ',
-                'adult_price'   =>  '250',
-                'child_price'   =>  '250',
-                'has_time_options'  => 0,
-                'confirm_availability'  => 0,
-                'minimum_quantity'  => 1,
-                'has_ticket_option' => 0
-            ], 
     	];
 
          foreach( $packages as $package )
          {
-            $newPackage = new Package;
+            $createPackage = Package::create([
+                'category_id'   => $package['category_id'],
+                'name'  => $package['name'],
+                'subtitle' => $package['subtitle'],
+                'description' => $package['description'],
+                'adult_price' => $package['adult_price'],
+                'child_price' => $package['child_price'],
+                'has_time_options' => $package['has_time_options'],
+                'confirm_availability' => $package['confirm_availability'],
+                'minimum_quantity' => $package['minimum_quantity'],
+                'has_ticket_option' => $package['has_ticket_option']
+            ]);
 
-            $newPackage->category_id = $package['category_id'];
-            $newPackage->name = $package['name'];
-            $newPackage->subtitle = $package['subtitle'];
-            $newPackage->description = $package['description'];
-            $newPackage->adult_price = $package['adult_price'];
-            $newPackage->child_price  = $package['child_price'];
-            $newPackage->has_time_options = $package['has_time_options'];
-            $newPackage->confirm_availability = $package['confirm_availability'];
-            $newPackage->minimum_quantity = $package['minimum_quantity'];
-            $newPackage->has_ticket_option = $package['has_ticket_option'];
+            $newPackage = Package::findOrFail($createPackage->id);
 
-            $newPackage->save();
+            /**
+             * Save Package Photos
+             */
+            foreach( $package['photos'] as $photo )
+            {
+                $newPhotoData = new Photo([
+                    'path'  => $photo['path']
+                ]);
+
+                $newPackage->photos()->save($newPhotoData);
+            }
+
+            /**
+             * Save Package Information
+             */
+            foreach( $package['information'] as $information )
+            {
+                $newInformationData = new PackageInformation([
+                    'title' => $information['title'],
+                    'description'   => $information['description']
+                ]);
+
+                $newPackage->information()->save($newInformationData);
+            }
+
+            /**
+             * Save Package Tickets
+             */
+            foreach( $package['tickets'] as $ticket )
+            {
+                $newTicketData = new Ticket([
+                    'name'  => $ticket['name'],
+                    'duration' => $ticket['duration'],
+                    'adultPrice'    => $ticket['adultPrice'],
+                    'childPrice' => $ticket['childPrice']
+                ]);
+
+                $newTicket = $newPackage->tickets()->save($newTicketData);
+
+                /**
+                 * Save Package Ticket Information
+                 */
+                foreach( $ticket['information'] as $item )
+                {
+                    $newTicketInformationData = new TicketInformation([
+                        'name'  => $item['name'],
+                        'description' => $item['description']
+                    ]);
+
+                    $newTicket->information()->save($newTicketInformationData);
+                }
+            }
          }
         
     }

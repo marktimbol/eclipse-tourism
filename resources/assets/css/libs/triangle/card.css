@@ -102,6 +102,10 @@
 	overflow: hidden;
 }
 
+.card__copy .package .container {
+	width: 100%;
+}
+
 .card__copy p:first-of-type {
 	padding: 0 0 1em 0;
 }
