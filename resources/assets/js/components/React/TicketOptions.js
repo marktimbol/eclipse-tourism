@@ -1,12 +1,7 @@
 var React = require('react');
 
 var TicketOptions = React.createClass({
-	componentDidMount() {
-		console.log(this.props.currentPackage.tickets.information);
-	},
-
 	render() {
-
 		var tickets = this.props.currentPackage.tickets.map(function(ticket) {
 			var information = ticket.information.map(function(information) {
 				return (
@@ -28,9 +23,8 @@ var TicketOptions = React.createClass({
                                     ticket.childPrice :
                                     ticket.adultPrice
                                 }
-                            	<sub>{ ticket.adultPrice == 0 ? '/child' : '/adult' }</sub>
                             </div>
-                             <p className="price-desc">1 day ticket</p>
+                             <p className="price-desc">{ ticket.duration }</p>
                         </div>
                         <div className="card-content">
                             <ul className="collection">

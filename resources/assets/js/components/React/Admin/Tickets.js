@@ -1,28 +1,28 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import TicketOptionList from './TicketOptionList';
-import NewTicketOption from './NewTicketOption';
+import Ticket from './Ticket';
+import NewTicket from './NewTicket';
 
 var csrfToken = $('meta[name="token"]').attr('content');
 
-var TicketOptions = React.createClass({
+var Tickets = React.createClass({
 
 	getInitialState() {
 		return {
-			ticketOptions: window.currentPackage.tickets
+			tickets: window.currentPackage.tickets
 		}
 	},
 
-	fetchTicketOptions() {
+	fetchTickets() {
 		var url = '/api/v1/packages/' + window.package_id + '/tickets';
 
 		$.get(url, function(data) {
-			this.setState({ ticketOptions: data });
+			this.setState({ tickets: data });
 		}.bind(this));
 	},	
 
-	onSubmit(name, adultPrice, childPrice) {
+	onSubmit(name, duration, adultPrice, childPrice) {
 		var url = '/admin/packages/' + window.package_id + '/tickets';
 
 		$.ajax({
@@ -31,12 +31,13 @@ var TicketOptions = React.createClass({
 			data: {
 				package_id: window.package_id,
 				name: name,
+				duration: duration,
 				adultPrice: adultPrice,
 				childPrice: childPrice
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response) {
-				this.fetchTicketOptions();
+				this.fetchTickets();
 			}.bind(this),
 			error: function(xhr, status, err) {
 
@@ -45,7 +46,7 @@ var TicketOptions = React.createClass({
 
 	},
 
-	onUpdate(id, name, adultPrice, childPrice) {
+	onUpdate(id, name, duration, adultPrice, childPrice) {
 	    var url = '/admin/packages/' + window.package_id + '/tickets/' + id;
 
 		$.ajax({
@@ -55,12 +56,13 @@ var TicketOptions = React.createClass({
 				id: id,
 				package_id: window.package_id,
 				name: name,
+				duration: duration,
 				adultPrice: adultPrice,
 				childPrice: childPrice
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response) {
-				this.fetchTicketOptions();
+				this.fetchTickets();
 			}.bind(this),
 			error: function(xhr, status, err) {
 
@@ -82,7 +84,7 @@ var TicketOptions = React.createClass({
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response) {
-				this.fetchTicketOptions();
+				this.fetchTickets();
 			}.bind(this),
 			error: function(xhr, status, err) {
 
@@ -102,7 +104,7 @@ var TicketOptions = React.createClass({
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response) {
-				this.fetchTicketOptions();
+				this.fetchTickets();
 			}.bind(this),
 			error: function(xhr, status, err) {
 
@@ -121,7 +123,7 @@ var TicketOptions = React.createClass({
 			},
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response) {
-				this.fetchTicketOptions();
+				this.fetchTickets();
 			}.bind(this),
 			error: function(xhr, status, err) {
 
@@ -144,7 +146,7 @@ var TicketOptions = React.createClass({
 			headers: { 'X-CSRF-Token': csrfToken },
 			success: function(response)
 			{
-				this.fetchTicketOptions();
+				this.fetchTickets();
 				console.log(response, 'setState here');
 			}.bind(this),
 			error: function(xhr, status, err)
@@ -155,23 +157,36 @@ var TicketOptions = React.createClass({
 	},
 
 	render() {
+		var tickets = this.state.tickets.map(function(item) {
+			return (
+				<Ticket key={item.id} 
+					ticket={item}
+					onUpdate={this.onUpdate}
+					onUpdateInformation={this.onUpdateInformation}
+					onDelete={this.onDelete}
+					onDeleteInformation={this.onDeleteInformation}
+					information={item.information}
+					onSubmitTicketInformation={this.onSubmitTicketInformation} />
+			)	
+		}.bind(this));
+
 		return (
 			<div className="row">
-				<TicketOptionList 
-					tickets={this.state.ticketOptions} 
-					onDelete={this.onDelete} 
-					onDeleteInformation={this.onDeleteInformation} 
-					onUpdate={this.onUpdate} 
-					onUpdateInformation={this.onUpdateInformation}
-					onSubmitTicketInformation={this.onSubmitTicketInformation} />
-					
-				<NewTicketOption onSubmit={this.onSubmit}/>
+				<div className="col-md-12">
+					<h3>Ticket Options</h3>
+					<ul className="list-group">
+						{ tickets }
+					</ul>
+					<button type="button" className="btn btn-primary btn-sm" data-toggle="modal" data-target="#newTicket">Add New Ticket</button>
+				</div>
+
+				<NewTicket onSubmit={this.onSubmit}/>
 			</div>
 		);
 	}
 });
 
 ReactDOM.render(
-	<TicketOptions />,
-	document.getElementById('TicketOptions')
+	<Tickets />,
+	document.getElementById('Tickets')
 );

@@ -1,8 +1,8 @@
 <?php
 
-namespace Eclipse\Repositories\Ticket;
+namespace Eclipse\Repositories\Ticket\Information;
 
-interface TicketOptionsRepositoryInterface {
+interface TicketInformationRepositoryInterface {
 
 	public function find($id);
 

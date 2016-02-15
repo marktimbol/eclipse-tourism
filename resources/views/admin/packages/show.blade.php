@@ -91,7 +91,7 @@
 	
 					@if( $package->has_ticket_option )
 						<hr />
-						<div id="TicketOptions"></div>
+						<div id="Tickets"></div>
 					@endif
 				</div>
 			</div>

@@ -2,15 +2,16 @@ var React = require('react');
 var csrfToken = $('meta[name="token"]').attr('content');
 import TicketInfo from './TicketInfo';
 
-var TicketInformation = React.createClass({
+var Ticket = React.createClass({
 
 	getInitialState() {
 		return {
 			editing: false,
-			ticketId: this.props.id,
-			name: this.props.name,
-			adultPrice: this.props.adultPrice,
-			childPrice: this.props.childPrice,
+			ticketId: this.props.ticket.id,
+			name: this.props.ticket.name,
+			duration: this.props.ticket.duration,
+			adultPrice: this.props.ticket.adultPrice,
+			childPrice: this.props.ticket.childPrice,
 
 			showForm: false,
 			ticketName: '',
@@ -20,7 +21,7 @@ var TicketInformation = React.createClass({
 
 	onDelete(e) {
 		e.preventDefault();
-		this.props.onDelete(this.props.id);
+		this.props.onDelete(this.props.ticket.id);
 	},
 
 	onDeleteInformation(id, ticketId) {
@@ -37,7 +38,7 @@ var TicketInformation = React.createClass({
 	},
 
 	onUpdate() {
-		this.props.onUpdate(this.props.id, this.state.name, this.state.adultPrice, this.state.childPrice);
+		this.props.onUpdate(this.props.ticket.id, this.state.name, this.state.duration, this.state.adultPrice, this.state.childPrice);
 
 		this.setState({
 			editing: false
@@ -54,6 +55,10 @@ var TicketInformation = React.createClass({
 
 	handleNameChange(e) {
 		this.setState({ name: e.target.value });
+	},
+
+	handleDurationChange(e) {
+		this.setState({ duration: e.target.value });
 	},
 
 	handleAdultPriceChange(e) {
@@ -83,7 +88,7 @@ var TicketInformation = React.createClass({
 	onSubmitTicketInformation(e)
 	{
 		e.preventDefault();
-		this.props.onSubmitTicketInformation(this.props.id, this.state.ticketName, this.state.ticketDescription);
+		this.props.onSubmitTicketInformation(this.props.ticket.id, this.state.ticketName, this.state.ticketDescription);
 		this.resetTicketInformationInput();
 	},
 
@@ -112,19 +117,42 @@ var TicketInformation = React.createClass({
 					{ this.state.editing  ?
 						<div className="col-md-9">
 							<div className="row">
-								<div className="col-md-4">
-									<input className="form-control" value={this.state.name} onChange={this.handleNameChange} />
+								<div className="col-md-12">
+									<div className="form-group">
+										<label>Ticket Name</label>
+										<input className="form-control" value={this.state.name} onChange={this.handleNameChange} />
+									</div>
 								</div>
 
-								<div className="col-md-3">
-									<input className="form-control" value={this.state.adultPrice} onChange={this.handleAdultPriceChange} />
+								<div className="col-md-12">
+									<div className="form-group">
+										<label>Duration</label>
+										<input className="form-control" value={this.state.duration} onChange={this.handleDurationChange} />
+									</div>
+								</div>
+
+								<div className="col-md-12">
+									<div className="row">
+										<div className="col-md-6">
+											<div className="form-group">
+												<label>Adult Price</label>
+												<input className="form-control" value={this.state.adultPrice} onChange={this.handleAdultPriceChange} />
+											</div>
+										</div>
+
+										<div className="col-md-6">
+											<div className="form-group">
+												<label>Adult Price</label>
+												<input className="form-control" value={this.state.childPrice} onChange={this.handleChildPriceChange} />
+											</div>
+										</div>
+									</div>
 								</div>	
 
-								<div className="col-md-3">
-									<input className="form-control" value={this.state.childPrice} onChange={this.handleChildPriceChange} />
-								</div>	
-
-								<div className="col-md-1">
+								<div className="col-md-12">
+									<button type="submit" onClick={this.onUpdate} className="btn btn-sm btn-primary">
+										Update Information
+									</button>
 									<button className="btn btn-default btn-sm" onClick={this.onCancelEdit}>Cancel</button>
 								</div>
 							</div>
@@ -132,6 +160,7 @@ var TicketInformation = React.createClass({
 						:
 						<div className="col-md-9">
 							<strong>{ this.state.name }</strong><br />
+							Duration: { this.state.duration }<br />
 							Adult Price: { this.state.adultPrice} AED<br />
 							Child Price: { this.state.childPrice } AED
 
@@ -210,4 +239,4 @@ var TicketInformation = React.createClass({
 	}
 });
 
-export default TicketInformation;
+export default Ticket;

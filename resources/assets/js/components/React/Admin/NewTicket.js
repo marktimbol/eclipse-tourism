@@ -1,7 +1,7 @@
 var React = require('react');
 var csrfToken = $('meta[name="token"]').attr('content');
 
-var NewTicketOption = React.createClass({
+var NewTicket = React.createClass({
 
 	getInitialState() {
 		return {
@@ -17,7 +17,7 @@ var NewTicketOption = React.createClass({
 		this.props.onSubmit(this.state.name, this.state.duration, this.state.adultPrice, this.state.childPrice);
 		this.resetText();
 
-		$('#newTicketOption').modal('hide')
+		$('#newTicket').modal('hide')
 	},
 
 
@@ -48,7 +48,7 @@ var NewTicketOption = React.createClass({
 
 	render() {
 		return (
-			<div className="modal fade" id="newTicketOption" role="dialog">
+			<div className="modal fade" id="newTicket" role="dialog">
 				<div className="modal-dialog" role="document">
 					<div className="modal-content">
 						<div className="modal-header">
@@ -104,4 +104,4 @@ var NewTicketOption = React.createClass({
 	}
 });
 
-export default NewTicketOption;
+export default NewTicket;

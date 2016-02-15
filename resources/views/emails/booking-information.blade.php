@@ -42,6 +42,7 @@
 											$adultPrice = $package->adult_price;
 											$childPrice = $package->child_price;
 											$ticketName = '';
+											$ticketDuration = '';
 
 											if( $package->has_ticket_option )
 											{
@@ -54,6 +55,7 @@
 														$adultPrice = $ticket->adultPrice;
 														$childPrice = $ticket->childPrice;
 														$ticketName = $ticket->name . ' Ticket';
+														$ticketDuration = $ticket->duration;
 													}
 												}
 											}
@@ -61,7 +63,10 @@
 
 			                    		<tr style="border-top: 1px dashed #aaaaaa;">
 			                        		<td style="font-family: Arial, sans-serif; color: #333333; font-size: 16px; padding-top: 10px;">
-			                        			{{ $ticketName }}<br />
+				                        		<p>
+				                        			{{ $ticketName }}<br />
+				                        			{{ $ticketDuration }}
+				                        		</p>
 			                        			{{ $package->name }} 
 			                        				<span style="color: #888; font-size: 14px; !important">
 			                        					( 

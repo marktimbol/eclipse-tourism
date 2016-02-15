@@ -17,13 +17,15 @@ var CheckoutItem = React.createClass({
 			var tickets = this.props.item.options.selectedPackage.tickets;
 
 			var selectedTicket = '';
+			var ticketDuration = '';
 
 			tickets.map(function(ticket) {
 				if( ticketId == ticket.id ) {
+					ticketDuration = ticket.duration;
 					adultPrice = ticket.adultPrice;
 					childPrice = ticket.childPrice;
 
-					selectedTicket = ticket.name + ' Ticket';
+					selectedTicket = ticket.name;
 				}
 			});
 		}
@@ -41,6 +43,7 @@ var CheckoutItem = React.createClass({
 					<h6 className="order__price">{ currentCurrency + ' ' + numeral(adultPrice).format('0,0') }</h6>
 					<p>
 						<strong>{ selectedTicket }</strong><br />
+						<strong>{ ticketDuration }</strong><br />
 						<strong>Adult: </strong>{ this.props.item.qty } pax<br />
 						<strong>Child: </strong>  
 						{ this.props.item.options.child_quantity } pax

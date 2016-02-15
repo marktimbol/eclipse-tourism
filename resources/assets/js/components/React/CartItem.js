@@ -37,9 +37,11 @@ var CartItem = React.createClass({
 			var tickets = this.props.item.options.selectedPackage.tickets;
 
 			var selectedTicket = '';
+			var ticketDuration = '';
 
 			tickets.map(function(ticket) {
 				if( ticketId == ticket.id ) {
+					ticketDuration = ticket.duration;
 					adultPrice = ticket.adultPrice;
 					childPrice = ticket.childPrice;
 
@@ -70,7 +72,7 @@ var CartItem = React.createClass({
 									{ this.props.item.options.time ? this.props.item.options.time : '' }
 								</p>
 
-								{ selectedTicket ? <p className="text-muted">{ selectedTicket + ' Ticket'}</p> : '' }
+								{ selectedTicket ? <p className="text-muted">{ selectedTicket + ' - ' + ticketDuration}</p> : '' }
 
 								{ this.props.item.options.selectedPackage.confirm_availability ? 
 									<p className="text-muted">* Subject for Availability</p> : 

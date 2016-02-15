@@ -37,7 +37,6 @@ var PackageInformation = React.createClass({
 	},
 
 	componentDidMount() {
-		console.log(window.package);
 		if( window.package.has_ticket_option ) {
 			this.setState({ displayPrice: false });
 		}

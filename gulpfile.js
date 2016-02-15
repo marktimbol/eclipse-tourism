@@ -107,7 +107,7 @@ elixir(function(mix) {
 
   mix.browserify([
     'components/React/Admin/PackageInformation.js',
-    'components/React/Admin/TicketOptions.js'
+    'components/React/Admin/Tickets.js'
   ], 'public/js/admin/PackageInformation.js')
 
 /*

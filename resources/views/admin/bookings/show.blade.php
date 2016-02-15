@@ -58,6 +58,7 @@
                                         $adultPrice = $package->adult_price;
                                         $childPrice = $package->child_price;
                                         $ticketName = '';
+                                        $ticketDuration = '';
 
                                         if( $package->has_ticket_option )
                                         {
@@ -69,7 +70,8 @@
                                                 {
                                                     $adultPrice = $ticket->adultPrice;
                                                     $childPrice = $ticket->childPrice;
-                                                    $ticketName = ' - ' . $ticket->name . ' Ticket';
+                                                    $ticketName = $ticket->name . ' Ticket';
+                                                    $ticketDuration = $ticket->duration;
                                                 }
                                             }
                                         }
@@ -77,7 +79,9 @@
                                         <tr>
                                             <td width="500">
                                                 <p>
-                                                    {{ $package->name . $ticketName }} 
+                                                    {{ $package->name }}<br />
+                                                    {{ $ticketName }}<br />
+                                                    {{ $ticketDuration }}
                                                 </p>
                                                 <p class="text-muted">
                                                     <i class="fa fa-calendar"></i> 

@@ -4,9 +4,9 @@ namespace Eclipse\Repositories\Ticket;
 
 use App\Ticket;
 use Eclipse\Repositories\Package\PackageRepositoryInterface;
-use Eclipse\Repositories\Ticket\TicketOptionsRepositoryInterface;
+use Eclipse\Repositories\Ticket\TicketRepositoryInterface;
 
-class TicketOptionsRepository implements TicketOptionsRepositoryInterface {
+class TicketRepository implements TicketRepositoryInterface {
 
 	protected $package;
 
@@ -24,6 +24,7 @@ class TicketOptionsRepository implements TicketOptionsRepositoryInterface {
 	{
     	$newTicketOption = new Ticket([
     		'name' => $data['name'],
+    		'duration' => $data['duration'],
             'adultPrice'    => $data['adultPrice'],
             'childPrice'    => $data['childPrice']
     	]);
