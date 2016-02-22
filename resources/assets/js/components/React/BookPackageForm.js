@@ -188,6 +188,16 @@ var BookPackageForm = React.createClass({
 				this.setState({ date_submit: picker.get('select', 'yyyy-mm-dd') });
 			}.bind(this)
 		});
+
+		if( this.props.currentPackage.name == 'Dubai Dolphinarium' )
+		{
+			this.setState({
+				timings: [
+					'11:00 AM', '03:00 PM', '06:00 PM'
+				]
+			})
+		}
+
 	},
 
 	render() {
