@@ -47,7 +47,7 @@
 
                    	<h3>Company Profile</h3>
                     <p>
-					Eclipse Tourism LLC started as a travel management company based in Dubai and UK in 2011. In short span of time, Eclipse Tourism LLC has made its presence felt in the Industry and today we are known as one of the leading inbound tour operators.
+					Eclipse Tourism LLC started as a travel management company based in Dubai and UK. In short span of time, Eclipse Tourism LLC has made its presence felt in the Industry and today we are known as one of the leading inbound tour operators.
 					</p>
 
 					<p>

@@ -82,7 +82,8 @@
 							</p>
 
 							<ul class="address has-icon">
-								<li><i class="fa fa-map-marker"></i> P.O. Box 125582 S-8, Building C-8 China Cluster, International City, Dubai, United Arab Emirates</li>
+								<li><i class="fa fa-map-marker"></i> 
+								P.O. Box 125582 S-8, Building C 08, Shop 8, China Cluster, International City, Dubai, United Arab Emirates</li>
 							</ul>				
 						</div>
 					</div>
