@@ -144,6 +144,20 @@ var BookPackageForm = React.createClass({
 			}		
 		}
 
+		if( this.props.currentPackage.has_time_options )
+		{
+			if( this.state.time == '' ) {
+				swal({
+					title: "Eclipse Tourism",  
+					text: "Please select your preferred timings.",  
+					type: "error",
+					showConfirmButton: true
+				});	
+				return this.resetFormState();
+			}		
+		}
+
+
 		return this.submitForm();
 
 	},

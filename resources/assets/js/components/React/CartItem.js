@@ -68,8 +68,14 @@ var CartItem = React.createClass({
 
 								<p className="text-muted">
 									<i className="fa fa-calendar"></i>&nbsp;&nbsp; 
-									{ this.props.item.options.date }
-									{ this.props.item.options.time ? this.props.item.options.time : '' }
+									{ this.props.item.options.date } 
+									{ this.props.item.options.selectedPackage.has_time_options ?
+										<span>
+											&nbsp; at &nbsp; 
+											{ this.props.item.options.time ? this.props.item.options.time : '' }
+										</span>
+										: ''
+									}
 								</p>
 
 								{ selectedTicket ? <p className="text-muted">{ selectedTicket + ' - ' + ticketDuration}</p> : '' }

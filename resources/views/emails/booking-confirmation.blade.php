@@ -64,10 +64,8 @@
 			                    		<tr style="border-top: 1px dashed #aaaaaa;">
 			                        		<td style="font-family: Arial, sans-serif; color: #333333; font-size: 16px; padding-top: 10px;">
 				                        		<p>
-				                        			{{ $ticketName }}<br />
-				                        			{{ $ticketDuration }}
-				                        		</p>
-			                        			{{ $package->name }} 
+				                        			{{ $ticketName }} - {{ $ticketDuration }}<br />
+			                        				{{ $package->name }} 
 			                        				<span style="color: #888; font-size: 14px; !important">
 			                        					( 
 			                        						{{ $package->pivot->adult_quantity }} 
@@ -75,6 +73,7 @@
 			                        						{{ formatNumber( $adultPrice ) }} 
 			                        					AED )
 			                        				</span>
+			                        			</p>
 			                        		</td>
 			                        		<td align="right" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">
 	                    						AED {{ formatNumber( $package->pivot->adult_quantity * $adultPrice ) }} 
@@ -95,6 +94,17 @@
 												AED {{ formatNumber( $package->pivot->child_quantity * $childPrice ) }} 
 											</td>
 										</tr>
+
+										<tr>
+											<td style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">
+												Date: {{ $package->pivot->date }} 
+													@if( $package->has_time_options)
+														<span>&nbsp; @ {{ $package->pivot->time }}</span>									
+													@endif
+											</td>
+											<td align="right" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;"></td>
+										</tr>
+										
 					                    <tr>
 					                    	<td>&nbsp;</td>
 					                        <td>&nbsp;</td>

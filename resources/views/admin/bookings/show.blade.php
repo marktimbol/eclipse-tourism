@@ -80,13 +80,16 @@
                                             <td width="500">
                                                 <p>
                                                     {{ $package->name }}<br />
-                                                    {{ $ticketName }}<br />
-                                                    {{ $ticketDuration }}
+                                                    @if( $package->has_ticket_option )
+                                                        {{ $ticketName }}: {{ $ticketDuration }}
+                                                    @endif
                                                 </p>
                                                 <p class="text-muted">
                                                     <i class="fa fa-calendar"></i> 
                                                     {{ $package->pivot->date }}
-                                                    {{ $package->pivot->time }}
+                                                    @if( $package->has_time_options )
+                                                        @ {{ $package->pivot->time }}
+                                                    @endif
                                                 </p>
 
                                                 <ul class="collection">

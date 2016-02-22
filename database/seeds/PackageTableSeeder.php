@@ -2514,20 +2514,16 @@ On this tour you will learn everything about the oil- the so called "black gold"
 
                                     <h3>Our Dubai Dolphinarium Price Includes</h3>
                                     <ul>
-                                        <li>Pickup from your hotel or residence in Dubai or Sharjah *</li>
                                         <li>A Dubai Dolphiarium Ticket</li>
                                         <li>See Live Dolphin and Seals</li>
-                                        <li>Drop back to your hotel or residence</li>
                                     </ul>
-
-                                    <p>*Pick up from other emirates is available at extra charge</p>
                                     ',
                 'adult_price'   =>  '120',
                 'child_price'   =>  '100',
-                'has_time_options'  => 0,
+                'has_time_options'  => 1,
                 'confirm_availability'  => 0,
                 'minimum_quantity'  => 1,
-                'has_ticket_option' => 0,
+                'has_ticket_option' => 1,
                 'photos'    => [
                     [
                         'path'  => 'Dubai-Dolphinarium.jpg'
@@ -2536,25 +2532,31 @@ On this tour you will learn everything about the oil- the so called "black gold"
                 'information' => [
                     [
                         'title'         => 'Timings',
-                        'description'   => 'Pick up: 10:00 am –10:30 am'
-                    ],
-
-                    [
-                        'title'         => 'Arrive',
-                        'description'   => '12:00 – 12:30'
+                        'description'   => '11:00am, 3:00pm & 6:00pm'
                     ],
 
                     [
                         'title'         => 'Duration',
                         'description'   => '2 – 3 Hours'
                     ],
+                ],
+                'tickets' => [
+                    [
+                        'name'          => 'Regular',
+                        'duration'      => '2 - 3 Hours',
+                        'adultPrice'    => '120',
+                        'childPrice'    => '100',
+                        'information'   => []
+                    ],
 
                     [
-                        'title'         => 'Available',
-                        'description'   => 'Daily, Apart from Sundays.'
+                        'name'          => 'VIP',
+                        'duration'      => '2 - 3 Hours',
+                        'adultPrice'    => '140',
+                        'childPrice'    => '100',
+                        'information'   => []
                     ],
-                ],
-                'tickets' => []
+                ]
             ],
 
             [
